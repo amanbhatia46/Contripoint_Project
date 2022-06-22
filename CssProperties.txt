@@ -1,0 +1,267 @@
+
+ 
+
+
+
+>>>>>>>>>>CSS PROPERTIES >>>>>>>>>>>>
+
+  1 - Gemini Id and Password successfully login
+
+ Certifications:- 
+Certifications font-size: 16px
+  FIGMA font-size: 16px
+pass
+
+ Certifications color: rgba(0, 0, 0, 1)
+  FIGMA Color: rgba(0, 0, 0, 1)
+pass
+
+ Certifications font-family: Poppins
+  FIGMA font-family: Poppins
+pass
+
+ Certifications text-align: left
+ FIGMA text-align: left
+pass
+
+ Certifications font-style: normal
+ FIGMA font-style: normal
+pass
+
+ Certifications font-weight: 600
+  FIGMA font-weight: 600
+pass
+
+ Certifications line-height: 24px
+  FIGMA  line-height: 24px
+pass
+
+ Certifications letter-spacing: 0.48px
+ FIGMA  letter-spacing: 0.03em
+fail
+
+ Certifications Location : {'x': 208, 'y': 684}
+
+ Certifications Size : {'height': 24, 'width': 113}
+
+  NameOfCertification:- 
+NameOfCertification font-size: 14px
+ FIGMA font-size: 14px
+pass
+
+ NameOfCertification color: rgba(0, 0, 0, 1)
+ FIGMA color: rgba(0, 0, 0, 1)
+pass
+
+ NameOfCertification font-family: Poppins
+ FIGMA font-family: Poppins
+pass
+
+ NameOfCertification font-style: normal
+ FIGMA font-style: normal
+pass
+
+ NameOfCertification text-align: center
+ FIGMA text-align: left
+fail
+
+ NameOfCertification font-weight: 600
+ FIGMA font-weight: 600
+pass
+
+ NameOfCertification line-height: 21px
+ FIGMA line-height: 21px
+pass
+
+ NameOfCertification letter-spacing: normal
+ FIGMA letter-spacing: 0.36px
+fail
+
+ Location : {'x': 193, 'y': 245}
+
+ Size : {'height': 21, 'width': 152}
+
+  Completion Date:- 
+Completion Date font-size: 14px
+ FIGMA font-size: 14px
+pass
+
+ Completion Date color: rgba(0, 0, 0, 1)
+ FIGMA color: rgba(0, 0, 0, 1)
+pass
+
+ Completion Date font-family: Poppins
+ FIGMA font-family: Poppins
+pass
+
+ Completion Date font-style: normal
+ FIGMA font-style: normal
+pass
+
+ Completion Date text-align: center
+ FIGMA text-align: left
+fail
+
+ Completion Date font-weight: 600
+ FIGMA font-weight: 600
+pass
+
+ Completion Date line-height: 21px
+ FIGMA line-height: 21px
+pass
+
+ Completion Date letter-spacing: normal
+ FIGMA letter-spacing: 0.36px
+fail
+
+ Location : {'x': 482, 'y': 245}
+
+ Size : {'height': 21, 'width': 119}
+
+  Status:- 
+Status font-size: 14px
+ FIGMA font-size: 14px
+pass
+
+ Status color: rgba(0, 0, 0, 1)
+ FIGMA color: rgba(0, 0, 0, 1)
+pass
+
+ Status font-family: Poppins
+ FIGMA font-family: Poppins
+pass
+
+ Status font-style: normal
+ FIGMA font-style: normal
+pass
+
+ Status text-align: center
+ FIGMA text-align: left
+fail
+
+ Status font-weight: 600
+ FIGMA font-weight: 600
+pass
+
+ Status line-height: 21px
+ FIGMA line-height: 21px
+pass
+
+ Status letter-spacing: normal
+ FIGMA letter-spacing: 0.36px
+fail
+
+ Location : {'x': 782, 'y': 245}
+
+ Size : {'height': 21, 'width': 44}
+
+  Action:- 
+\Action font-size: 14px
+ FIGMA font-size: 14px
+pass
+
+ Action color: rgba(0, 0, 0, 1)
+ FIGMA color: rgba(0, 0, 0, 1)
+pass
+
+ Action font-family: Poppins
+ FIGMA font-family: Poppins
+pass
+
+ Action font-style: normal
+ FIGMA font-style: normal
+pass
+
+ Action text-align: center
+ FIGMA text-align: left
+fail
+
+ Action font-weight: 600
+ FIGMA font-weight: 600
+pass
+
+ Action line-height: 21px
+ FIGMA line-height: 21px
+pass
+
+ Action letter-spacing: normal
+ FIGMA letter-spacing: 0.36px
+fail
+
+ Location : {'x': 782, 'y': 245}
+
+ Size : {'height': 21, 'width': 44}
+
+  CreatedOn:- 
+Created On font-size: 14px
+ FIGMA font-size: 14px
+pass
+
+ Created On color: rgba(0, 0, 0, 1)
+ FIGMA color: rgba(0, 0, 0, 1)
+pass
+
+ Created On font-family: Poppins
+ FIGMA font-family: Poppins
+pass
+
+ Created On font-style: normal
+ FIGMA font-style: normal
+pass
+
+ Created On text-align: center
+ FIGMA text-align: left
+fail
+
+ Created On font-weight: 600
+ FIGMA font-weight: 600
+pass
+
+ Created On line-height: 21px
+ FIGMA line-height: 21px
+pass
+
+ Created On letter-spacing: normal
+ FIGMA letter-spacing: 0.36px
+fail
+
+ Location : {'x': 782, 'y': 245}
+
+ Size : {'height': 21, 'width': 44}
+
+  Certificates:- 
+Certificates font-size: 18px
+ FIGMA font-size: 18px
+pass
+
+ Certificates color: rgba(0, 0, 0, 1)
+ FIGMA color: rgba(0, 0, 0, 1)
+pass
+
+ Certificates font-family: Poppins
+ FIGMA font-family: Poppins
+pass
+
+ Certificates font-style: normal
+ FIGMA font-style: normal
+pass
+
+ Certificates text-align: left
+ FIGMA text-align: left
+pass
+
+ Certificates font-weight: 600
+ FIGMA font-weight: 600
+pass
+
+ Certificates line-height: 27px
+ FIGMA line-height: 27px
+fail
+
+ Certificates letter-spacing: 0.36px
+ FIGMA letter-spacing: 0.36px
+pass
+
+ Location : {'x': 169, 'y': 169}
+
+ Size : {'height': 27, 'width': 108}

@@ -1,0 +1,47 @@
+
+
+
+
+
+>>>>>>>>>>CERTIFICATIONS >>>>>>>>>>>>
+
+ 1 - Gemini Id and Password successfully login
+
+ 2 - Selecting 'Certifications' successfully
+
+ 3 - Add New Contribution button gets selected
+
+ 4 - Name Of Certification - 'Python'
+
+ 5 - Date of completion done
+
+ 6 - Attachment Upload successfully
+
+ 7 - Selecting Technology. . .
+
+ 8 - 'ANDROID' got selected from Technology
+
+ 9 - All Details get SUBMIT successfully.
+
+
+
+
+>>>>>>>>>>PROJECTS >>>>>>>>>>>>
+
+ 1 - Gemini Id and Password successfully login
+
+ 2 - Selecting 'Certifications' successfully
+
+ 3 - Add New Contribution button gets selected
+
+ 4 - Name Of Certification - 'Python'
+
+ 5 - Date of completion done
+
+ 6 - Attachment Upload successfully
+
+ 7 - Selecting Technology. . .
+
+ 8 - 'ANDROID' got selected from Technology
+
+ 9 - All Details get SUBMIT successfully.

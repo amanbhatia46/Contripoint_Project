@@ -15,7 +15,8 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from openpyxl import load_workbook
 from datetime import datetime, timedelta
 
-from LoginContripoint import *
+from LoginMFA import *
+import LoginMFA
 
 
 class RBugEvent(unittest.TestCase):
@@ -317,8 +318,8 @@ class RBugEvent(unittest.TestCase):
 
 if __name__ == '__main__':
     tb = RBugEvent()
-    login = Login()
-    driver = login.LoginMFA()
+    Login = LoginMFA()
+    driver = Login.MFA()
     tb.setExternalDriver(driver=driver)
     tb.Report_Bug()
     tb.Add_New()

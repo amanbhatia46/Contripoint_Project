@@ -17,7 +17,8 @@ from json import load
 from openpyxl import load_workbook
 from datetime import datetime, timedelta
 
-from datainputs import *
+from LoginMFA import *
+import LoginMFA
 
 
 class NCEvent(unittest.TestCase):
@@ -50,262 +51,216 @@ class NCEvent(unittest.TestCase):
         futuredate = str(datetime.now())
         print(futuredate)
         self.ws['H2'] = futuredate
+                   
+    def Clientfeedback(self):
+        '''
 
-    def setUp(self):
+        '''
         try:
-            s=Service(ChromeDriverManager().install())
-            self.driver = webdriver.Chrome(service=s)
-            print("\n\n\n\n\n>>>>>>>>>> Non Contest Event >>>>>>>>>>>>")
-
-            driver = self.driver
-            driver.maximize_window()
-            driver.get(
-                "https://dev-contripoint.geminisolutions.com/#/login")
-            button = driver.find_element(
-                By.XPATH, '/html/body/app-root/div/div/app-login-screen/div/div/div/mat-card/div[2]/div/button')
-            button.click()
-            time.sleep(6)
-
-            window_handles = driver.window_handles
-            driver.switch_to.window(window_handles[1])
-            driver.find_element(
-                By.XPATH, '//*[@id="identifierId"]').send_keys('aman.bhatia@geminisolutions.com')
-            self.ws['A2'] = 'aman.bhatia@geminisolutions.com'
-            driver.find_element(
-                By.XPATH, '//*[@id="identifierNext"]/div/button/span').click()
-            time.sleep(3)
-
-            driver.find_element(
-                By.XPATH, '//*[@id="password"]/div[1]/div/div[1]/input').send_keys('RitaNandini96')
-            self.ws['B2'] = 'RitaNandini@96'
-            driver.find_element(
-                By.XPATH, '//*[@id="passwordNext"]/div/button/span').click()
-            time.sleep(6)
-
-            driver.switch_to.window(window_handles[0])
-            time.sleep(6)
-            print("\n 1 - Gemini Id and Password successfully login")
-            self.ws['C2'] = 'Login'
-            self.ws['G2'] = 'login Success'
-
+            
+            #ClientFeedback
+            clientfeedback = self.driver.find_element(
+                By.XPATH, '/html/body/app-root/div[3]/div/app-dash-board/div[3]/app-dash-cards/div/div[3]/div[1]/mat-card/mat-card-header')
+            clientfeedback.click()
+            print("\n 2 - Selecting 'ClientFeedback'")
+            self.ws['C3'] = 'Selecting ClientFeedback'
+            self.ws['G3'] = 'Pass'
             self.wb.save(self.filename)
+            time.sleep(6)
 
         except Exception as e:
+            print("\n\nERROR IN CLIENT FEEDBACK >>>>>>>>>>>>>>>\n\n")
             print(e)
-            print("\n 1 - Gemini Id and Password  login failed")
-            self.ws['C2'] = 'Login'
-            self.ws['G2'] = 'login failed'
+            print("\n 2 - Selecting 'ClientFeedback' gets failed")
+            self.ws['C3'] = 'Selecting ClientFeedback'
+            self.ws['G3'] = 'Fail'
             self.wb.save(self.filename)
-                   
-    # def Clientfeedback(self):
-    #     '''
-
-    #     '''
-    #     try:
-            
-    #         #ClientFeedback
-    #         clientfeedback = self.driver.find_element(
-    #             By.XPATH, '/html/body/app-root/div[3]/div/app-dash-board/div[3]/app-dash-cards/div/div[3]/div[1]/mat-card/mat-card-header')
-    #         clientfeedback.click()
-    #         print("\n 2 - Selecting 'ClientFeedback'")
-    #         self.ws['C3'] = 'Selecting ClientFeedback'
-    #         self.ws['G3'] = 'Pass'
-    #         self.wb.save(self.filename)
-    #         time.sleep(6)
-
-    #     except Exception as e:
-    #         print("\n\nERROR IN CLIENT FEEDBACK >>>>>>>>>>>>>>>\n\n")
-    #         print(e)
-    #         print("\n 2 - Selecting 'ClientFeedback' gets failed")
-    #         self.ws['C3'] = 'Selecting ClientFeedback'
-    #         self.ws['G3'] = 'Fail'
-    #         self.wb.save(self.filename)
 
 
-    # def AddNew(self):
-    #     '''
+    def AddNew(self):
+        '''
 
-    #     '''
-    #     try:
-    #         #ADD NEW
-    #         element = self.driver.find_element(
-    #             By.XPATH, '/html/body/app-root/div[3]/div/app-feedback-table/div/div/div/div[2]/div/div/div/div[2]/ul/div/button')
-    #         actions = ActionChains(self.driver)
-    #         actions.move_to_element(element).click().perform()
-    #         print("\n 3 - Selecting 'Add New' button gets selected")
-    #         self.ws['C4'] = 'Add New'
-    #         self.ws['G4'] = 'Pass'
-    #         self.wb.save(self.filename)
-    #         time.sleep(6)
+        '''
+        try:
+            #ADD NEW
+            element = self.driver.find_element(
+                By.XPATH, '/html/body/app-root/div[3]/div/app-feedback-table/div/div/div/div[2]/div/div/div/div[2]/ul/div/button')
+            actions = ActionChains(self.driver)
+            actions.move_to_element(element).click().perform()
+            print("\n 3 - Selecting 'Add New' button gets selected")
+            self.ws['C4'] = 'Add New'
+            self.ws['G4'] = 'Pass'
+            self.wb.save(self.filename)
+            time.sleep(6)
 
-    #     except Exception as e:
-    #         print("\n\nERROR IN ADD NEW  >>>>>>>>>>>>>>>\n\n")
-    #         print(e)
-    #         print("\n 3 - Selecting 'Add New' button gets fail")
-    #         self.ws['C4'] = 'Add New'
-    #         self.ws['G4'] = 'Fail'
-    #         self.wb.save(self.filename)
-
-
-    # def ProjectName(self):
-    #     '''
-
-    #     '''
-    #     try:
-    #         #ProjectName
-    #         self.driver.find_element(
-    #             By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-feedback-modal/div/mat-dialog-content/form/div/div[1]/div/mat-form-field/div/div[1]/div/input').send_keys('Skedular')
-    #         print("\n 4 - Project Name Done")
-    #         self.ws['C5'] = 'Project Name'
-    #         self.ws['G5'] = 'Pass'
-    #         self.wb.save(self.filename)
-    #         time.sleep(5)
-
-    #     except Exception as e:
-    #         print("\n\nERROR IN PROJECT NAME >>>>>>>>>>>>>>>\n\n")
-    #         print(e)
-    #         print("\n 4 - Unable to fill Project name")
-    #         self.ws['C5'] = 'Project Name'
-    #         self.ws['G5'] = 'Fail'
-    #         self.wb.save(self.filename)
+        except Exception as e:
+            print("\n\nERROR IN ADD NEW  >>>>>>>>>>>>>>>\n\n")
+            print(e)
+            print("\n 3 - Selecting 'Add New' button gets fail")
+            self.ws['C4'] = 'Add New'
+            self.ws['G4'] = 'Fail'
+            self.wb.save(self.filename)
 
 
-    # def ClientName(self):
-    #     '''
+    def ProjectName(self):
+        '''
 
-    #     '''
-    #     try:
-    #         #ClientName
-    #         self.driver.find_element(
-    #             By.ID, "mat-input-1").send_keys("auto-skedular")
-    #         print("\n 5 - Client Name Done")
-    #         self.ws['C6'] = 'Client Name'
-    #         self.ws['G6'] = 'Pass'
-    #         self.wb.save(self.filename)
-    #         time.sleep(5)
+        '''
+        try:
+            #ProjectName
+            self.driver.find_element(
+                By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-feedback-modal/div/mat-dialog-content/form/div/div[1]/div/mat-form-field/div/div[1]/div/input').send_keys('Skedular')
+            print("\n 4 - Project Name Done")
+            self.ws['C5'] = 'Project Name'
+            self.ws['G5'] = 'Pass'
+            self.wb.save(self.filename)
+            time.sleep(5)
 
-    #     except Exception as e:
-    #         print("\n\nERROR IN CLIENT NAME >>>>>>>>>>>>>>>\n\n")
-    #         print(e)
-    #         print("\n 5 - Unable to fill Client name")
-    #         self.ws['C6'] = 'Client Name'
-    #         self.ws['G6'] = 'Fail'
-    #         self.wb.save(self.filename)
-
-    # def Enter_ClientFeedback(self):
-    #     '''
-
-    #     '''
-    #     try:
-    #         #Enter Client Feedback
-    #         self.driver.find_element(
-    #             By.ID, "mat-input-2").send_keys("US client")
-    #         print("\n 6 - Client Feedback Done")
-    #         self.ws['C7'] = 'Enter Client Feedback'
-    #         self.ws['G7'] = 'Pass'
-    #         self.wb.save(self.filename)
-    #         time.sleep(5)
-
-    #     except Exception as e:
-    #         print("\n\nERROR IN CLIENT FEEDBACK >>>>>>>>>>>>>>>\n\n")
-    #         print(e)
-    #         print("\n 6 - Unable to fill Client Feedback")
-    #         self.ws['C7'] = 'Enter Client Feedback'
-    #         self.ws['G7'] = 'Fail'
-    #         self.wb.save(self.filename)
+        except Exception as e:
+            print("\n\nERROR IN PROJECT NAME >>>>>>>>>>>>>>>\n\n")
+            print(e)
+            print("\n 4 - Unable to fill Project name")
+            self.ws['C5'] = 'Project Name'
+            self.ws['G5'] = 'Fail'
+            self.wb.save(self.filename)
 
 
-    # def Upload_attatchment(self):
-    #     '''
+    def ClientName(self):
+        '''
 
-    #     '''
-    #     try:
-    #         #Upload Attachment
-    #         assert self.driver.find_element(
-    #             By.ID, "attachment_btn").text == "Upload attachment"
+        '''
+        try:
+            #ClientName
+            self.driver.find_element(
+                By.ID, "mat-input-1").send_keys("auto-skedular")
+            print("\n 5 - Client Name Done")
+            self.ws['C6'] = 'Client Name'
+            self.ws['G6'] = 'Pass'
+            self.wb.save(self.filename)
+            time.sleep(5)
 
-    #         print("\n 7 - Uploading Attatchment . . . ")
-    #         self.wb.save(self.filename)
-    #         time.sleep(5)
+        except Exception as e:
+            print("\n\nERROR IN CLIENT NAME >>>>>>>>>>>>>>>\n\n")
+            print(e)
+            print("\n 5 - Unable to fill Client name")
+            self.ws['C6'] = 'Client Name'
+            self.ws['G6'] = 'Fail'
+            self.wb.save(self.filename)
 
-    #         self.driver.find_element(By.ID, "attachment_btn").click()
-    #         print("\n 8 - Selecting Attachment from Drive . . .")
-    #         time.sleep(5)
+    def Enter_ClientFeedback(self):
+        '''
 
-    #         self.driver.find_element(By.ID, "firsting").send_keys(
-    #             '/home/am.bhatia/Desktop/image.jpeg')
-    #         print("\n 9 - Attatchment Successfully upload")
-    #         self.ws['C8'] = 'Upload attatchment'
-    #         self.ws['G8'] = 'Pass'
-    #         self.wb.save(self.filename)
-    #         time.sleep(5)
+        '''
+        try:
+            #Enter Client Feedback
+            self.driver.find_element(
+                By.ID, "mat-input-2").send_keys("US client")
+            print("\n 6 - Client Feedback Done")
+            self.ws['C7'] = 'Enter Client Feedback'
+            self.ws['G7'] = 'Pass'
+            self.wb.save(self.filename)
+            time.sleep(5)
 
-    #     except Exception as e:
-    #         print("\n\nERROR IN UPLOAD ATTACHMENT >>>>>>>>>>>>>>>\n\n")
-    #         print(e)
-    #         print("\n 9 - Unable to upload attatchment")
-    #         self.ws['C8'] = 'Upload attatchment'
-    #         self.ws['G8'] = 'Fail'
-    #         self.wb.save(self.filename)
+        except Exception as e:
+            print("\n\nERROR IN CLIENT FEEDBACK >>>>>>>>>>>>>>>\n\n")
+            print(e)
+            print("\n 6 - Unable to fill Client Feedback")
+            self.ws['C7'] = 'Enter Client Feedback'
+            self.ws['G7'] = 'Fail'
+            self.wb.save(self.filename)
 
 
-    # def Submit(self):
-    #     '''
+    def Upload_attatchment(self):
+        '''
 
-    #     '''
-    #     try:
-    #         #SUBMIT
-    #         assert self.driver.find_element(
-    #             By.CSS_SELECTOR, ".col-xs-3 > #add_btn > .mat-button-wrapper").text == "SUBMIT"
+        '''
+        try:
+            #Upload Attachment
+            assert self.driver.find_element(
+                By.ID, "attachment_btn").text == "Upload attachment"
 
-    #         self.driver.find_element(
-    #             By.CSS_SELECTOR, ".col-xs-3 > #add_btn").click()
+            print("\n 7 - Uploading Attatchment . . . ")
+            self.wb.save(self.filename)
+            time.sleep(5)
 
-    #         print("\n 10 - All Details get SUBMIT successfully.")
-    #         self.ws['C9'] = 'Submit'
-    #         self.ws['G9'] = 'Pass'
-    #         self.wb.save(self.filename)
-    #         time.sleep(5)
+            self.driver.find_element(By.ID, "attachment_btn").click()
+            print("\n 8 - Selecting Attachment from Drive . . .")
+            time.sleep(5)
 
-    #     except Exception as e:
-    #         print("\n\nERROR IN SUBMIT >>>>>>>>>>>>>>>\n\n")
-    #         print(e)
-    #         print("\n 10 - Unable to submit all details")
-    #         self.ws['C9'] = 'Submit'
-    #         self.ws['G9'] = 'Fail'
-    #         self.wb.save(self.filename)
+            self.driver.find_element(By.ID, "firsting").send_keys(
+                '/home/am.bhatia/Desktop/image.jpeg')
+            print("\n 9 - Attatchment Successfully upload")
+            self.ws['C8'] = 'Upload attatchment'
+            self.ws['G8'] = 'Pass'
+            self.wb.save(self.filename)
+            time.sleep(5)
+
+        except Exception as e:
+            print("\n\nERROR IN UPLOAD ATTACHMENT >>>>>>>>>>>>>>>\n\n")
+            print(e)
+            print("\n 9 - Unable to upload attatchment")
+            self.ws['C8'] = 'Upload attatchment'
+            self.ws['G8'] = 'Fail'
+            self.wb.save(self.filename)
+
+
+    def Submit(self):
+        '''
+
+        '''
+        try:
+            #SUBMIT
+            assert self.driver.find_element(
+                By.CSS_SELECTOR, ".col-xs-3 > #add_btn > .mat-button-wrapper").text == "SUBMIT"
+
+            self.driver.find_element(
+                By.CSS_SELECTOR, ".col-xs-3 > #add_btn").click()
+
+            print("\n 10 - All Details get SUBMIT successfully.")
+            self.ws['C9'] = 'Submit'
+            self.ws['G9'] = 'Pass'
+            self.wb.save(self.filename)
+            time.sleep(5)
+
+        except Exception as e:
+            print("\n\nERROR IN SUBMIT >>>>>>>>>>>>>>>\n\n")
+            print(e)
+            print("\n 10 - Unable to submit all details")
+            self.ws['C9'] = 'Submit'
+            self.ws['G9'] = 'Fail'
+            self.wb.save(self.filename)
 
 
 
-    # def OK_Button(self):
-    #     '''
+    def OK_Button(self):
+        '''
 
-    #     '''
-    #     try:
-    #         #OK Button
-    #         assert self.driver.find_element(
-    #             By.CSS_SELECTOR, "#ok_btn > .mat-button-wrapper").text == "OK"
-    #         time.sleep(5)
+        '''
+        try:
+            #OK Button
+            assert self.driver.find_element(
+                By.CSS_SELECTOR, "#ok_btn > .mat-button-wrapper").text == "OK"
+            time.sleep(5)
 
-    #         element = self.driver.find_element(By.ID, "ok_btn")
-    #         actions = ActionChains(self.driver)
-    #         actions.move_to_element(element).perform()
-    #         time.sleep(5)
+            element = self.driver.find_element(By.ID, "ok_btn")
+            actions = ActionChains(self.driver)
+            actions.move_to_element(element).perform()
+            time.sleep(5)
 
-    #         self.driver.find_element(By.ID, "ok_btn").click()
-    #         print("\n 11 - Clicking OK Button")
-    #         self.ws['C10'] = 'OK Button'
-    #         self.ws['G10'] = 'Fail'
-    #         self.wb.save(self.filename)
-    #         time.sleep(5)
+            self.driver.find_element(By.ID, "ok_btn").click()
+            print("\n 11 - Clicking OK Button")
+            self.ws['C10'] = 'OK Button'
+            self.ws['G10'] = 'Fail'
+            self.wb.save(self.filename)
+            time.sleep(5)
 
-    #     except Exception as e:
-    #         print("\n\nERROR IN OKButton >>>>>>>>>>>>>>>\n\n")
-    #         print(e)
-    #         print("\n 11 - Unable to Click OK Button")
-    #         self.ws['C10'] = 'OK Button'
-    #         self.ws['G10'] = 'Fail'
-    #         self.wb.save(self.filename)
+        except Exception as e:
+            print("\n\nERROR IN OKButton >>>>>>>>>>>>>>>\n\n")
+            print(e)
+            print("\n 11 - Unable to Click OK Button")
+            self.ws['C10'] = 'OK Button'
+            self.ws['G10'] = 'Fail'
+            self.wb.save(self.filename)
 
     def tearDown(self):
         self.driver.quit()
@@ -313,7 +268,10 @@ class NCEvent(unittest.TestCase):
 
 if __name__ == '__main__':
     tb = NCEvent()
-    tb.setUp()
+    Login = LoginMFA()
+    driver = Login.MFA()
+    tb.setExternalDriver(driver=driver)
+    tb.Login()
     tb.Clientfeedback()
     tb.AddNew()
     tb.ProjectName()

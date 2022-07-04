@@ -17,6 +17,8 @@ from json import load
 from openpyxl import load_workbook
 from datetime import datetime, timedelta
 
+from datainputs import *
+
 
 class NCEvent(unittest.TestCase):
     
@@ -75,7 +77,7 @@ class NCEvent(unittest.TestCase):
 
             driver.find_element(
                 By.XPATH, '//*[@id="password"]/div[1]/div/div[1]/input').send_keys('RitaNandini96')
-            self.ws['B2'] = 'RitaNandini96'
+            self.ws['B2'] = 'RitaNandini@96'
             driver.find_element(
                 By.XPATH, '//*[@id="passwordNext"]/div/button/span').click()
             time.sleep(6)
@@ -310,7 +312,7 @@ class NCEvent(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    tb = CFAuth()
+    tb = NCEvent()
     tb.setUp()
     tb.Clientfeedback()
     tb.AddNew()

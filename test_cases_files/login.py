@@ -15,6 +15,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
+from datainputs import *
 
 class Authentication(unittest.TestCase):
 
@@ -51,13 +52,13 @@ class Authentication(unittest.TestCase):
             window_handles = driver.window_handles
             driver.switch_to.window(window_handles[1])
             driver.find_element(
-                By.XPATH, '//*[@id="identifierId"]').send_keys(data.gemini_id)
+                By.XPATH, '//*[@id="identifierId"]').send_keys(login_Id)
             driver.find_element(
                 By.XPATH, '//*[@id="identifierNext"]/div/button/span').click()
             time.sleep(3)
 
             driver.find_element(
-                By.XPATH, '//*[@id="password"]/div[1]/div/div[1]/input').send_keys(data.gemini_password)
+                By.XPATH, '//*[@id="password"]/div[1]/div/div[1]/input').send_keys(login_Password)
             driver.find_element(
                 By.XPATH, '//*[@id="passwordNext"]/div/button/span').click()
             time.sleep(6)

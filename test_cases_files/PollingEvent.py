@@ -134,7 +134,7 @@ class Login(unittest.TestCase):
 
         """
         try:
-
+            time.sleep(10)
             y = self.driver.window_handles[0]
             time.sleep(6)
             self.driver.switch_to.window(y)
@@ -293,7 +293,7 @@ class Login(unittest.TestCase):
             time.sleep(5)
             print("\n 14 - Clicking on Event Type Dropdown ")
 
-            self.driver.find_element(By.ID,"mat-option-2").click()
+            self.driver.find_element(By.ID, "mat-option-2").click()
             time.sleep(5)
 
             print("\n 15 - Event Type - Polling Event")
@@ -322,7 +322,9 @@ class Login(unittest.TestCase):
             time.sleep(5)
             print("\n 16 - Clicking on Start Date Calander ")
 
-            self.driver.find_element(By.XPATH,'//*[@id="mat-datepicker-0"]/div/mat-month-view/table/tbody/tr[2]/td[2]/div[1]').click()
+            # self.driver.find_element(By.XPATH,'//*[@id="mat-datepicker-0"]/div/mat-month-view/table/tbody/tr[2]/td[2]/div[1]').click()
+            self.driver.find_element(
+                By.CSS_SELECTOR, ".mat-calendar-body-today").click()
             time.sleep(5)
 
             self.ws['C9'] = 'Start Date'
@@ -349,7 +351,9 @@ class Login(unittest.TestCase):
             time.sleep(5)
             print("\n 17 - Clicking on End Date Calander ")
 
-            self.driver.find_element(By.XPATH,'//*[@id="mat-datepicker-0"]/div/mat-month-view/table/tbody/tr[2]/td[2]/div[1]').click()
+            # self.driver.find_element(By.XPATH,'//*[@id="mat-datepicker-0"]/div/mat-month-view/table/tbody/tr[2]/td[2]/div[1]').click()
+            self.driver.find_element(
+                By.CSS_SELECTOR, ".mat-calendar-body-today").click()
             time.sleep(5)
 
             self.ws['C10'] = 'End Date'
@@ -389,6 +393,253 @@ class Login(unittest.TestCase):
             self.ws['G11'] = 'Fail'
             self.wb.save(self.filename)
 
+    def Next_Button1(self):
+        """
+
+        """
+        try:
+            # Clicking on Next Button
+            self.driver.find_element(
+                By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-event-modal/mat-dialog-content/mat-horizontal-stepper/div[2]/div[2]/form/div[4]/div[2]/button').click()
+            time.sleep(5)
+            print("\n 19 - Clicking on Next Button  ")
+
+            self.ws['C12'] = 'Next Button '
+            self.ws['G12'] = 'Pass'
+            self.wb.save(self.filename)
+
+        except Exception as e:
+            print("\n ERROR IN Next Button  >>>>>>>>>>>>>>>\n\n")
+            print(e)
+            print("\n 19 - Unable to Add Next Button ")
+
+            self.ws['C12'] = 'Next Button '
+            self.ws['G12'] = 'Fail'
+            self.wb.save(self.filename)
+
+    def Voters_Category(self):
+        """
+        """
+        try:
+            # Clicking on Voters Category
+            self.driver.find_element(
+                By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-event-modal/mat-dialog-content/mat-horizontal-stepper/div[2]/div[3]/form/div[1]/div[1]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span').click()
+            time.sleep(5)
+            print("\n 20 - Clicking on Voters Category  ")
+
+            # Selecting Individual Participants From Dropdown
+            self.driver.find_element(
+                By.ID, "mat-option-5").click()
+            time.sleep(5)
+            print("\n 21 - Selecting Individual Participants")
+
+            self.ws['C13'] = 'Voters Category - Individual Participants '
+            self.ws['G13'] = 'Pass'
+            self.wb.save(self.filename)
+
+        except Exception as e:
+            print("\n ERROR IN Voters Category  >>>>>>>>>>>>>>>\n\n")
+            print(e)
+            print("\n 21 - Unable To Select Individual Participants")
+
+            self.ws['C13'] = 'Voters Category - Individual Participants '
+            self.ws['G13'] = 'Fail'
+            self.wb.save(self.filename)
+
+    def Eligible_Voters(self):
+        """
+
+        """
+        try:
+            # Inserting Voter's Name (Aman Bhatia) in Field
+            self.driver.find_element(
+                By.ID, "mat-input-6").send_keys('Aman Bhatia')
+            time.sleep(5)
+
+            # Clicking on pseudo-checkbox
+            self.driver.find_element(
+                By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-event-modal/mat-dialog-content/mat-horizontal-stepper/div[2]/div[3]/form/div[1]/div[2]/mat-form-field/div/div[1]/div[3]/mat-selection-list/mat-list-option/div/mat-pseudo-checkbox').click()
+            time.sleep(5)
+            print("\n 22 - Eligible Voter- Aman Bhatia")
+
+            # clear the text entered in Field
+            self.driver.find_element(By.ID, "mat-input-6").clear()
+
+            # Inserting Voter's Name (Alpana Upadhyay) in Field
+            self.driver.find_element(
+                By.ID, "mat-input-6").send_keys('Alpana Upadhyay')
+            time.sleep(5)
+
+            # Clicking on pseudo-checkbox
+            self.driver.find_element(
+                By.XPATH, '//*[@id="cdk-step-content-0-2"]/form/div[1]/div[2]/mat-form-field/div/div[1]/div[3]/mat-selection-list/mat-list-option/div/mat-pseudo-checkbox').click()
+            time.sleep(5)
+            print("\n 23 - Eligible Voter- Alpana Upadhyay")
+
+            print("\n 24 - Eligible Voters - Aman Bhatia, Alpana Upadhyay")
+
+            self.ws['C14'] = 'Eligible Voters - Aman Bhatia, Alpana Upadhyay'
+            self.ws['G14'] = 'Pass'
+            self.wb.save(self.filename)
+
+        except Exception as e:
+            print("\n ERROR IN Eligible Voters  >>>>>>>>>>>>>>>\n\n")
+            print(e)
+            print(
+                "\n 24 - Unable To Select Eligible Voters - Aman Bhatia, Alpana Upadhyay")
+
+            self.ws['C14'] = 'Eligible Voters - Aman Bhatia, Alpana Upadhyay'
+            self.ws['G14'] = 'Fail'
+            self.wb.save(self.filename)
+
+    def Next_Button2(self):
+        """
+
+        """
+        try:
+            # Clicking on Next Button
+            self.driver.find_element(
+                By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-event-modal/mat-dialog-content/mat-horizontal-stepper/div[2]/div[3]/form/div[2]/div[2]/button').click()
+            time.sleep(5)
+            print("\n 25 - Clicking on Next Button  ")
+
+            self.ws['C15'] = 'Next Button '
+            self.ws['G15'] = 'Pass'
+            self.wb.save(self.filename)
+
+        except Exception as e:
+            print("\n ERROR IN Next Button  >>>>>>>>>>>>>>>\n\n")
+            print(e)
+            print("\n 25 - Unable to Add Next Button ")
+
+            self.ws['C15'] = 'Next Button '
+            self.ws['G15'] = 'Fail'
+            self.wb.save(self.filename)
+
+    def Participant_Category(self):
+        """
+        """
+        try:
+            # Clicking on Participant Category
+            self.driver.find_element(
+                By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-event-modal/mat-dialog-content/mat-horizontal-stepper/div[2]/div[4]/form/div[1]/div[1]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span').click()
+            time.sleep(5)
+            print("\n 26 - Clicking on Participant Category  ")
+
+            # Selecting Individual Participants From Dropdown
+            self.driver.find_element(
+                By.ID, "mat-option-3").click()
+            time.sleep(5)
+            print("\n 27 - Selecting Individual Participants")
+
+            self.ws['C18'] = 'Participant Category - Individual Participants '
+            self.ws['G18'] = 'Pass'
+            self.wb.save(self.filename)
+
+        except Exception as e:
+            print("\n ERROR IN Participant Category  >>>>>>>>>>>>>>>\n\n")
+            print(e)
+            print("\n 27 - Unable To Select Individual Participants")
+
+            self.ws['C18'] = 'Participant Category - Individual Participants '
+            self.ws['G18'] = 'Fail'
+            self.wb.save(self.filename)
+
+    def Eligible_Participant(self):
+        """
+
+        """
+        try:
+            # Inserting Voter's Name (Aman Bhatia) in Field
+            self.driver.find_element(
+                By.ID, "mat-input-5").send_keys('Aman Bhatia')
+            time.sleep(5)
+
+            # Clicking on pseudo-checkbox
+            self.driver.find_element(
+                By.XPATH, '//*[@id="cdk-step-content-0-3"]/form/div[1]/div[2]/mat-form-field/div/div[1]/div[3]/mat-selection-list/mat-list-option/div/mat-pseudo-checkbox').click()
+            time.sleep(5)
+            print("\n 28 - Eligible Voter- Aman Bhatia")
+
+            # clear the text entered in Field
+            self.driver.find_element(By.ID, "mat-input-5").clear()
+
+            # Inserting Voter's Name (Alpana Upadhyay) in Field
+            self.driver.find_element(
+                By.ID, "mat-input-5").send_keys('Alpana Upadhyay')
+            time.sleep(5)
+
+            # Clicking on pseudo-checkbox
+            self.driver.find_element(
+                By.XPATH, '//*[@id="cdk-step-content-0-3"]/form/div[1]/div[2]/mat-form-field/div/div[1]/div[3]/mat-selection-list/mat-list-option/div/mat-pseudo-checkbox').click()
+            time.sleep(5)
+            print("\n 29 - Eligible Voter- Alpana Upadhyay")
+
+            print("\n 30 - Eligible Participant - Aman Bhatia, Alpana Upadhyay")
+
+            self.ws['C19'] = 'Eligible Participant - Aman Bhatia, Alpana Upadhyay'
+            self.ws['G19'] = 'Pass'
+            self.wb.save(self.filename)
+
+        except Exception as e:
+            print("\n ERROR IN Eligible Participant  >>>>>>>>>>>>>>>\n\n")
+            print(e)
+            print(
+                "\n 30 - Unable To Select Eligible Participant - Aman Bhatia, Alpana Upadhyay")
+
+            self.ws['C19'] = 'Eligible Participant - Aman Bhatia, Alpana Upadhyay'
+            self.ws['G19'] = 'Fail'
+            self.wb.save(self.filename)
+
+    def Submit(self):
+        """
+
+        """
+        try:
+            # Clicking on Submit
+            self.driver.find_element(
+                By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-event-modal/mat-dialog-content/mat-horizontal-stepper/div[2]/div[4]/form/div[2]/div[2]/button').click()
+            time.sleep(5)
+            print("\n 31 - Clicking on Submit ")
+
+            self.ws['C20'] = 'Submit '
+            self.ws['G20'] = 'Pass'
+            self.wb.save(self.filename)
+
+        except Exception as e:
+            print("\n ERROR IN Submit  >>>>>>>>>>>>>>>\n\n")
+            print(e)
+            print("\n 31 - Unable to Add Submit ")
+
+            self.ws['C20'] = 'Submit '
+            self.ws['G20'] = 'Fail'
+            self.wb.save(self.filename)
+
+    def OK_Button(self):
+        """
+
+        """
+        try:
+            # OK Button
+
+            self.driver.find_element(
+                By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-confirmation-modal/div/div[4]/button').click()
+            print("\n 32 - Clicking OK Button")
+            self.ws['C21'] = 'OK Button'
+            self.ws['G21'] = 'Pass'
+
+            self.wb.save(self.filename)
+            time.sleep(6)
+
+        except Exception as e:
+            print("\n\nERROR IN OK Button >>>>>>>>>>>>>>>\n\n")
+            print(e)
+            print("\n 32 - Unable to Click OK Button")
+            self.ws['C21'] = 'OK Button'
+            self.ws['G21'] = 'Fail'
+
+            self.wb.save(self.filename)
+
     def tearDown(self):
         self.driver.quit()
 
@@ -403,8 +654,15 @@ if __name__ == '__main__':
     tb.Event_Name()
     tb.Description()
     tb.Next_Button()
-    tb.Event_Name()
+    tb.Event_Type()
     tb.Start_Date()
     tb.End_Date()
     tb.Reward()
-
+    tb.Next_Button1()
+    tb.Voters_Category()
+    tb.Eligible_Voters()
+    tb.Next_Button2()
+    tb.Participant_Category()
+    tb.Eligible_Participant()
+    tb.Submit()
+    tb.OK_Button()

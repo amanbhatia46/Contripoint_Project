@@ -584,8 +584,7 @@ class Login(unittest.TestCase):
         except Exception as e:
             print("\n ERROR IN Eligible Participant  >>>>>>>>>>>>>>>\n\n")
             print(e)
-            print(
-                "\n 30 - Unable To Select Eligible Participant - Aman Bhatia, Alpana Upadhyay")
+            print("\n 30 - Unable To Select Eligible Participant - Aman Bhatia, Alpana Upadhyay")
 
             self.ws['C17'] = 'Eligible Participant - Aman Bhatia, Alpana Upadhyay'
             self.ws['G17'] = 'Fail'

@@ -333,9 +333,15 @@ class Login(unittest.TestCase):
             time.sleep(5)
             print("\n 18 - Contribution Category - Mentorship ")
 
+            self.driver.find_element(By.XPATH,'/html/body/div[2]/div[2]/div/mat-dialog-container/app-event-modal/mat-dialog-content/mat-horizontal-stepper/div[2]/div[2]/form/div[1]/div[2]/mat-form-field/div/div[1]/div/div/mat-select/div/div[1]/span').click()
+            print("a")
+            time.sleep(6)
+
+            
             self.driver.find_element(
                 By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-event-modal/mat-dialog-content/mat-horizontal-stepper/div[2]/div[2]/form/div[2]/div[2]/mat-form-field/div/div[1]/div[1]/input').click()
             time.sleep(5)
+            print("b")
 
             print("\n 19 - Contribution Category - Certificate and Mentorship")
 

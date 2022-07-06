@@ -532,8 +532,8 @@ class Login(unittest.TestCase):
             time.sleep(5)
             print("\n 27 - Selecting Individual Participants")
 
-            self.ws['C18'] = 'Participant Category - Individual Participants '
-            self.ws['G18'] = 'Pass'
+            self.ws['C16'] = 'Participant Category - Individual Participants '
+            self.ws['G16'] = 'Pass'
             self.wb.save(self.filename)
 
         except Exception as e:
@@ -541,8 +541,8 @@ class Login(unittest.TestCase):
             print(e)
             print("\n 27 - Unable To Select Individual Participants")
 
-            self.ws['C18'] = 'Participant Category - Individual Participants '
-            self.ws['G18'] = 'Fail'
+            self.ws['C16'] = 'Participant Category - Individual Participants '
+            self.ws['G16'] = 'Fail'
             self.wb.save(self.filename)
 
     def Eligible_Participant(self):
@@ -577,8 +577,8 @@ class Login(unittest.TestCase):
 
             print("\n 30 - Eligible Participant - Aman Bhatia, Alpana Upadhyay")
 
-            self.ws['C19'] = 'Eligible Participant - Aman Bhatia, Alpana Upadhyay'
-            self.ws['G19'] = 'Pass'
+            self.ws['C17'] = 'Eligible Participant - Aman Bhatia, Alpana Upadhyay'
+            self.ws['G17'] = 'Pass'
             self.wb.save(self.filename)
 
         except Exception as e:
@@ -587,8 +587,8 @@ class Login(unittest.TestCase):
             print(
                 "\n 30 - Unable To Select Eligible Participant - Aman Bhatia, Alpana Upadhyay")
 
-            self.ws['C19'] = 'Eligible Participant - Aman Bhatia, Alpana Upadhyay'
-            self.ws['G19'] = 'Fail'
+            self.ws['C17'] = 'Eligible Participant - Aman Bhatia, Alpana Upadhyay'
+            self.ws['G17'] = 'Fail'
             self.wb.save(self.filename)
 
     def Submit(self):
@@ -602,8 +602,8 @@ class Login(unittest.TestCase):
             time.sleep(5)
             print("\n 31 - Clicking on Submit ")
 
-            self.ws['C20'] = 'Submit '
-            self.ws['G20'] = 'Pass'
+            self.ws['C18'] = 'Submit '
+            self.ws['G18'] = 'Pass'
             self.wb.save(self.filename)
 
         except Exception as e:
@@ -611,8 +611,8 @@ class Login(unittest.TestCase):
             print(e)
             print("\n 31 - Unable to Add Submit ")
 
-            self.ws['C20'] = 'Submit '
-            self.ws['G20'] = 'Fail'
+            self.ws['C18'] = 'Submit '
+            self.ws['G18'] = 'Fail'
             self.wb.save(self.filename)
 
     def OK_Button(self):
@@ -625,8 +625,8 @@ class Login(unittest.TestCase):
             self.driver.find_element(
                 By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-confirmation-modal/div/div[4]/button').click()
             print("\n 32 - Clicking OK Button")
-            self.ws['C21'] = 'OK Button'
-            self.ws['G21'] = 'Pass'
+            self.ws['C19'] = 'OK Button'
+            self.ws['G19'] = 'Pass'
 
             self.wb.save(self.filename)
             time.sleep(6)
@@ -635,8 +635,8 @@ class Login(unittest.TestCase):
             print("\n\nERROR IN OK Button >>>>>>>>>>>>>>>\n\n")
             print(e)
             print("\n 32 - Unable to Click OK Button")
-            self.ws['C21'] = 'OK Button'
-            self.ws['G21'] = 'Fail'
+            self.ws['C19'] = 'OK Button'
+            self.ws['G19'] = 'Fail'
 
             self.wb.save(self.filename)
 

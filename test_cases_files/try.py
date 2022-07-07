@@ -313,14 +313,14 @@ class Login(unittest.TestCase):
 
     def Contribution_category(self):
         """
-        
+
         """
         try:
-            #Click on Category Dropdown
-            self.driver.find_element(By.XPATH,'/html/body/div[2]/div[2]/div/mat-dialog-container/app-event-modal/mat-dialog-content/mat-horizontal-stepper/div[2]/div[2]/form/div[1]/div[2]/mat-form-field/div/div[1]/div/div/mat-select/div/div[1]/span').click()
+            # Click on Category Dropdown
+            self.driver.find_element(
+                By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-event-modal/mat-dialog-content/mat-horizontal-stepper/div[2]/div[2]/form/div[1]/div[2]/mat-form-field/div/div[1]/div/div/mat-select/div/div[1]/span').click()
             time.sleep(6)
             print("\n 16 - Opening Dropdown list")
-
 
             # Clicking on Certificate and Mentorship
             self.driver.find_element(
@@ -333,14 +333,23 @@ class Login(unittest.TestCase):
             time.sleep(5)
             print("\n 18 - Contribution Category - Mentorship ")
 
-            self.driver.find_element(By.XPATH,'/html/body/div[2]/div[2]/div/mat-dialog-container/app-event-modal/mat-dialog-content/mat-horizontal-stepper/div[2]/div[2]/form/div[1]/div[2]/mat-form-field/div/div[1]/div/div/mat-select/div/div[1]/span').click()
-            print("a")
-            time.sleep(6)
+            # element = self.driver.find_element(
+            #     By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-event-modal/mat-dialog-content/mat-horizontal-stepper/div[2]/div[2]/form/div[2]/div[2]/mat-form-field/div/div[1]/div[1]/input')
+            # actions = ActionChains(self.driver)
+            # actions.move_to_element(element).perform()
+            # time.sleep(6)
+            # print("a")
 
-            
-            self.driver.find_element(
+            element = self.driver.find_element(
                 By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-event-modal/mat-dialog-content/mat-horizontal-stepper/div[2]/div[2]/form/div[2]/div[2]/mat-form-field/div/div[1]/div[1]/input').click()
-            time.sleep(5)
+            actions = ActionChains(self.driver)
+            actions.move_to_element(element).perform()
+            time.sleep(6)
+            print("a")
+
+            # self.driver.find_element(
+            #     By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-event-modal/mat-dialog-content/mat-horizontal-stepper/div[2]/div[2]/form/div[2]/div[2]/mat-form-field/div/div[1]/div[1]/input').click()
+            # time.sleep(5)
             print("b")
 
             print("\n 19 - Contribution Category - Certificate and Mentorship")
@@ -348,7 +357,6 @@ class Login(unittest.TestCase):
             self.ws['C9'] = 'Contribution Category - Certificate and Mentorship'
             self.ws['G9'] = 'Pass'
             self.wb.save(self.filename)
-
 
         except Exception as e:
             print("\n ERROR IN Contribution Category  >>>>>>>>>>>>>>>\n\n")
@@ -533,12 +541,12 @@ class Login(unittest.TestCase):
         except Exception as e:
             print("\n ERROR IN Eligible Participant  >>>>>>>>>>>>>>>\n\n")
             print(e)
-            print("\n 28 - Unable To Select Eligible Participant - Aman Bhatia, Alpana Upadhyay")
+            print(
+                "\n 28 - Unable To Select Eligible Participant - Aman Bhatia, Alpana Upadhyay")
 
             self.ws['C15'] = 'Eligible Participant - Aman Bhatia, Alpana Upadhyay'
             self.ws['G15'] = 'Fail'
-            self.wb.save(self.filename)   
-
+            self.wb.save(self.filename)
 
     def Cutoff_Points(self):
         """
@@ -563,7 +571,6 @@ class Login(unittest.TestCase):
             self.ws['C16'] = 'Cutoff Points '
             self.ws['G16'] = 'Fail'
             self.wb.save(self.filename)
-
 
     def Submit(self):
         """
@@ -594,11 +601,10 @@ class Login(unittest.TestCase):
 
         """
         try:
-            #Warning popup
+            # Warning popup
             self.driver.find_element(
                 By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-common-modal/div/div[4]/div[1]/button').click()
             print("\n 31 - Clicking on Continue Button")
-
 
             # OK Button
             self.driver.find_element(

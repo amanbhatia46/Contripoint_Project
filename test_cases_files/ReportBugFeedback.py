@@ -16,7 +16,7 @@ from openpyxl import load_workbook
 from datetime import datetime, timedelta
 
 from LoginMFA import *
-import LoginMFA
+
 
 
 class RBugEvent(unittest.TestCase):

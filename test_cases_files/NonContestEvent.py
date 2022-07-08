@@ -17,6 +17,7 @@ from openpyxl import load_workbook
 from datetime import datetime, timedelta
 
 from datainputs import *
+# import LoginMFA as loginMFA
 
 
 class Login(unittest.TestCase):
@@ -49,14 +50,19 @@ class Login(unittest.TestCase):
         print(futuredate)
         self.ws['H2'] = futuredate
 
-    def setExternalDriver(self, driver):
+    def setExternalDriver(self):
+        self.driver = driver
         s = Service(ChromeDriverManager().install())
         self.driver = webdriver.Chrome(service=s)
 
         self.driver.maximize_window()
+        
 
     def MFA(self):
         try:
+            x = self.driver.window_handles[0]
+            time.sleep(6)
+            self.driver.switch_to.window(x)
             # set implicit wait time
             self.driver.implicitly_wait(10)  # seconds
 
@@ -134,11 +140,6 @@ class Login(unittest.TestCase):
 
         """
         try:
-            time.sleep(10)
-            y = self.driver.window_handles[0]
-            time.sleep(6)
-            self.driver.switch_to.window(y)
-
             # Clicking on Events
             self.driver.find_element(
                 By.XPATH, '/html/body/app-root/div/app-navbar/div/div/div[1]/div/div[2]/div[1]/div[2]').click()
@@ -546,7 +547,7 @@ class Login(unittest.TestCase):
 
 if __name__ == '__main__':
     tb = Login()
-    tb.setExternalDriver(driver=driver)
+    tb.setExternalDriver()
     tb.MFA()
     tb.Events()
     tb.Add_Banner_Image()

@@ -1,4 +1,5 @@
 from lib2to3.pgen2 import driver
+from typing_extensions import Self
 import unittest
 import time
 import HtmlTestRunner as x
@@ -17,21 +18,22 @@ from openpyxl import load_workbook
 from datetime import datetime, timedelta
 
 from datainputs import *
+from LoginMFA import *
 
 
-class Login(unittest.TestCase):
+class Logoin(unittest.TestCase):
 
     def __init__(self):
         self.filename = '/home/am.bhatia/Desktop/contripoint/abc1.xlsx'
         self.wb = load_workbook(filename=self.filename)
         self.index_sheet = 0
-        if 'Contest Event' not in self.wb.sheetnames:
-            self.wb.create_sheet('Contest Event')
+        if 'Non-Contest Event' not in self.wb.sheetnames:
+            self.wb.create_sheet('Non-Contest Event')
             self.wb.save('/home/am.bhatia/Desktop/contripoint/abc1.xlsx')
         self.wb = load_workbook(filename=self.filename)
         self.ws = self.wb.active
         for i, n in enumerate(self.wb.sheetnames):
-            if n == 'Contest Event':
+            if n == 'Non-Contest Event':
                 self.index_sheet = i
                 break
         self.wb.active = self.index_sheet
@@ -55,79 +57,79 @@ class Login(unittest.TestCase):
 
         self.driver.maximize_window()
 
-    def MFA(self):
-        try:
-            # set implicit wait time
-            self.driver.implicitly_wait(10)  # seconds
+    # def MFA(self):
+    #     try:
+    #         # set implicit wait time
+    #         self.driver.implicitly_wait(10)  # seconds
 
-            print("\n >>>>>>>>>> Login >>>>>>>>>>>> \n")
+    #         print("\n >>>>>>>>>> Login >>>>>>>>>>>> \n")
 
-            # get url
-            self.driver.get(
-                "https://dev-contripoint.geminisolutions.com/#/dashboard")
-            button = self.driver.find_element(
-                By.XPATH, '/html/body/app-root/div/div/app-login-screen/div/div/div/mat-card/div[2]/div/button')
-            button.click()
+    #         # get url
+    #         self.driver.get(
+    #             "https://dev-contripoint.geminisolutions.com/#/dashboard")
+    #         button = self.driver.find_element(
+    #             By.XPATH, '/html/body/app-root/div/div/app-login-screen/div/div/div/mat-card/div[2]/div/button')
+    #         button.click()
 
-            print("\n 1- Login With Gemini mail \n")
+    #         print("\n 1- Login With Gemini mail \n")
 
-            time.sleep(6)
+    #         time.sleep(6)
 
-            window_handles = self.driver.window_handles
-            self.driver.switch_to.window(window_handles[1])
+    #         window_handles = self.driver.window_handles
+    #         self.driver.switch_to.window(window_handles[1])
 
-            # Entering Mail Id in input
-            self.driver.find_element(
-                By.XPATH, '//*[@id="i0116"]').send_keys(login_Id)
-            self.ws['A2'] = 'aman.bhatia@geminisolutions.com'
-            print("\n 2- Entering mail id \n")
+    #         # Entering Mail Id in input
+    #         self.driver.find_element(
+    #             By.XPATH, '//*[@id="i0116"]').send_keys(login_Id)
+    #         self.ws['A2'] = 'aman.bhatia@geminisolutions.com'
+    #         print("\n 2- Entering mail id \n")
 
-            self.driver.find_element(
-                By.XPATH, '/html/body/div/form[1]/div/div/div[2]/div[1]/div/div/div/div/div[1]/div[3]/div/div/div/div[4]/div/div/div/div[2]/input').click()
-            time.sleep(3)
+    #         self.driver.find_element(
+    #             By.XPATH, '/html/body/div/form[1]/div/div/div[2]/div[1]/div/div/div/div/div[1]/div[3]/div/div/div/div[4]/div/div/div/div[2]/input').click()
+    #         time.sleep(3)
 
-            # Entering Passowrd in Input
-            self.driver.find_element(
-                By.XPATH, '//*[@id="i0118"]').send_keys(login_Password)
-            self.ws['B2'] = 'RitaNandini96'
-            print("\n 3- Entering mail password \n")
+    #         # Entering Passowrd in Input
+    #         self.driver.find_element(
+    #             By.XPATH, '//*[@id="i0118"]').send_keys(login_Password)
+    #         self.ws['B2'] = 'RitaNandini96'
+    #         print("\n 3- Entering mail password \n")
 
-            self.driver.find_element(
-                By.XPATH, '/html/body/div/form[1]/div/div/div[2]/div[1]/div/div/div/div/div/div[3]/div/div[2]/div/div[4]/div[2]/div/div/div/div/input').click()
-            time.sleep(6)
+    #         self.driver.find_element(
+    #             By.XPATH, '/html/body/div/form[1]/div/div/div[2]/div[1]/div/div/div/div/div/div[3]/div/div[2]/div/div[4]/div[2]/div/div/div/div/input').click()
+    #         time.sleep(6)
 
-            # Entering Multi-factor Authentication (MFA) Code Manually
-            self.driver.find_element(By.ID, "idTxtBx_SAOTCC_OTC")
-            time.sleep(6)
-            print("\n 4- Entering and Verifying MFA Code \n")
+    #         # Entering Multi-factor Authentication (MFA) Code Manually
+    #         self.driver.find_element(By.ID, "idTxtBx_SAOTCC_OTC")
+    #         time.sleep(6)
+    #         print("\n 4- Entering and Verifying MFA Code \n")
 
-            self.driver.find_element(
-                By.XPATH, '//*[@id="idSubmit_SAOTCC_Continue"]').click()
-            time.sleep(5)
+    #         self.driver.find_element(
+    #             By.XPATH, '//*[@id="idSubmit_SAOTCC_Continue"]').click()
+    #         time.sleep(5)
 
-            self.driver.find_element(
-                By.XPATH, '//*[@id="KmsiCheckboxField"]').click()
-            time.sleep(5)
+    #         self.driver.find_element(
+    #             By.XPATH, '//*[@id="KmsiCheckboxField"]').click()
+    #         time.sleep(5)
 
-            self.driver.find_element(By.ID, "idSIButton9").click()
+    #         self.driver.find_element(By.ID, "idSIButton9").click()
 
-            print("\n 5- Login Successfull \n")
-            time.sleep(6)
+    #         print("\n 5- Login Successfull \n")
+    #         time.sleep(6)
 
-            print("\n 6 - Gemini Id and Password successfully login \n")
-            self.ws['C2'] = 'Login'
-            self.ws['G2'] = 'login Success'
+    #         print("\n 6 - Gemini Id and Password successfully login \n")
+    #         self.ws['C2'] = 'Login'
+    #         self.ws['G2'] = 'login Success'
 
-            self.wb.save(self.filename)
+    #         self.wb.save(self.filename)
 
-        except Exception as e:
+    #     except Exception as e:
 
-            print("\n 6 - Gemini Id and Password  login failed")
-            print(e)
+    #         print("\n 6 - Gemini Id and Password  login failed")
+    #         print(e)
 
-            self.ws['C2'] = 'Login'
-            self.ws['G2'] = 'login failed'
-            self.wb.save(self.filename)
+    #         self.ws['C2'] = 'Login'
+    #         self.ws['G2'] = 'login failed'
+    #         self.wb.save(self.filename)
 
     def Events(self):
         """
@@ -217,7 +219,7 @@ class Login(unittest.TestCase):
         try:
             # Entering  Event Name
             self.driver.find_element(
-                By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-event-modal/mat-dialog-content/mat-horizontal-stepper/div[2]/div[1]/form/div[2]/div[2]/div[1]/mat-form-field/div/div[1]/div/input').send_keys("Contest Event")
+                By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-event-modal/mat-dialog-content/mat-horizontal-stepper/div[2]/div[1]/form/div[2]/div[2]/div[1]/mat-form-field/div/div[1]/div/input').send_keys("Non-Contest Event")
             time.sleep(5)
             print("\n 11 - Entering Event Name ")
 
@@ -241,7 +243,7 @@ class Login(unittest.TestCase):
         try:
             # Entering Description
             self.driver.find_element(
-                By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-event-modal/mat-dialog-content/mat-horizontal-stepper/div[2]/div[1]/form/div[2]/div[2]/div[2]/mat-form-field/div/div[1]/div/textarea').send_keys("Please take participate in Contest Event and win Rewards")
+                By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-event-modal/mat-dialog-content/mat-horizontal-stepper/div[2]/div[1]/form/div[2]/div[2]/div[2]/mat-form-field/div/div[1]/div/textarea').send_keys("Please take participate in Non-Contest Event and win Rewards")
             time.sleep(5)
             print("\n 12 - Entering Description  ")
 
@@ -293,12 +295,12 @@ class Login(unittest.TestCase):
             time.sleep(5)
             print("\n 14 - Clicking on Event Type Dropdown ")
 
-            self.driver.find_element(By.ID, "mat-option-0").click()
+            self.driver.find_element(By.ID, "mat-option-1").click()
             time.sleep(5)
 
-            print("\n 15 - Event Type - Contest Event")
+            print("\n 15 - Event Type - Non-Contest Event")
 
-            self.ws['C8'] = 'Event Type - Contest Event'
+            self.ws['C8'] = 'Event Type - Non-Contest Event'
             self.ws['G8'] = 'Pass'
             self.wb.save(self.filename)
 
@@ -307,53 +309,8 @@ class Login(unittest.TestCase):
             print(e)
             print("\n 15 - Unable to Select Event Type ")
 
-            self.ws['C8'] = 'Event Type - Contest Event'
+            self.ws['C8'] = 'Event Type - Non-Contest Event'
             self.ws['G8'] = 'Fail'
-            self.wb.save(self.filename)
-
-    def Contribution_category(self):
-        """
-
-        """
-        try:
-            # Click on Category Dropdown
-            self.driver.find_element(
-                By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-event-modal/mat-dialog-content/mat-horizontal-stepper/div[2]/div[2]/form/div[1]/div[2]/mat-form-field/div/div[1]/div/div/mat-select/div/div[1]/span').click()
-            time.sleep(6)
-            print("\n 16 - Opening Dropdown list")
-
-            # Clicking on Certificate and Client Feedback
-            self.driver.find_element(
-                By.XPATH, '/html/body/div[2]/div[4]/div/div/div/mat-option[1]/mat-pseudo-checkbox').click()
-            time.sleep(5)
-            print("\n 17 - Contribution Category - Certificate")
-
-            self.driver.find_element(
-                By.XPATH, '/html/body/div[2]/div[4]/div/div/div/mat-option[2]/mat-pseudo-checkbox').click()
-            time.sleep(5)
-            print("\n 18 - Contribution Category - Client Feedback ")
-
-            print("\n 19 - Contribution Category - Certificate and Client Feedback")
-
-            ActionChains(self.driver).move_to_element(self.driver.find_element(
-                By.XPATH, '/html/body/div[2]/div[2]')).click().perform()
-            print("A")
-
-            self.driver.find_element(
-                By.XPATH, '/html/body/div[2]/div[2]').click()
-            print("A")
-
-            self.ws['C9'] = 'Contribution Category - Certificate and Client Feedback'
-            self.ws['G9'] = 'Pass'
-            self.wb.save(self.filename)
-
-        except Exception as e:
-            print("\n ERROR IN Contribution Category  >>>>>>>>>>>>>>>\n\n")
-            print(e)
-            print("\n 19 - Unable to Select Contributions From Dropdown list ")
-
-            self.ws['C9'] = 'Event Type - Contest Event'
-            self.ws['G9'] = 'Fail'
             self.wb.save(self.filename)
 
     def Start_Date(self):
@@ -362,32 +319,27 @@ class Login(unittest.TestCase):
         """
         try:
             # Clicking on Start Date
-            # ActionChains(self.driver).move_to_element(self.driver.find_element(
-            #     By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-event-modal/mat-dialog-content/mat-horizontal-stepper/div[2]/div[2]/form/div[2]/div[2]/mat-form-field/div/div[1]/div[1]/input')).click().perform()
-            # time.sleep(5)
-
             self.driver.find_element(
                 By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-event-modal/mat-dialog-content/mat-horizontal-stepper/div[2]/div[2]/form/div[2]/div[1]/mat-form-field/div/div[1]/div[1]/input').click()
             time.sleep(5)
-
-            print("\n 20 - Clicking on Start Date Calander ")
+            print("\n 16 - Clicking on Start Date Calander ")
 
             # self.driver.find_element(By.XPATH,'//*[@id="mat-datepicker-0"]/div/mat-month-view/table/tbody/tr[2]/td[2]/div[1]').click()
             self.driver.find_element(
                 By.CSS_SELECTOR, ".mat-calendar-body-today").click()
             time.sleep(5)
 
-            self.ws['C10'] = 'Start Date'
-            self.ws['G10'] = 'Pass'
+            self.ws['C9'] = 'Start Date'
+            self.ws['G9'] = 'Pass'
             self.wb.save(self.filename)
 
         except Exception as e:
             print("\n ERROR IN Start Date  >>>>>>>>>>>>>>>\n\n")
             print(e)
-            print("\n 20 - Unable to Add Start Date ")
+            print("\n 16 - Unable to Add Start Date ")
 
-            self.ws['C10'] = 'Start Date'
-            self.ws['G10'] = 'Fail'
+            self.ws['C9'] = 'Start Date'
+            self.ws['G9'] = 'Fail'
             self.wb.save(self.filename)
 
     def End_Date(self):
@@ -399,24 +351,24 @@ class Login(unittest.TestCase):
             self.driver.find_element(
                 By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-event-modal/mat-dialog-content/mat-horizontal-stepper/div[2]/div[2]/form/div[2]/div[2]/mat-form-field/div/div[1]/div[1]/input').click()
             time.sleep(5)
-            print("\n 21 - Clicking on End Date Calander ")
+            print("\n 17 - Clicking on End Date Calander ")
 
             # self.driver.find_element(By.XPATH,'//*[@id="mat-datepicker-0"]/div/mat-month-view/table/tbody/tr[2]/td[2]/div[1]').click()
             self.driver.find_element(
                 By.CSS_SELECTOR, ".mat-calendar-body-today").click()
             time.sleep(5)
 
-            self.ws['C11'] = 'End Date'
-            self.ws['G11'] = 'Pass'
+            self.ws['C10'] = 'End Date'
+            self.ws['G10'] = 'Pass'
             self.wb.save(self.filename)
 
         except Exception as e:
             print("\n ERROR IN End Date  >>>>>>>>>>>>>>>\n\n")
             print(e)
-            print("\n 21 - Unable to Add End Date ")
+            print("\n 17 - Unable to Add End Date ")
 
-            self.ws['C11'] = 'End Date'
-            self.ws['G11'] = 'Fail'
+            self.ws['C10'] = 'End Date'
+            self.ws['G10'] = 'Fail'
             self.wb.save(self.filename)
 
     def Reward(self):
@@ -428,19 +380,19 @@ class Login(unittest.TestCase):
             self.driver.find_element(
                 By.ID, "mat-input-4").send_keys("Cash Rs1000/-")
             time.sleep(5)
-            print("\n 22 - Entering Reward  ")
+            print("\n 18 - Entering Reward  ")
 
-            self.ws['C12'] = 'Reward '
-            self.ws['G12'] = 'Pass'
+            self.ws['C11'] = 'Reward '
+            self.ws['G11'] = 'Pass'
             self.wb.save(self.filename)
 
         except Exception as e:
             print("\n ERROR IN Reward  >>>>>>>>>>>>>>>\n\n")
             print(e)
-            print("\n 22 - Unable to Add Reward ")
+            print("\n 18 - Unable to Add Reward ")
 
-            self.ws['C12'] = 'Reward '
-            self.ws['G12'] = 'Fail'
+            self.ws['C11'] = 'Reward '
+            self.ws['G11'] = 'Fail'
             self.wb.save(self.filename)
 
     def Next_Button1(self):
@@ -450,21 +402,21 @@ class Login(unittest.TestCase):
         try:
             # Clicking on Next Button
             self.driver.find_element(
-                By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-event-modal/mat-dialog-content/mat-horizontal-stepper/div[2]/div[2]/form/div[4]/div[2]/button').click()
+                By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-event-modal/mat-dialog-content/mat-horizontal-stepper/div[2]/div[2]/form/div[5]/div[2]/button').click()
             time.sleep(5)
-            print("\n 23 - Clicking on Next Button  ")
+            print("\n 19 - Clicking on Next Button  ")
 
-            self.ws['C13'] = 'Next Button '
-            self.ws['G13'] = 'Pass'
+            self.ws['C12'] = 'Next Button '
+            self.ws['G12'] = 'Pass'
             self.wb.save(self.filename)
 
         except Exception as e:
             print("\n ERROR IN Next Button  >>>>>>>>>>>>>>>\n\n")
             print(e)
-            print("\n 23 - Unable to Add Next Button ")
+            print("\n 19 - Unable to Add Next Button ")
 
-            self.ws['C13'] = 'Next Button '
-            self.ws['G13'] = 'Fail'
+            self.ws['C12'] = 'Next Button '
+            self.ws['G12'] = 'Fail'
             self.wb.save(self.filename)
 
     def Participant_Category(self):
@@ -475,25 +427,25 @@ class Login(unittest.TestCase):
             self.driver.find_element(
                 By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-event-modal/mat-dialog-content/mat-horizontal-stepper/div[2]/div[3]/form/div[1]/div[1]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span').click()
             time.sleep(5)
-            print("\n 24 - Clicking on Participant Category  ")
+            print("\n 20 - Clicking on Participant Category  ")
 
             # Selecting Individual Participants From Dropdown
             self.driver.find_element(
                 By.ID, "mat-option-3").click()
             time.sleep(5)
-            print("\n 25 - Selecting Individual Participants")
+            print("\n 21 - Selecting Individual Participants")
 
-            self.ws['C14'] = 'Participant Category - Individual Participants '
-            self.ws['G14'] = 'Pass'
+            self.ws['C13'] = 'Participant Category - Individual Participants '
+            self.ws['G13'] = 'Pass'
             self.wb.save(self.filename)
 
         except Exception as e:
             print("\n ERROR IN Participant Category  >>>>>>>>>>>>>>>\n\n")
             print(e)
-            print("\n 25 - Unable To Select Individual Participants")
+            print("\n 21 - Unable To Select Individual Participants")
 
-            self.ws['C14'] = 'Participant Category - Individual Participants '
-            self.ws['G14'] = 'Fail'
+            self.ws['C13'] = 'Participant Category - Individual Participants '
+            self.ws['G13'] = 'Fail'
             self.wb.save(self.filename)
 
     def Eligible_Participant(self):
@@ -508,9 +460,9 @@ class Login(unittest.TestCase):
 
             # Clicking on pseudo-checkbox
             self.driver.find_element(
-                By.XPATH, '//*[@id="cdk-step-content-0-2"]/form/div[1]/div[2]/mat-form-field/div/div[1]/div[3]/mat-selection-list/mat-list-option/div/mat-pseudo-checkbox').click()
+                By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-event-modal/mat-dialog-content/mat-horizontal-stepper/div[2]/div[3]/form/div[1]/div[2]/mat-form-field/div/div[1]/div[3]/mat-selection-list/mat-list-option/div/mat-pseudo-checkbox').click()
             time.sleep(5)
-            print("\n 26 - Eligible Participant- Aman Bhatia")
+            print("\n 22 - Eligible Participant- Aman Bhatia")
 
             # clear the text entered in Field
             self.driver.find_element(By.ID, "mat-input-5").clear()
@@ -524,46 +476,21 @@ class Login(unittest.TestCase):
             self.driver.find_element(
                 By.XPATH, '//*[@id="cdk-step-content-0-2"]/form/div[1]/div[2]/mat-form-field/div/div[1]/div[3]/mat-selection-list/mat-list-option/div/mat-pseudo-checkbox').click()
             time.sleep(5)
-            print("\n 27 - Eligible Participant- Alpana Upadhyay")
+            print("\n 23 - Eligible Participant- Alpana Upadhyay")
 
-            print("\n 28 - Eligible Participant - Aman Bhatia, Alpana Upadhyay")
+            print("\n 24 - Eligible Participant - Aman Bhatia, Alpana Upadhyay")
 
-            self.ws['C15'] = 'Eligible Participant - Aman Bhatia, Alpana Upadhyay'
-            self.ws['G15'] = 'Pass'
+            self.ws['C14'] = 'Eligible Participant - Aman Bhatia, Alpana Upadhyay'
+            self.ws['G14'] = 'Pass'
             self.wb.save(self.filename)
 
         except Exception as e:
             print("\n ERROR IN Eligible Participant  >>>>>>>>>>>>>>>\n\n")
             print(e)
-            print(
-                "\n 28 - Unable To Select Eligible Participant - Aman Bhatia, Alpana Upadhyay")
+            print("\n 24 - Unable To Select Eligible Participant - Aman Bhatia, Alpana Upadhyay")
 
-            self.ws['C15'] = 'Eligible Participant - Aman Bhatia, Alpana Upadhyay'
-            self.ws['G15'] = 'Fail'
-            self.wb.save(self.filename)
-
-    def Cutoff_Points(self):
-        """
-
-        """
-        try:
-            # Clicking on Cutoff Points
-            self.driver.find_element(
-                By.ID, "mat-input-6").send_keys('100')
-            time.sleep(5)
-            print("\n 29 - Cutoff Points - 100")
-
-            self.ws['C16'] = 'Cutoff Points '
-            self.ws['G16'] = 'Pass'
-            self.wb.save(self.filename)
-
-        except Exception as e:
-            print("\n ERROR IN Cutoff Points  >>>>>>>>>>>>>>>\n\n")
-            print(e)
-            print("\n 29 - Unable to Add Cutoff Points ")
-
-            self.ws['C16'] = 'Cutoff Points '
-            self.ws['G16'] = 'Fail'
+            self.ws['C14'] = 'Eligible Participant - Aman Bhatia, Alpana Upadhyay'
+            self.ws['G14'] = 'Fail'
             self.wb.save(self.filename)
 
     def Submit(self):
@@ -575,19 +502,19 @@ class Login(unittest.TestCase):
             self.driver.find_element(
                 By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-event-modal/mat-dialog-content/mat-horizontal-stepper/div[2]/div[3]/form/div[2]/div[2]/button').click()
             time.sleep(5)
-            print("\n 30 - Clicking on Submit ")
+            print("\n 25 - Clicking on Submit ")
 
-            self.ws['C17'] = 'Submit '
-            self.ws['G17'] = 'Pass'
+            self.ws['C15'] = 'Submit '
+            self.ws['G15'] = 'Pass'
             self.wb.save(self.filename)
 
         except Exception as e:
             print("\n ERROR IN Submit  >>>>>>>>>>>>>>>\n\n")
             print(e)
-            print("\n 30 - Unable to Add Submit ")
+            print("\n 25 - Unable to Add Submit ")
 
-            self.ws['C17'] = 'Submit '
-            self.ws['G17'] = 'Fail'
+            self.ws['C15'] = 'Submit '
+            self.ws['G15'] = 'Fail'
             self.wb.save(self.filename)
 
     def OK_Button(self):
@@ -595,17 +522,13 @@ class Login(unittest.TestCase):
 
         """
         try:
-            # Warning popup
-            self.driver.find_element(
-                By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-common-modal/div/div[4]/div[1]/button').click()
-            print("\n 31 - Clicking on Continue Button")
-
             # OK Button
+
             self.driver.find_element(
                 By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-confirmation-modal/div/div[4]/button').click()
-            print("\n 32 - Clicking OK Button")
-            self.ws['C18'] = 'OK Button'
-            self.ws['G18'] = 'Pass'
+            print("\n 26 - Clicking OK Button")
+            self.ws['C16'] = 'OK Button'
+            self.ws['G16'] = 'Pass'
 
             self.wb.save(self.filename)
             time.sleep(6)
@@ -613,9 +536,9 @@ class Login(unittest.TestCase):
         except Exception as e:
             print("\n\nERROR IN OK Button >>>>>>>>>>>>>>>\n\n")
             print(e)
-            print("\n 32 - Unable to Click OK Button")
-            self.ws['C18'] = 'OK Button'
-            self.ws['G18'] = 'Fail'
+            print("\n 26 - Unable to Click OK Button")
+            self.ws['C16'] = 'OK Button'
+            self.ws['G16'] = 'Fail'
 
             self.wb.save(self.filename)
 
@@ -627,6 +550,9 @@ if __name__ == '__main__':
     tb = Login()
     tb.setExternalDriver(driver=driver)
     tb.MFA()
+    Login.Logoin()
+    # tb.setExternalDriver(driver=driver)
+    # tb.MFA()
     tb.Events()
     tb.Add_Banner_Image()
     tb.Add_Listing_Image()
@@ -634,13 +560,11 @@ if __name__ == '__main__':
     tb.Description()
     tb.Next_Button()
     tb.Event_Type()
-    tb.Contribution_category()
     tb.Start_Date()
     tb.End_Date()
     tb.Reward()
     tb.Next_Button1()
     tb.Participant_Category()
     tb.Eligible_Participant()
-    tb.Cutoff_Points()
     tb.Submit()
     tb.OK_Button()

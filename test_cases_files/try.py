@@ -17,9 +17,11 @@ from openpyxl import load_workbook
 from datetime import datetime, timedelta
 
 from datainputs import *
+from LoginMFA import *
 
 
-class Login(unittest.TestCase):
+
+class CEvent(unittest.TestCase):
 
     def __init__(self):
         self.filename = '/home/am.bhatia/Desktop/contripoint/abc1.xlsx'
@@ -624,9 +626,10 @@ class Login(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    tb = Login()
-    tb.setExternalDriver(driver=driver)
-    tb.MFA()
+    tb = CEvent()
+    login = Login()
+    login.setExternalDriver()
+    login.MFA()
     tb.Events()
     tb.Add_Banner_Image()
     tb.Add_Listing_Image()

@@ -45,9 +45,8 @@ class Login(unittest.TestCase):
 
         # datetime object containing current date and time
         futuredate = str(datetime.now())
-        print(futuredate)
         self.ws['H2'] = futuredate
-
+        
     def setExternalDriver(self, driver):
         s = Service(ChromeDriverManager().install())
         self.driver = webdriver.Chrome(service=s)

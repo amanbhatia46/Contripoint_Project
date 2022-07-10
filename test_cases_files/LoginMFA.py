@@ -47,7 +47,7 @@ class Login(unittest.TestCase):
         futuredate = str(datetime.now())
         self.ws['H2'] = futuredate
         
-    def setExternalDriver(self, driver):
+    def setExternalDriver(self):
         s = Service(ChromeDriverManager().install())
         self.driver = webdriver.Chrome(service=s)
 
@@ -132,5 +132,5 @@ class Login(unittest.TestCase):
 
 if __name__ == '__main__':
     tb = Login()
-    tb.setExternalDriver(driver=driver)
+    tb.setExternalDriver()
     tb.MFA()

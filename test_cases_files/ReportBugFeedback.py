@@ -15,6 +15,7 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from openpyxl import load_workbook
 from datetime import datetime, timedelta
 
+from datainputs import *
 from LoginMFA import *
 
 
@@ -49,11 +50,11 @@ class RBugEvent(unittest.TestCase):
         print(futuredate)
         self.ws['H2'] = futuredate
 
-    def setExternalDriver(self, driver):
-        self.driver = driver
-        x = self.driver.window_handles[0]
-        time.sleep(6)
-        self.driver.switch_to.window(x)
+    # def setExternalDriver(self, driver):
+    #     self.driver = driver
+    #     x = self.driver.window_handles[0]
+    #     time.sleep(6)
+    #     self.driver.switch_to.window(x)
 
     def Report_Bug(self):
         """
@@ -318,9 +319,9 @@ class RBugEvent(unittest.TestCase):
 
 if __name__ == '__main__':
     tb = RBugEvent()
-    Login = LoginMFA()
-    driver = Login.MFA()
-    tb.setExternalDriver(driver=driver)
+    login = Login()
+    login.setExternalDriver()
+    login.MFA()
     tb.Report_Bug()
     tb.Add_New()
     tb.Issue_Subject()

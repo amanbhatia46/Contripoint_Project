@@ -23,12 +23,12 @@ from LoginMFA import *
 class PEvent(unittest.TestCase):
 
     def __init__(self):
-        self.filename = '/home/am.bhatia/Desktop/contripoint/abc1.xlsx'
+        self.filename = 'Excel_file_path'
         self.wb = load_workbook(filename=self.filename)
         self.index_sheet = 0
         if 'Polling Event' not in self.wb.sheetnames:
             self.wb.create_sheet('Polling Event')
-            self.wb.save('/home/am.bhatia/Desktop/contripoint/abc1.xlsx')
+            self.wb.save('Excel_file_path')
         self.wb = load_workbook(filename=self.filename)
         self.ws = self.wb.active
         for i, n in enumerate(self.wb.sheetnames):
@@ -43,7 +43,7 @@ class PEvent(unittest.TestCase):
         self.ws['C1'] = 'Test Case Module'
         self.ws['G1'] = 'Result'
         self.ws['H1'] = 'Date and Time'
-        self.wb.save('/home/am.bhatia/Desktop/contripoint/abc1.xlsx')
+        self.wb.save('Excel_file_path')
 
         # datetime object containing current date and time
         futuredate = str(datetime.now())

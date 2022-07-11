@@ -1,4 +1,4 @@
-Excel_file_path = '/home/am.bhatia/Desktop/contripoint/abc1.xlsx'
+
 
 login_Id = "aman.bhatia@geminisolutions.com"
 

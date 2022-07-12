@@ -20,16 +20,15 @@ from datainputs import *
 from LoginMFA import *
 
 
-
 class CEvent(unittest.TestCase):
 
     def __init__(self):
-        self.filename = 'Excel_file_path'
+        self.filename = '/home/am.bhatia/Desktop/contripoint/ABC1.xlsx'
         self.wb = load_workbook(filename=self.filename)
         self.index_sheet = 0
         if 'Contest Event' not in self.wb.sheetnames:
             self.wb.create_sheet('Contest Event')
-            self.wb.save('Excel_file_path')
+            self.wb.save('/home/am.bhatia/Desktop/contripoint/ABC1.xlsx')
         self.wb = load_workbook(filename=self.filename)
         self.ws = self.wb.active
         for i, n in enumerate(self.wb.sheetnames):
@@ -44,20 +43,16 @@ class CEvent(unittest.TestCase):
         self.ws['C1'] = 'Test Case Module'
         self.ws['G1'] = 'Result'
         self.ws['H1'] = 'Date and Time'
-        self.wb.save('Excel_file_path')
+        self.wb.save('/home/am.bhatia/Desktop/contripoint/ABC1.xlsx')
 
         # datetime object containing current date and time
         futuredate = str(datetime.now())
         print(futuredate)
         self.ws['H2'] = futuredate
 
-    # def setExternalDriver(self, driver):
-    #     s = Service(ChromeDriverManager().install())
-    #     self.driver = webdriver.Chrome(service=s)
+    def setExternalDriver(self, driver):
+        self.driver = driver
 
-    #     self.driver.maximize_window()
-
-    
     def Events(self):
         """
 
@@ -264,13 +259,7 @@ class CEvent(unittest.TestCase):
 
             print("\n 19 - Contribution Category - Certificate and Client Feedback")
 
-            ActionChains(self.driver).move_to_element(self.driver.find_element(
-                By.XPATH, '/html/body/div[2]/div[2]')).click().perform()
-            print("A")
 
-            self.driver.find_element(
-                By.XPATH, '/html/body/div[2]/div[2]').click()
-            print("A")
 
             self.ws['C9'] = 'Contribution Category - Certificate and Client Feedback'
             self.ws['G9'] = 'Pass'
@@ -555,8 +544,9 @@ class CEvent(unittest.TestCase):
 if __name__ == '__main__':
     tb = CEvent()
     login = Login()
-    login.setExternalDriver()
+    dr = login.setExternalDriver()
     login.MFA()
+    tb.setExternalDriver(driver=dr)
     tb.Events()
     tb.Add_Banner_Image()
     tb.Add_Listing_Image()

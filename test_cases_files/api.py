@@ -22,11 +22,12 @@ from openpyxl import load_workbook
 from xlutils.copy import copy as xl_copy
 from datetime import datetime, timedelta
 
+from datainputs import *
 
 class Api(unittest.TestCase):
 
     def __init__(self):
-        self.filename = '/home/am.bhatia/Desktop/contripoint/abc1.xlsx'
+        self.filename = '/home/am.bhatia/Desktop/contripoint/ABC1.xlsx'
         self.wb = load_workbook(filename=self.filename)
         self.ws = self.wb.active
         print(self.wb)
@@ -39,7 +40,7 @@ class Api(unittest.TestCase):
         self.ws['C1'] = 'Test Case Module'
         self.ws['G1'] = 'Result'
         self.ws['H1'] = 'Date and Time'
-        self.wb.save('/home/am.bhatia/Desktop/contripoint/abc1.xlsx')
+        self.wb.save('/home/am.bhatia/Desktop/contripoint/ABC1.xlsx')
 
         # datetime object containing current date and time
         futuredate = datetime.now()
@@ -50,44 +51,78 @@ class Api(unittest.TestCase):
         try:
             s = Service(ChromeDriverManager().install())
             self.driver = webdriver.Chrome(service=s)
+
+            self.driver.maximize_window()
             print("\n\n\n\n\n>>>>>>>>> CERTIFICATIONS >>>>>>>>>>>>")
 
-            driver = self.driver
-            driver.maximize_window()
-            driver.get(
-                "http://dev-contripoint.geminisolutions.com.s3-website.ap-south-1.amazonaws.com/#/dashboard")
-            button = driver.find_element(
+            # self.driver = self.self.driver
+            # set implicit wait time
+            self.driver.implicitly_wait(10)  # seconds
+
+            print("\n >>>>>>>>>> Login >>>>>>>>>>>> \n")
+
+            # get url
+            self.driver.get(
+                "https://dev-contripoint.geminisolutions.com/#/dashboard")
+            button = self.driver.find_element(
                 By.XPATH, '/html/body/app-root/div/div/app-login-screen/div/div/div/mat-card/div[2]/div/button')
             button.click()
+
+            print("\n 1- Login With Gemini mail \n")
+
             time.sleep(6)
 
-            window_handles = driver.window_handles
-            driver.switch_to.window(window_handles[1])
-            driver.find_element(
-                By.XPATH, '//*[@id="identifierId"]').send_keys('test.user@geminisolutions.in')
-            self.ws['A2'] = 'test.user@geminisolutions.in'
-            driver.find_element(
-                By.XPATH, '//*[@id="identifierNext"]/div/button/span').click()
+            window_handles = self.driver.window_handles
+            self.driver.switch_to.window(window_handles[1])
+
+            # Entering Mail Id in input
+            self.driver.find_element(
+                By.XPATH, '//*[@id="i0116"]').send_keys(login_Id)
+            self.ws['A2'] = 'aman.bhatia@geminisolutions.com'
+            print("\n 2- Entering mail id \n")
+
+            self.driver.find_element(
+                By.XPATH, '/html/body/div/form[1]/div/div/div[2]/div[1]/div/div/div/div/div[1]/div[3]/div/div/div/div[4]/div/div/div/div[2]/input').click()
             time.sleep(3)
 
-            driver.find_element(
-                By.XPATH, '//*[@id="password"]/div[1]/div/div[1]/input').send_keys('Gemini@123#')
-            self.ws['B2'] = 'Gemini@123#'
-            driver.find_element(
-                By.XPATH, '//*[@id="passwordNext"]/div/button/span').click()
+            # Entering Passowrd in Input
+            self.driver.find_element(
+                By.XPATH, '//*[@id="i0118"]').send_keys(login_Password)
+            self.ws['B2'] = 'RitaNandini96'
+            print("\n 3- Entering mail password \n")
+
+            self.driver.find_element(
+                By.XPATH, '/html/body/div/form[1]/div/div/div[2]/div[1]/div/div/div/div/div/div[3]/div/div[2]/div/div[4]/div[2]/div/div/div/div/input').click()
             time.sleep(6)
 
-            driver.switch_to.window(window_handles[0])
+            # Entering Multi-factor Authentication (MFA) Code Manually
+            self.driver.find_element(By.ID, "idTxtBx_SAOTCC_OTC")
             time.sleep(6)
-            print("\n 1 - Gemini Id and Password successfully login")
+            print("\n 4- Entering and Verifying MFA Code \n")
+
+            self.driver.find_element(
+                By.XPATH, '//*[@id="idSubmit_SAOTCC_Continue"]').click()
+            time.sleep(5)
+
+            self.driver.find_element(
+                By.XPATH, '//*[@id="KmsiCheckboxField"]').click()
+            time.sleep(5)
+
+            self.driver.find_element(By.ID, "idSIButton9").click()
+
+            print("\n 5- Login Successfull \n")
+
+            print("\n 6 - Gemini Id and Password successfully login \n")
             self.ws['C2'] = 'Login'
             self.ws['G2'] = 'login Success'
 
             self.wb.save(self.filename)
 
         except Exception as e:
+
+            print("\n 6 - Gemini Id and Password  login failed")
             print(e)
-            print("\n 1 - Gemini Id and Password  login failed")
+
             self.ws['C2'] = 'Login'
             self.ws['G2'] = 'login failed'
             self.wb.save(self.filename)
@@ -126,6 +161,9 @@ class Api(unittest.TestCase):
             print(response.headers)
         except Exception as e:
             print("Try again")
+
+    def tearDown(self):
+        self.driver.quit()
 
 if __name__ == '__main__':
     tb = Api()

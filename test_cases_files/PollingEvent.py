@@ -50,11 +50,8 @@ class PEvent(unittest.TestCase):
         print(futuredate)
         self.ws['H2'] = futuredate
 
-    # def setExternalDriver(self, driver):
-    #     s = Service(ChromeDriverManager().install())
-    #     self.driver = webdriver.Chrome(service=s)
-
-    #     self.driver.maximize_window()
+    def setExternalDriver(self,driver):
+        self.driver = driver
 
     def Events(self):
         """
@@ -573,8 +570,9 @@ class PEvent(unittest.TestCase):
 if __name__ == '__main__':
     tb = PEvent()
     login = Login()
-    login.setExternalDriver()
+    dr = login.setExternalDriver()
     login.MFA()
+    tb.setExternalDriver(driver=dr)
     tb.Events()
     tb.Add_Banner_Image()
     tb.Add_Listing_Image()

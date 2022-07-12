@@ -50,12 +50,8 @@ class NCEvent(unittest.TestCase):
         print(futuredate)
         self.ws['H2'] = futuredate
 
-    # def setExternalDriver(self,driver):
-    #     self.driver = driver
-    #     s = Service(ChromeDriverManager().install())
-    #     self.driver = webdriver.Chrome(service=s)
-
-    #     self.driver.maximize_window()
+    def setExternalDriver(self,driver):
+        self.driver = driver
         
 
     def Events(self):
@@ -474,8 +470,9 @@ class NCEvent(unittest.TestCase):
 if __name__ == '__main__':
     tb = NCEvent()
     login = Login()
-    login.setExternalDriver()
+    dr = login.setExternalDriver()
     login.MFA()
+    tb.setExternalDriver(driver=dr)
     tb.Events()
     tb.Add_Banner_Image()
     tb.Add_Listing_Image()

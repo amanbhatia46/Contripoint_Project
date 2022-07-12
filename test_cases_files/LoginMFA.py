@@ -52,6 +52,7 @@ class Login(unittest.TestCase):
         self.driver = webdriver.Chrome(service=s)
 
         self.driver.maximize_window()
+        return self.driver
 
     def MFA(self):
         try:

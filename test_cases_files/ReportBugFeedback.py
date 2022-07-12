@@ -53,15 +53,26 @@ class RBugEvent(unittest.TestCase):
 
     # def setExternalDriver(self, driver):
     #     self.driver = driver
-    #     x = self.driver.window_handles[0]
-    #     time.sleep(6)
-    #     self.driver.switch_to.window(x)
+        # x = self.driver.window_handles[0]
+        # time.sleep(6)
+        # self.driver.switch_to.window(x)
 
     def Report_Bug(self):
         """
             Report Bug
         """
         try:
+            # x = self.driver.window_handles[0]
+            # time.sleep(6)
+            # self.driver.switch_to.window(x)
+
+            window_handles = self.driver.window_handles
+            print("a")
+            time.sleep(5)
+            self.driver.switch_to.window(window_handles[0])
+            print("b")
+            time.sleep(5)
+
 
             Bug = self.driver.find_element(
                 By.XPATH, '/html/body/app-root/div/app-footer/div/div/div/div/div[2]/div/div[1]/button')
@@ -300,7 +311,7 @@ class RBugEvent(unittest.TestCase):
 
             logout = self.driver.find_element(
                 By.XPATH, '/html/body/div[2]/div[2]/div/div/div/button[2]').click()
-            print("\n 14 - Logout Successful")
+            print("\n 14 - Logout Successfull")
 
             self.ws['C13'] = 'Logout'
             self.ws['G13'] = 'Pass'

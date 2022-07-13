@@ -23,12 +23,12 @@ from LoginMFA import *
 class RBugEvent(unittest.TestCase):
 
     def __init__(self):
-        self.filename = '/home/am.bhatia/Desktop/contripoint/Data.xlsx'
+        self.filename = '/home/am.bhatia/Desktop/contripoint/xyz.xlsx'
         self.wb = load_workbook(filename=self.filename)
         self.index_sheet = 0
         if 'Report Bug' not in self.wb.sheetnames:
             self.wb.create_sheet('Report Bug')
-            self.wb.save('/home/am.bhatia/Desktop/contripoint/Data.xlsx')
+            self.wb.save('/home/am.bhatia/Desktop/contripoint/xyz.xlsx')
         self.wb = load_workbook(filename=self.filename)
         self.ws = self.wb.active
         for i, n in enumerate(self.wb.sheetnames):
@@ -43,7 +43,7 @@ class RBugEvent(unittest.TestCase):
         self.ws['C1'] = 'Test Case Module'
         self.ws['G1'] = 'Result'
         self.ws['H1'] = 'Date and Time'
-        self.wb.save('/home/am.bhatia/Desktop/contripoint/Data.xlsx')
+        self.wb.save('/home/am.bhatia/Desktop/contripoint/xyz.xlsx')
 
         # datetime object containing current date and time
         futuredate = str(datetime.now())
@@ -187,7 +187,7 @@ class RBugEvent(unittest.TestCase):
             Dropdown.click()
 
             self.driver.find_element(
-                By.ID, "mat-option-24").click()
+                By.XPATH, '/html/body/div[2]/div[4]/div/div/div/mat-option[1]').click()
             time.sleep(5)
             
             print("\n 11 - Selecting 'Certificate' as Website Feature")
@@ -211,8 +211,8 @@ class RBugEvent(unittest.TestCase):
         """
         try:
 
-            Desc = self.driver.find_element(By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-bug-report-modal/div/mat-dialog-content/form/div/div[4]/div/mat-form-field/div/div[1]/div').send_keys(
-                "Reporting a designing bug to developers.")
+            self.driver.find_element(By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-bug-report-modal/div/mat-dialog-content/form/div/div[4]/div/mat-form-field/div/div[1]/div/textarea').send_keys(
+                "Reporting a bug to the team.")
 
             print("\n 12 - Entering Description Done")
             time.sleep(5)
@@ -279,9 +279,9 @@ class RBugEvent(unittest.TestCase):
             element = self.driver.find_element_by_tag_name('h2')
 
             if element.text != u'Design work':
-                print("Verify Passed : element text is %r") % element.text
+                print("\n Verify Passed : element text is Design work") % element.text
             else:
-                print("Verify Failed : element text is not %r") % element.text
+                print("\n Verify Failed : element text is not Design work") % element.text
 
         except Exception as e:
             print("\n\n ERROR IN SUBMIT >>>>>>>>>>>>>>>\n\n")

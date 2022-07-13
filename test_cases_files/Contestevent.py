@@ -296,10 +296,6 @@ class CEvent(unittest.TestCase):
 
         """
         try:
-            # Clicking on Start Date
-            # ActionChains(self.driver).move_to_element(self.driver.find_element(
-            #     By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-event-modal/mat-dialog-content/mat-horizontal-stepper/div[2]/div[2]/form/div[2]/div[2]/mat-form-field/div/div[1]/div[1]/input')).click().perform()
-            # time.sleep(5)
 
             self.driver.find_element(
                 By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-event-modal/mat-dialog-content/mat-horizontal-stepper/div[2]/div[2]/form/div[2]/div[1]/mat-form-field/div/div[1]/div[1]/input').click()
@@ -307,7 +303,6 @@ class CEvent(unittest.TestCase):
 
             print("\n 20 - Clicking on Start Date Calander ")
 
-            # self.driver.find_element(By.XPATH,'//*[@id="mat-datepicker-0"]/div/mat-month-view/table/tbody/tr[2]/td[2]/div[1]').click()
             self.driver.find_element(
                 By.CSS_SELECTOR, ".mat-calendar-body-today").click()
             time.sleep(5)

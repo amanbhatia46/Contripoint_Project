@@ -20,16 +20,15 @@ from datainputs import *
 from LoginMFA import *
 
 
-
 class RBugEvent(unittest.TestCase):
 
     def __init__(self):
-        self.filename = '/home/am.bhatia/Desktop/contripoint/ABC1.xlsx'
+        self.filename = '/home/am.bhatia/Desktop/contripoint/Data.xlsx'
         self.wb = load_workbook(filename=self.filename)
         self.index_sheet = 0
         if 'Report Bug' not in self.wb.sheetnames:
             self.wb.create_sheet('Report Bug')
-            self.wb.save('/home/am.bhatia/Desktop/contripoint/ABC1.xlsx')
+            self.wb.save('/home/am.bhatia/Desktop/contripoint/Data.xlsx')
         self.wb = load_workbook(filename=self.filename)
         self.ws = self.wb.active
         for i, n in enumerate(self.wb.sheetnames):
@@ -44,14 +43,14 @@ class RBugEvent(unittest.TestCase):
         self.ws['C1'] = 'Test Case Module'
         self.ws['G1'] = 'Result'
         self.ws['H1'] = 'Date and Time'
-        self.wb.save('/home/am.bhatia/Desktop/contripoint/ABC1.xlsx')
+        self.wb.save('/home/am.bhatia/Desktop/contripoint/Data.xlsx')
 
         # datetime object containing current date and time
         futuredate = str(datetime.now())
         print(futuredate)
         self.ws['H2'] = futuredate
 
-    def setExternalDriver(self,driver):
+    def setExternalDriver(self, driver):
         self.driver = driver
 
     def Report_Bug(self):
@@ -90,13 +89,28 @@ class RBugEvent(unittest.TestCase):
 
         """
         try:
-            self.driver.find_element(
-                By.XPATH, '/html/body/app-root/div/div/app-bug-report-table/div/div/div/div[2]/div/div/div/div[2]/ul/div/button').send_keys(KeysView.CONTROL + Keys.HOME)
+            # KeysView.CONTROL + KeysView.HOME
 
-            self.driver.find_element(
-                By.XPATH, '/html/body/app-root/div/div/app-bug-report-table/div/div/div/div[2]/div/div/div/div[2]/ul/div/button').click()
+            self.driver.execute_script(
+                "window.scrollTo(0,document.body.scrollHeight)")
             time.sleep(5)
-            print("\n 8 - Clickong on  ADD NEW button")
+
+            element = self.driver.find_element(
+                By.XPATH, '/html/body/app-root/div/div/app-bug-report-table/div/div/div/div[2]/div/div/div/div[2]/ul/div/button')
+            time.sleep(5)
+
+            action = ActionChains(self.driver)
+            time.sleep(5)
+
+            # click the item
+            action.click(on_element=element)
+            time.sleep(5)
+
+            # perform the operation
+            action.perform()
+            time.sleep(5)
+
+            print("\n 8 - Clicking on  ADD NEW button")
             self.ws['C4'] = 'Add New'
             self.ws['G4'] = 'Pass'
 
@@ -104,7 +118,7 @@ class RBugEvent(unittest.TestCase):
 
         except Exception as e:
             print("\n\n ERROR IN ADD NEW >>>>>>>>>>>>>>>\n\n")
-            print("\n 8 - Clickong on Add New Button gets fail")
+            print("\n 8 - Clicking on Add New Button gets fail")
             self.ws['C4'] = 'Add New'
             self.ws['G4'] = 'Fail'
 
@@ -116,14 +130,13 @@ class RBugEvent(unittest.TestCase):
         """
         try:
             self.driver.find_element(
-                By.ID, "mat-input-25").send_keys("Design work")
+                By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-bug-report-modal/div/mat-dialog-content/form/div/div[1]/div/mat-form-field/div/div[1]/div/input').send_keys("Design work")
             time.sleep(5)
             print("\n 9 - Issue Subject - 'Design work' ")
             self.ws['C5'] = 'Issue Subject'
             self.ws['G5'] = 'Pass'
 
             self.wb.save(self.filename)
-
 
         except Exception as e:
             print("\n\n ERROR IN ISSUE SUBJECT >>>>>>>>>>>>>>>\n\n")
@@ -144,8 +157,10 @@ class RBugEvent(unittest.TestCase):
             Dropdown.click()
             time.sleep(5)
 
-            IC = self.driver.find_element(
-                By.ID, "mat-option-75").click()
+            Design = self.driver.find_element(
+                By.XPATH, '/html/body/div[2]/div[4]/div/div/div/mat-option[1]')
+            time.sleep(5)
+            Design.click()
             print("\n 10 - Selecting 'Design'")
             time.sleep(5)
 
@@ -170,10 +185,11 @@ class RBugEvent(unittest.TestCase):
                 By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-bug-report-modal/div/mat-dialog-content/form/div/div[2]/div[2]/mat-form-field/div/div[1]/div')
             time.sleep(5)
             Dropdown.click()
-            time.sleep(5)
 
-            SWF = self.driver.find_element(
-                By.ID, "mat-option-78").click()
+            self.driver.find_element(
+                By.ID, "mat-option-24").click()
+            time.sleep(5)
+            
             print("\n 11 - Selecting 'Certificate' as Website Feature")
             time.sleep(5)
 
@@ -194,7 +210,8 @@ class RBugEvent(unittest.TestCase):
             Enter Event's Description
         """
         try:
-            self.driver.find_element(By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-bug-report-modal/div/mat-dialog-content/form/div/div[4]/div/mat-form-field/div/div[1]/div').send_keys(
+
+            Desc = self.driver.find_element(By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-bug-report-modal/div/mat-dialog-content/form/div/div[4]/div/mat-form-field/div/div[1]/div').send_keys(
                 "Reporting a designing bug to developers.")
 
             print("\n 12 - Entering Description Done")

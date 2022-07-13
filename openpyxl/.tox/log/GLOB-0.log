@@ -1,0 +1,459 @@
+action: GLOB, msg: packaging
+cwd: /home/am.bhatia/Desktop/contripoint/openpyxl
+cmd: /usr/bin/python3 setup.py sdist --formats=zip --dist-dir .tox/dist
+running sdist
+running egg_info
+writing openpyxl.egg-info/PKG-INFO
+writing dependency_links to openpyxl.egg-info/dependency_links.txt
+writing requirements to openpyxl.egg-info/requires.txt
+writing top-level names to openpyxl.egg-info/top_level.txt
+reading manifest file 'openpyxl.egg-info/SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+no previously-included directories found matching 'openpyxl/sample'
+no previously-included directories found matching 'openpyxl/benchmarks'
+no previously-included directories found matching 'openpyxl/develop'
+no previously-included directories found matching 'scratchpad'
+no previously-included directories found matching 'doc'
+writing manifest file 'openpyxl.egg-info/SOURCES.txt'
+running check
+creating openpyxl-3.0.10
+creating openpyxl-3.0.10/openpyxl
+creating openpyxl-3.0.10/openpyxl.egg-info
+creating openpyxl-3.0.10/openpyxl/cell
+creating openpyxl-3.0.10/openpyxl/chart
+creating openpyxl-3.0.10/openpyxl/chartsheet
+creating openpyxl-3.0.10/openpyxl/comments
+creating openpyxl-3.0.10/openpyxl/compat
+creating openpyxl-3.0.10/openpyxl/descriptors
+creating openpyxl-3.0.10/openpyxl/drawing
+creating openpyxl-3.0.10/openpyxl/formatting
+creating openpyxl-3.0.10/openpyxl/formula
+creating openpyxl-3.0.10/openpyxl/packaging
+creating openpyxl-3.0.10/openpyxl/pivot
+creating openpyxl-3.0.10/openpyxl/reader
+creating openpyxl-3.0.10/openpyxl/styles
+creating openpyxl-3.0.10/openpyxl/utils
+creating openpyxl-3.0.10/openpyxl/workbook
+creating openpyxl-3.0.10/openpyxl/workbook/external_link
+creating openpyxl-3.0.10/openpyxl/worksheet
+creating openpyxl-3.0.10/openpyxl/writer
+creating openpyxl-3.0.10/openpyxl/xml
+copying files to openpyxl-3.0.10...
+copying AUTHORS.rst -> openpyxl-3.0.10
+copying LICENCE.rst -> openpyxl-3.0.10
+copying MANIFEST.in -> openpyxl-3.0.10
+copying README.rst -> openpyxl-3.0.10
+copying setup.cfg -> openpyxl-3.0.10
+copying setup.py -> openpyxl-3.0.10
+copying openpyxl/__init__.py -> openpyxl-3.0.10/openpyxl
+copying openpyxl/_constants.py -> openpyxl-3.0.10/openpyxl
+copying openpyxl.egg-info/PKG-INFO -> openpyxl-3.0.10/openpyxl.egg-info
+copying openpyxl.egg-info/SOURCES.txt -> openpyxl-3.0.10/openpyxl.egg-info
+copying openpyxl.egg-info/dependency_links.txt -> openpyxl-3.0.10/openpyxl.egg-info
+copying openpyxl.egg-info/requires.txt -> openpyxl-3.0.10/openpyxl.egg-info
+copying openpyxl.egg-info/top_level.txt -> openpyxl-3.0.10/openpyxl.egg-info
+copying openpyxl/cell/__init__.py -> openpyxl-3.0.10/openpyxl/cell
+copying openpyxl/cell/_writer.py -> openpyxl-3.0.10/openpyxl/cell
+copying openpyxl/cell/cell.py -> openpyxl-3.0.10/openpyxl/cell
+copying openpyxl/cell/read_only.py -> openpyxl-3.0.10/openpyxl/cell
+copying openpyxl/cell/text.py -> openpyxl-3.0.10/openpyxl/cell
+copying openpyxl/chart/_3d.py -> openpyxl-3.0.10/openpyxl/chart
+copying openpyxl/chart/__init__.py -> openpyxl-3.0.10/openpyxl/chart
+copying openpyxl/chart/_chart.py -> openpyxl-3.0.10/openpyxl/chart
+copying openpyxl/chart/area_chart.py -> openpyxl-3.0.10/openpyxl/chart
+copying openpyxl/chart/axis.py -> openpyxl-3.0.10/openpyxl/chart
+copying openpyxl/chart/bar_chart.py -> openpyxl-3.0.10/openpyxl/chart
+copying openpyxl/chart/bubble_chart.py -> openpyxl-3.0.10/openpyxl/chart
+copying openpyxl/chart/chartspace.py -> openpyxl-3.0.10/openpyxl/chart
+copying openpyxl/chart/data_source.py -> openpyxl-3.0.10/openpyxl/chart
+copying openpyxl/chart/descriptors.py -> openpyxl-3.0.10/openpyxl/chart
+copying openpyxl/chart/error_bar.py -> openpyxl-3.0.10/openpyxl/chart
+copying openpyxl/chart/label.py -> openpyxl-3.0.10/openpyxl/chart
+copying openpyxl/chart/layout.py -> openpyxl-3.0.10/openpyxl/chart
+copying openpyxl/chart/legend.py -> openpyxl-3.0.10/openpyxl/chart
+copying openpyxl/chart/line_chart.py -> openpyxl-3.0.10/openpyxl/chart
+copying openpyxl/chart/marker.py -> openpyxl-3.0.10/openpyxl/chart
+copying openpyxl/chart/picture.py -> openpyxl-3.0.10/openpyxl/chart
+copying openpyxl/chart/pie_chart.py -> openpyxl-3.0.10/openpyxl/chart
+copying openpyxl/chart/pivot.py -> openpyxl-3.0.10/openpyxl/chart
+copying openpyxl/chart/plotarea.py -> openpyxl-3.0.10/openpyxl/chart
+copying openpyxl/chart/print_settings.py -> openpyxl-3.0.10/openpyxl/chart
+copying openpyxl/chart/radar_chart.py -> openpyxl-3.0.10/openpyxl/chart
+copying openpyxl/chart/reader.py -> openpyxl-3.0.10/openpyxl/chart
+copying openpyxl/chart/reference.py -> openpyxl-3.0.10/openpyxl/chart
+copying openpyxl/chart/scatter_chart.py -> openpyxl-3.0.10/openpyxl/chart
+copying openpyxl/chart/series.py -> openpyxl-3.0.10/openpyxl/chart
+copying openpyxl/chart/series_factory.py -> openpyxl-3.0.10/openpyxl/chart
+copying openpyxl/chart/shapes.py -> openpyxl-3.0.10/openpyxl/chart
+copying openpyxl/chart/stock_chart.py -> openpyxl-3.0.10/openpyxl/chart
+copying openpyxl/chart/surface_chart.py -> openpyxl-3.0.10/openpyxl/chart
+copying openpyxl/chart/text.py -> openpyxl-3.0.10/openpyxl/chart
+copying openpyxl/chart/title.py -> openpyxl-3.0.10/openpyxl/chart
+copying openpyxl/chart/trendline.py -> openpyxl-3.0.10/openpyxl/chart
+copying openpyxl/chart/updown_bars.py -> openpyxl-3.0.10/openpyxl/chart
+copying openpyxl/chartsheet/__init__.py -> openpyxl-3.0.10/openpyxl/chartsheet
+copying openpyxl/chartsheet/chartsheet.py -> openpyxl-3.0.10/openpyxl/chartsheet
+copying openpyxl/chartsheet/custom.py -> openpyxl-3.0.10/openpyxl/chartsheet
+copying openpyxl/chartsheet/properties.py -> openpyxl-3.0.10/openpyxl/chartsheet
+copying openpyxl/chartsheet/protection.py -> openpyxl-3.0.10/openpyxl/chartsheet
+copying openpyxl/chartsheet/publish.py -> openpyxl-3.0.10/openpyxl/chartsheet
+copying openpyxl/chartsheet/relation.py -> openpyxl-3.0.10/openpyxl/chartsheet
+copying openpyxl/chartsheet/views.py -> openpyxl-3.0.10/openpyxl/chartsheet
+copying openpyxl/comments/__init__.py -> openpyxl-3.0.10/openpyxl/comments
+copying openpyxl/comments/author.py -> openpyxl-3.0.10/openpyxl/comments
+copying openpyxl/comments/comment_sheet.py -> openpyxl-3.0.10/openpyxl/comments
+copying openpyxl/comments/comments.py -> openpyxl-3.0.10/openpyxl/comments
+copying openpyxl/comments/shape_writer.py -> openpyxl-3.0.10/openpyxl/comments
+copying openpyxl/compat/__init__.py -> openpyxl-3.0.10/openpyxl/compat
+copying openpyxl/compat/abc.py -> openpyxl-3.0.10/openpyxl/compat
+copying openpyxl/compat/numbers.py -> openpyxl-3.0.10/openpyxl/compat
+copying openpyxl/compat/product.py -> openpyxl-3.0.10/openpyxl/compat
+copying openpyxl/compat/singleton.py -> openpyxl-3.0.10/openpyxl/compat
+copying openpyxl/compat/strings.py -> openpyxl-3.0.10/openpyxl/compat
+copying openpyxl/descriptors/__init__.py -> openpyxl-3.0.10/openpyxl/descriptors
+copying openpyxl/descriptors/base.py -> openpyxl-3.0.10/openpyxl/descriptors
+copying openpyxl/descriptors/excel.py -> openpyxl-3.0.10/openpyxl/descriptors
+copying openpyxl/descriptors/namespace.py -> openpyxl-3.0.10/openpyxl/descriptors
+copying openpyxl/descriptors/nested.py -> openpyxl-3.0.10/openpyxl/descriptors
+copying openpyxl/descriptors/sequence.py -> openpyxl-3.0.10/openpyxl/descriptors
+copying openpyxl/descriptors/serialisable.py -> openpyxl-3.0.10/openpyxl/descriptors
+copying openpyxl/descriptors/slots.py -> openpyxl-3.0.10/openpyxl/descriptors
+copying openpyxl/drawing/__init__.py -> openpyxl-3.0.10/openpyxl/drawing
+copying openpyxl/drawing/colors.py -> openpyxl-3.0.10/openpyxl/drawing
+copying openpyxl/drawing/connector.py -> openpyxl-3.0.10/openpyxl/drawing
+copying openpyxl/drawing/drawing.py -> openpyxl-3.0.10/openpyxl/drawing
+copying openpyxl/drawing/effect.py -> openpyxl-3.0.10/openpyxl/drawing
+copying openpyxl/drawing/fill.py -> openpyxl-3.0.10/openpyxl/drawing
+copying openpyxl/drawing/geometry.py -> openpyxl-3.0.10/openpyxl/drawing
+copying openpyxl/drawing/graphic.py -> openpyxl-3.0.10/openpyxl/drawing
+copying openpyxl/drawing/image.py -> openpyxl-3.0.10/openpyxl/drawing
+copying openpyxl/drawing/line.py -> openpyxl-3.0.10/openpyxl/drawing
+copying openpyxl/drawing/picture.py -> openpyxl-3.0.10/openpyxl/drawing
+copying openpyxl/drawing/properties.py -> openpyxl-3.0.10/openpyxl/drawing
+copying openpyxl/drawing/relation.py -> openpyxl-3.0.10/openpyxl/drawing
+copying openpyxl/drawing/spreadsheet_drawing.py -> openpyxl-3.0.10/openpyxl/drawing
+copying openpyxl/drawing/text.py -> openpyxl-3.0.10/openpyxl/drawing
+copying openpyxl/drawing/xdr.py -> openpyxl-3.0.10/openpyxl/drawing
+copying openpyxl/formatting/__init__.py -> openpyxl-3.0.10/openpyxl/formatting
+copying openpyxl/formatting/formatting.py -> openpyxl-3.0.10/openpyxl/formatting
+copying openpyxl/formatting/rule.py -> openpyxl-3.0.10/openpyxl/formatting
+copying openpyxl/formula/__init__.py -> openpyxl-3.0.10/openpyxl/formula
+copying openpyxl/formula/tokenizer.py -> openpyxl-3.0.10/openpyxl/formula
+copying openpyxl/formula/translate.py -> openpyxl-3.0.10/openpyxl/formula
+copying openpyxl/packaging/__init__.py -> openpyxl-3.0.10/openpyxl/packaging
+copying openpyxl/packaging/core.py -> openpyxl-3.0.10/openpyxl/packaging
+copying openpyxl/packaging/extended.py -> openpyxl-3.0.10/openpyxl/packaging
+copying openpyxl/packaging/interface.py -> openpyxl-3.0.10/openpyxl/packaging
+copying openpyxl/packaging/manifest.py -> openpyxl-3.0.10/openpyxl/packaging
+copying openpyxl/packaging/relationship.py -> openpyxl-3.0.10/openpyxl/packaging
+copying openpyxl/packaging/workbook.py -> openpyxl-3.0.10/openpyxl/packaging
+copying openpyxl/pivot/__init__.py -> openpyxl-3.0.10/openpyxl/pivot
+copying openpyxl/pivot/cache.py -> openpyxl-3.0.10/openpyxl/pivot
+copying openpyxl/pivot/fields.py -> openpyxl-3.0.10/openpyxl/pivot
+copying openpyxl/pivot/record.py -> openpyxl-3.0.10/openpyxl/pivot
+copying openpyxl/pivot/table.py -> openpyxl-3.0.10/openpyxl/pivot
+copying openpyxl/reader/__init__.py -> openpyxl-3.0.10/openpyxl/reader
+copying openpyxl/reader/drawings.py -> openpyxl-3.0.10/openpyxl/reader
+copying openpyxl/reader/excel.py -> openpyxl-3.0.10/openpyxl/reader
+copying openpyxl/reader/strings.py -> openpyxl-3.0.10/openpyxl/reader
+copying openpyxl/reader/workbook.py -> openpyxl-3.0.10/openpyxl/reader
+copying openpyxl/styles/__init__.py -> openpyxl-3.0.10/openpyxl/styles
+copying openpyxl/styles/alignment.py -> openpyxl-3.0.10/openpyxl/styles
+copying openpyxl/styles/borders.py -> openpyxl-3.0.10/openpyxl/styles
+copying openpyxl/styles/builtins.py -> openpyxl-3.0.10/openpyxl/styles
+copying openpyxl/styles/cell_style.py -> openpyxl-3.0.10/openpyxl/styles
+copying openpyxl/styles/colors.py -> openpyxl-3.0.10/openpyxl/styles
+copying openpyxl/styles/differential.py -> openpyxl-3.0.10/openpyxl/styles
+copying openpyxl/styles/fills.py -> openpyxl-3.0.10/openpyxl/styles
+copying openpyxl/styles/fonts.py -> openpyxl-3.0.10/openpyxl/styles
+copying openpyxl/styles/named_styles.py -> openpyxl-3.0.10/openpyxl/styles
+copying openpyxl/styles/numbers.py -> openpyxl-3.0.10/openpyxl/styles
+copying openpyxl/styles/protection.py -> openpyxl-3.0.10/openpyxl/styles
+copying openpyxl/styles/proxy.py -> openpyxl-3.0.10/openpyxl/styles
+copying openpyxl/styles/styleable.py -> openpyxl-3.0.10/openpyxl/styles
+copying openpyxl/styles/stylesheet.py -> openpyxl-3.0.10/openpyxl/styles
+copying openpyxl/styles/table.py -> openpyxl-3.0.10/openpyxl/styles
+copying openpyxl/utils/__init__.py -> openpyxl-3.0.10/openpyxl/utils
+copying openpyxl/utils/bound_dictionary.py -> openpyxl-3.0.10/openpyxl/utils
+copying openpyxl/utils/cell.py -> openpyxl-3.0.10/openpyxl/utils
+copying openpyxl/utils/dataframe.py -> openpyxl-3.0.10/openpyxl/utils
+copying openpyxl/utils/datetime.py -> openpyxl-3.0.10/openpyxl/utils
+copying openpyxl/utils/escape.py -> openpyxl-3.0.10/openpyxl/utils
+copying openpyxl/utils/exceptions.py -> openpyxl-3.0.10/openpyxl/utils
+copying openpyxl/utils/formulas.py -> openpyxl-3.0.10/openpyxl/utils
+copying openpyxl/utils/indexed_list.py -> openpyxl-3.0.10/openpyxl/utils
+copying openpyxl/utils/inference.py -> openpyxl-3.0.10/openpyxl/utils
+copying openpyxl/utils/protection.py -> openpyxl-3.0.10/openpyxl/utils
+copying openpyxl/utils/units.py -> openpyxl-3.0.10/openpyxl/utils
+copying openpyxl/workbook/__init__.py -> openpyxl-3.0.10/openpyxl/workbook
+copying openpyxl/workbook/_writer.py -> openpyxl-3.0.10/openpyxl/workbook
+copying openpyxl/workbook/child.py -> openpyxl-3.0.10/openpyxl/workbook
+copying openpyxl/workbook/defined_name.py -> openpyxl-3.0.10/openpyxl/workbook
+copying openpyxl/workbook/external_reference.py -> openpyxl-3.0.10/openpyxl/workbook
+copying openpyxl/workbook/function_group.py -> openpyxl-3.0.10/openpyxl/workbook
+copying openpyxl/workbook/properties.py -> openpyxl-3.0.10/openpyxl/workbook
+copying openpyxl/workbook/protection.py -> openpyxl-3.0.10/openpyxl/workbook
+copying openpyxl/workbook/smart_tags.py -> openpyxl-3.0.10/openpyxl/workbook
+copying openpyxl/workbook/views.py -> openpyxl-3.0.10/openpyxl/workbook
+copying openpyxl/workbook/web.py -> openpyxl-3.0.10/openpyxl/workbook
+copying openpyxl/workbook/workbook.py -> openpyxl-3.0.10/openpyxl/workbook
+copying openpyxl/workbook/external_link/__init__.py -> openpyxl-3.0.10/openpyxl/workbook/external_link
+copying openpyxl/workbook/external_link/external.py -> openpyxl-3.0.10/openpyxl/workbook/external_link
+copying openpyxl/worksheet/__init__.py -> openpyxl-3.0.10/openpyxl/worksheet
+copying openpyxl/worksheet/_read_only.py -> openpyxl-3.0.10/openpyxl/worksheet
+copying openpyxl/worksheet/_reader.py -> openpyxl-3.0.10/openpyxl/worksheet
+copying openpyxl/worksheet/_write_only.py -> openpyxl-3.0.10/openpyxl/worksheet
+copying openpyxl/worksheet/_writer.py -> openpyxl-3.0.10/openpyxl/worksheet
+copying openpyxl/worksheet/cell_range.py -> openpyxl-3.0.10/openpyxl/worksheet
+copying openpyxl/worksheet/cell_watch.py -> openpyxl-3.0.10/openpyxl/worksheet
+copying openpyxl/worksheet/controls.py -> openpyxl-3.0.10/openpyxl/worksheet
+copying openpyxl/worksheet/copier.py -> openpyxl-3.0.10/openpyxl/worksheet
+copying openpyxl/worksheet/custom.py -> openpyxl-3.0.10/openpyxl/worksheet
+copying openpyxl/worksheet/datavalidation.py -> openpyxl-3.0.10/openpyxl/worksheet
+copying openpyxl/worksheet/dimensions.py -> openpyxl-3.0.10/openpyxl/worksheet
+copying openpyxl/worksheet/drawing.py -> openpyxl-3.0.10/openpyxl/worksheet
+copying openpyxl/worksheet/errors.py -> openpyxl-3.0.10/openpyxl/worksheet
+copying openpyxl/worksheet/filters.py -> openpyxl-3.0.10/openpyxl/worksheet
+copying openpyxl/worksheet/header_footer.py -> openpyxl-3.0.10/openpyxl/worksheet
+copying openpyxl/worksheet/hyperlink.py -> openpyxl-3.0.10/openpyxl/worksheet
+copying openpyxl/worksheet/merge.py -> openpyxl-3.0.10/openpyxl/worksheet
+copying openpyxl/worksheet/ole.py -> openpyxl-3.0.10/openpyxl/worksheet
+copying openpyxl/worksheet/page.py -> openpyxl-3.0.10/openpyxl/worksheet
+copying openpyxl/worksheet/pagebreak.py -> openpyxl-3.0.10/openpyxl/worksheet
+copying openpyxl/worksheet/picture.py -> openpyxl-3.0.10/openpyxl/worksheet
+copying openpyxl/worksheet/properties.py -> openpyxl-3.0.10/openpyxl/worksheet
+copying openpyxl/worksheet/protection.py -> openpyxl-3.0.10/openpyxl/worksheet
+copying openpyxl/worksheet/related.py -> openpyxl-3.0.10/openpyxl/worksheet
+copying openpyxl/worksheet/scenario.py -> openpyxl-3.0.10/openpyxl/worksheet
+copying openpyxl/worksheet/smart_tag.py -> openpyxl-3.0.10/openpyxl/worksheet
+copying openpyxl/worksheet/table.py -> openpyxl-3.0.10/openpyxl/worksheet
+copying openpyxl/worksheet/views.py -> openpyxl-3.0.10/openpyxl/worksheet
+copying openpyxl/worksheet/worksheet.py -> openpyxl-3.0.10/openpyxl/worksheet
+copying openpyxl/writer/__init__.py -> openpyxl-3.0.10/openpyxl/writer
+copying openpyxl/writer/excel.py -> openpyxl-3.0.10/openpyxl/writer
+copying openpyxl/writer/theme.py -> openpyxl-3.0.10/openpyxl/writer
+copying openpyxl/xml/__init__.py -> openpyxl-3.0.10/openpyxl/xml
+copying openpyxl/xml/constants.py -> openpyxl-3.0.10/openpyxl/xml
+copying openpyxl/xml/functions.py -> openpyxl-3.0.10/openpyxl/xml
+Writing openpyxl-3.0.10/setup.cfg
+creating '.tox/dist/openpyxl-3.0.10.zip' and adding 'openpyxl-3.0.10' to it
+adding 'openpyxl-3.0.10'
+adding 'openpyxl-3.0.10/openpyxl'
+adding 'openpyxl-3.0.10/openpyxl.egg-info'
+adding 'openpyxl-3.0.10/setup.cfg'
+adding 'openpyxl-3.0.10/README.rst'
+adding 'openpyxl-3.0.10/PKG-INFO'
+adding 'openpyxl-3.0.10/AUTHORS.rst'
+adding 'openpyxl-3.0.10/MANIFEST.in'
+adding 'openpyxl-3.0.10/LICENCE.rst'
+adding 'openpyxl-3.0.10/setup.py'
+adding 'openpyxl-3.0.10/openpyxl/pivot'
+adding 'openpyxl-3.0.10/openpyxl/cell'
+adding 'openpyxl-3.0.10/openpyxl/descriptors'
+adding 'openpyxl-3.0.10/openpyxl/comments'
+adding 'openpyxl-3.0.10/openpyxl/chart'
+adding 'openpyxl-3.0.10/openpyxl/chartsheet'
+adding 'openpyxl-3.0.10/openpyxl/utils'
+adding 'openpyxl-3.0.10/openpyxl/reader'
+adding 'openpyxl-3.0.10/openpyxl/packaging'
+adding 'openpyxl-3.0.10/openpyxl/workbook'
+adding 'openpyxl-3.0.10/openpyxl/drawing'
+adding 'openpyxl-3.0.10/openpyxl/xml'
+adding 'openpyxl-3.0.10/openpyxl/compat'
+adding 'openpyxl-3.0.10/openpyxl/writer'
+adding 'openpyxl-3.0.10/openpyxl/formula'
+adding 'openpyxl-3.0.10/openpyxl/styles'
+adding 'openpyxl-3.0.10/openpyxl/worksheet'
+adding 'openpyxl-3.0.10/openpyxl/formatting'
+adding 'openpyxl-3.0.10/openpyxl/__init__.py'
+adding 'openpyxl-3.0.10/openpyxl/_constants.py'
+adding 'openpyxl-3.0.10/openpyxl/pivot/__init__.py'
+adding 'openpyxl-3.0.10/openpyxl/pivot/cache.py'
+adding 'openpyxl-3.0.10/openpyxl/pivot/fields.py'
+adding 'openpyxl-3.0.10/openpyxl/pivot/table.py'
+adding 'openpyxl-3.0.10/openpyxl/pivot/record.py'
+adding 'openpyxl-3.0.10/openpyxl/cell/__init__.py'
+adding 'openpyxl-3.0.10/openpyxl/cell/cell.py'
+adding 'openpyxl-3.0.10/openpyxl/cell/text.py'
+adding 'openpyxl-3.0.10/openpyxl/cell/_writer.py'
+adding 'openpyxl-3.0.10/openpyxl/cell/read_only.py'
+adding 'openpyxl-3.0.10/openpyxl/descriptors/__init__.py'
+adding 'openpyxl-3.0.10/openpyxl/descriptors/slots.py'
+adding 'openpyxl-3.0.10/openpyxl/descriptors/namespace.py'
+adding 'openpyxl-3.0.10/openpyxl/descriptors/base.py'
+adding 'openpyxl-3.0.10/openpyxl/descriptors/serialisable.py'
+adding 'openpyxl-3.0.10/openpyxl/descriptors/sequence.py'
+adding 'openpyxl-3.0.10/openpyxl/descriptors/nested.py'
+adding 'openpyxl-3.0.10/openpyxl/descriptors/excel.py'
+adding 'openpyxl-3.0.10/openpyxl/comments/__init__.py'
+adding 'openpyxl-3.0.10/openpyxl/comments/comments.py'
+adding 'openpyxl-3.0.10/openpyxl/comments/comment_sheet.py'
+adding 'openpyxl-3.0.10/openpyxl/comments/shape_writer.py'
+adding 'openpyxl-3.0.10/openpyxl/comments/author.py'
+adding 'openpyxl-3.0.10/openpyxl/chart/print_settings.py'
+adding 'openpyxl-3.0.10/openpyxl/chart/data_source.py'
+adding 'openpyxl-3.0.10/openpyxl/chart/__init__.py'
+adding 'openpyxl-3.0.10/openpyxl/chart/stock_chart.py'
+adding 'openpyxl-3.0.10/openpyxl/chart/label.py'
+adding 'openpyxl-3.0.10/openpyxl/chart/reference.py'
+adding 'openpyxl-3.0.10/openpyxl/chart/shapes.py'
+adding 'openpyxl-3.0.10/openpyxl/chart/layout.py'
+adding 'openpyxl-3.0.10/openpyxl/chart/bubble_chart.py'
+adding 'openpyxl-3.0.10/openpyxl/chart/descriptors.py'
+adding 'openpyxl-3.0.10/openpyxl/chart/_3d.py'
+adding 'openpyxl-3.0.10/openpyxl/chart/line_chart.py'
+adding 'openpyxl-3.0.10/openpyxl/chart/axis.py'
+adding 'openpyxl-3.0.10/openpyxl/chart/picture.py'
+adding 'openpyxl-3.0.10/openpyxl/chart/reader.py'
+adding 'openpyxl-3.0.10/openpyxl/chart/radar_chart.py'
+adding 'openpyxl-3.0.10/openpyxl/chart/text.py'
+adding 'openpyxl-3.0.10/openpyxl/chart/trendline.py'
+adding 'openpyxl-3.0.10/openpyxl/chart/series.py'
+adding 'openpyxl-3.0.10/openpyxl/chart/title.py'
+adding 'openpyxl-3.0.10/openpyxl/chart/legend.py'
+adding 'openpyxl-3.0.10/openpyxl/chart/area_chart.py'
+adding 'openpyxl-3.0.10/openpyxl/chart/chartspace.py'
+adding 'openpyxl-3.0.10/openpyxl/chart/updown_bars.py'
+adding 'openpyxl-3.0.10/openpyxl/chart/plotarea.py'
+adding 'openpyxl-3.0.10/openpyxl/chart/scatter_chart.py'
+adding 'openpyxl-3.0.10/openpyxl/chart/pivot.py'
+adding 'openpyxl-3.0.10/openpyxl/chart/marker.py'
+adding 'openpyxl-3.0.10/openpyxl/chart/series_factory.py'
+adding 'openpyxl-3.0.10/openpyxl/chart/surface_chart.py'
+adding 'openpyxl-3.0.10/openpyxl/chart/pie_chart.py'
+adding 'openpyxl-3.0.10/openpyxl/chart/_chart.py'
+adding 'openpyxl-3.0.10/openpyxl/chart/error_bar.py'
+adding 'openpyxl-3.0.10/openpyxl/chart/bar_chart.py'
+adding 'openpyxl-3.0.10/openpyxl/chartsheet/__init__.py'
+adding 'openpyxl-3.0.10/openpyxl/chartsheet/properties.py'
+adding 'openpyxl-3.0.10/openpyxl/chartsheet/publish.py'
+adding 'openpyxl-3.0.10/openpyxl/chartsheet/relation.py'
+adding 'openpyxl-3.0.10/openpyxl/chartsheet/views.py'
+adding 'openpyxl-3.0.10/openpyxl/chartsheet/chartsheet.py'
+adding 'openpyxl-3.0.10/openpyxl/chartsheet/custom.py'
+adding 'openpyxl-3.0.10/openpyxl/chartsheet/protection.py'
+adding 'openpyxl-3.0.10/openpyxl/utils/__init__.py'
+adding 'openpyxl-3.0.10/openpyxl/utils/datetime.py'
+adding 'openpyxl-3.0.10/openpyxl/utils/cell.py'
+adding 'openpyxl-3.0.10/openpyxl/utils/inference.py'
+adding 'openpyxl-3.0.10/openpyxl/utils/formulas.py'
+adding 'openpyxl-3.0.10/openpyxl/utils/exceptions.py'
+adding 'openpyxl-3.0.10/openpyxl/utils/escape.py'
+adding 'openpyxl-3.0.10/openpyxl/utils/dataframe.py'
+adding 'openpyxl-3.0.10/openpyxl/utils/units.py'
+adding 'openpyxl-3.0.10/openpyxl/utils/bound_dictionary.py'
+adding 'openpyxl-3.0.10/openpyxl/utils/indexed_list.py'
+adding 'openpyxl-3.0.10/openpyxl/utils/protection.py'
+adding 'openpyxl-3.0.10/openpyxl/reader/__init__.py'
+adding 'openpyxl-3.0.10/openpyxl/reader/drawings.py'
+adding 'openpyxl-3.0.10/openpyxl/reader/workbook.py'
+adding 'openpyxl-3.0.10/openpyxl/reader/excel.py'
+adding 'openpyxl-3.0.10/openpyxl/reader/strings.py'
+adding 'openpyxl-3.0.10/openpyxl/packaging/__init__.py'
+adding 'openpyxl-3.0.10/openpyxl/packaging/manifest.py'
+adding 'openpyxl-3.0.10/openpyxl/packaging/extended.py'
+adding 'openpyxl-3.0.10/openpyxl/packaging/core.py'
+adding 'openpyxl-3.0.10/openpyxl/packaging/relationship.py'
+adding 'openpyxl-3.0.10/openpyxl/packaging/workbook.py'
+adding 'openpyxl-3.0.10/openpyxl/packaging/interface.py'
+adding 'openpyxl-3.0.10/openpyxl/workbook/external_link'
+adding 'openpyxl-3.0.10/openpyxl/workbook/__init__.py'
+adding 'openpyxl-3.0.10/openpyxl/workbook/external_reference.py'
+adding 'openpyxl-3.0.10/openpyxl/workbook/defined_name.py'
+adding 'openpyxl-3.0.10/openpyxl/workbook/properties.py'
+adding 'openpyxl-3.0.10/openpyxl/workbook/web.py'
+adding 'openpyxl-3.0.10/openpyxl/workbook/smart_tags.py'
+adding 'openpyxl-3.0.10/openpyxl/workbook/_writer.py'
+adding 'openpyxl-3.0.10/openpyxl/workbook/views.py'
+adding 'openpyxl-3.0.10/openpyxl/workbook/function_group.py'
+adding 'openpyxl-3.0.10/openpyxl/workbook/child.py'
+adding 'openpyxl-3.0.10/openpyxl/workbook/workbook.py'
+adding 'openpyxl-3.0.10/openpyxl/workbook/protection.py'
+adding 'openpyxl-3.0.10/openpyxl/workbook/external_link/__init__.py'
+adding 'openpyxl-3.0.10/openpyxl/workbook/external_link/external.py'
+adding 'openpyxl-3.0.10/openpyxl/drawing/__init__.py'
+adding 'openpyxl-3.0.10/openpyxl/drawing/geometry.py'
+adding 'openpyxl-3.0.10/openpyxl/drawing/properties.py'
+adding 'openpyxl-3.0.10/openpyxl/drawing/picture.py'
+adding 'openpyxl-3.0.10/openpyxl/drawing/connector.py'
+adding 'openpyxl-3.0.10/openpyxl/drawing/fill.py'
+adding 'openpyxl-3.0.10/openpyxl/drawing/text.py'
+adding 'openpyxl-3.0.10/openpyxl/drawing/line.py'
+adding 'openpyxl-3.0.10/openpyxl/drawing/graphic.py'
+adding 'openpyxl-3.0.10/openpyxl/drawing/colors.py'
+adding 'openpyxl-3.0.10/openpyxl/drawing/spreadsheet_drawing.py'
+adding 'openpyxl-3.0.10/openpyxl/drawing/drawing.py'
+adding 'openpyxl-3.0.10/openpyxl/drawing/relation.py'
+adding 'openpyxl-3.0.10/openpyxl/drawing/image.py'
+adding 'openpyxl-3.0.10/openpyxl/drawing/effect.py'
+adding 'openpyxl-3.0.10/openpyxl/drawing/xdr.py'
+adding 'openpyxl-3.0.10/openpyxl/xml/__init__.py'
+adding 'openpyxl-3.0.10/openpyxl/xml/functions.py'
+adding 'openpyxl-3.0.10/openpyxl/xml/constants.py'
+adding 'openpyxl-3.0.10/openpyxl/compat/__init__.py'
+adding 'openpyxl-3.0.10/openpyxl/compat/abc.py'
+adding 'openpyxl-3.0.10/openpyxl/compat/singleton.py'
+adding 'openpyxl-3.0.10/openpyxl/compat/product.py'
+adding 'openpyxl-3.0.10/openpyxl/compat/strings.py'
+adding 'openpyxl-3.0.10/openpyxl/compat/numbers.py'
+adding 'openpyxl-3.0.10/openpyxl/writer/__init__.py'
+adding 'openpyxl-3.0.10/openpyxl/writer/theme.py'
+adding 'openpyxl-3.0.10/openpyxl/writer/excel.py'
+adding 'openpyxl-3.0.10/openpyxl/formula/__init__.py'
+adding 'openpyxl-3.0.10/openpyxl/formula/tokenizer.py'
+adding 'openpyxl-3.0.10/openpyxl/formula/translate.py'
+adding 'openpyxl-3.0.10/openpyxl/styles/__init__.py'
+adding 'openpyxl-3.0.10/openpyxl/styles/builtins.py'
+adding 'openpyxl-3.0.10/openpyxl/styles/proxy.py'
+adding 'openpyxl-3.0.10/openpyxl/styles/fills.py'
+adding 'openpyxl-3.0.10/openpyxl/styles/fonts.py'
+adding 'openpyxl-3.0.10/openpyxl/styles/cell_style.py'
+adding 'openpyxl-3.0.10/openpyxl/styles/alignment.py'
+adding 'openpyxl-3.0.10/openpyxl/styles/stylesheet.py'
+adding 'openpyxl-3.0.10/openpyxl/styles/styleable.py'
+adding 'openpyxl-3.0.10/openpyxl/styles/colors.py'
+adding 'openpyxl-3.0.10/openpyxl/styles/named_styles.py'
+adding 'openpyxl-3.0.10/openpyxl/styles/table.py'
+adding 'openpyxl-3.0.10/openpyxl/styles/differential.py'
+adding 'openpyxl-3.0.10/openpyxl/styles/borders.py'
+adding 'openpyxl-3.0.10/openpyxl/styles/numbers.py'
+adding 'openpyxl-3.0.10/openpyxl/styles/protection.py'
+adding 'openpyxl-3.0.10/openpyxl/worksheet/__init__.py'
+adding 'openpyxl-3.0.10/openpyxl/worksheet/hyperlink.py'
+adding 'openpyxl-3.0.10/openpyxl/worksheet/related.py'
+adding 'openpyxl-3.0.10/openpyxl/worksheet/_reader.py'
+adding 'openpyxl-3.0.10/openpyxl/worksheet/properties.py'
+adding 'openpyxl-3.0.10/openpyxl/worksheet/filters.py'
+adding 'openpyxl-3.0.10/openpyxl/worksheet/controls.py'
+adding 'openpyxl-3.0.10/openpyxl/worksheet/picture.py'
+adding 'openpyxl-3.0.10/openpyxl/worksheet/errors.py'
+adding 'openpyxl-3.0.10/openpyxl/worksheet/scenario.py'
+adding 'openpyxl-3.0.10/openpyxl/worksheet/smart_tag.py'
+adding 'openpyxl-3.0.10/openpyxl/worksheet/header_footer.py'
+adding 'openpyxl-3.0.10/openpyxl/worksheet/copier.py'
+adding 'openpyxl-3.0.10/openpyxl/worksheet/pagebreak.py'
+adding 'openpyxl-3.0.10/openpyxl/worksheet/ole.py'
+adding 'openpyxl-3.0.10/openpyxl/worksheet/_writer.py'
+adding 'openpyxl-3.0.10/openpyxl/worksheet/page.py'
+adding 'openpyxl-3.0.10/openpyxl/worksheet/cell_watch.py'
+adding 'openpyxl-3.0.10/openpyxl/worksheet/table.py'
+adding 'openpyxl-3.0.10/openpyxl/worksheet/drawing.py'
+adding 'openpyxl-3.0.10/openpyxl/worksheet/worksheet.py'
+adding 'openpyxl-3.0.10/openpyxl/worksheet/_write_only.py'
+adding 'openpyxl-3.0.10/openpyxl/worksheet/_read_only.py'
+adding 'openpyxl-3.0.10/openpyxl/worksheet/merge.py'
+adding 'openpyxl-3.0.10/openpyxl/worksheet/views.py'
+adding 'openpyxl-3.0.10/openpyxl/worksheet/datavalidation.py'
+adding 'openpyxl-3.0.10/openpyxl/worksheet/custom.py'
+adding 'openpyxl-3.0.10/openpyxl/worksheet/cell_range.py'
+adding 'openpyxl-3.0.10/openpyxl/worksheet/dimensions.py'
+adding 'openpyxl-3.0.10/openpyxl/worksheet/protection.py'
+adding 'openpyxl-3.0.10/openpyxl/formatting/__init__.py'
+adding 'openpyxl-3.0.10/openpyxl/formatting/rule.py'
+adding 'openpyxl-3.0.10/openpyxl/formatting/formatting.py'
+adding 'openpyxl-3.0.10/openpyxl.egg-info/top_level.txt'
+adding 'openpyxl-3.0.10/openpyxl.egg-info/SOURCES.txt'
+adding 'openpyxl-3.0.10/openpyxl.egg-info/requires.txt'
+adding 'openpyxl-3.0.10/openpyxl.egg-info/dependency_links.txt'
+adding 'openpyxl-3.0.10/openpyxl.egg-info/PKG-INFO'
+removing 'openpyxl-3.0.10' (and everything under it)

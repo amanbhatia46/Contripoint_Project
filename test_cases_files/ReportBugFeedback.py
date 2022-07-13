@@ -59,23 +59,18 @@ class RBugEvent(unittest.TestCase):
             Report Bug
         """
         try:
-            # x = self.driver.window_handles[0]
-            # time.sleep(6)
-            # self.driver.switch_to.window(x)
 
             window_handles = self.driver.window_handles
-            print("a")
-            time.sleep(5)
             self.driver.switch_to.window(window_handles[0])
-            print("b")
             time.sleep(5)
 
-
+            # Report a Bug/Feedback
             Bug = self.driver.find_element(
                 By.XPATH, '/html/body/app-root/div/app-footer/div/div/div/div/div[2]/div/div[1]/button')
             time.sleep(6)
             Bug.click()
-            print("\n 3 - Selecting 'Report a Bug/Feedback' . .")
+
+            print("\n 7 - Selecting 'Report a Bug/Feedback' . .")
             time.sleep(6)
 
             self.ws['C3'] = 'Report a Bug/Feedback'
@@ -84,10 +79,10 @@ class RBugEvent(unittest.TestCase):
 
         except Exception as e:
             print("\n\n ERROR IN Report a Bug/Feedback >>>>>>>>>>>>>>>\n\n")
-            print("\n 3 - Selecting Report a Bug/Feedback gets fail")
+            print("\n 7 - Selecting Report a Bug/Feedback gets fail")
+
             self.ws['C3'] = 'Report a Bug/Feedback'
             self.ws['G3'] = 'Fail'
-
             self.wb.save(self.filename)
 
     def Add_New(self):
@@ -101,13 +96,17 @@ class RBugEvent(unittest.TestCase):
             self.driver.find_element(
                 By.XPATH, '/html/body/app-root/div/div/app-bug-report-table/div/div/div/div[2]/div/div/div/div[2]/ul/div/button').click()
             time.sleep(5)
-            print("\n 4 - Selectig ADD NEW button")
+            print("\n 8 - Clickong on  ADD NEW button")
+            self.ws['C4'] = 'Add New'
+            self.ws['G4'] = 'Pass'
+
+            self.wb.save(self.filename)
 
         except Exception as e:
             print("\n\n ERROR IN ADD NEW >>>>>>>>>>>>>>>\n\n")
-            print("\n 3 - Selecting Add New Button gets fail")
-            self.ws['C3'] = 'Add New'
-            self.ws['G3'] = 'Fail'
+            print("\n 8 - Clickong on Add New Button gets fail")
+            self.ws['C4'] = 'Add New'
+            self.ws['G4'] = 'Fail'
 
             self.wb.save(self.filename)
 
@@ -119,13 +118,18 @@ class RBugEvent(unittest.TestCase):
             self.driver.find_element(
                 By.ID, "mat-input-25").send_keys("Design work")
             time.sleep(5)
-            print("\n 4 - Issue Subject - 'Design work' ")
+            print("\n 9 - Issue Subject - 'Design work' ")
+            self.ws['C5'] = 'Issue Subject'
+            self.ws['G5'] = 'Pass'
+
+            self.wb.save(self.filename)
+
 
         except Exception as e:
             print("\n\n ERROR IN ISSUE SUBJECT >>>>>>>>>>>>>>>\n\n")
-            print("\n 5 - Selecting Issue Subject gets fail")
-            self.ws['C4'] = 'Issue Subject'
-            self.ws['G4'] = 'Fail'
+            print("\n 9 - Selecting Issue Subject gets fail")
+            self.ws['C5'] = 'Issue Subject'
+            self.ws['G5'] = 'Fail'
 
             self.wb.save(self.filename)
 
@@ -142,18 +146,18 @@ class RBugEvent(unittest.TestCase):
 
             IC = self.driver.find_element(
                 By.ID, "mat-option-75").click()
-            print("\n 6 - Selecting 'Design'")
+            print("\n 10 - Selecting 'Design'")
             time.sleep(5)
 
-            self.ws['C5'] = 'Issue Category - Design'
-            self.ws['G5'] = 'Pass'
+            self.ws['C6'] = 'Issue Category - Design'
+            self.ws['G6'] = 'Pass'
             self.wb.save(self.filename)
 
         except Exception as e:
             print("\n\n ERROR IN Selecting Issue Category >>>>>>>>>>>>>>>\n\n")
-            print("\n 6 - Selecting 'Issue Category' gets fail")
-            self.ws['C5'] = 'Issue Category - Design'
-            self.ws['G5'] = 'Fail'
+            print("\n 10 - Selecting 'Issue Category' gets fail")
+            self.ws['C6'] = 'Issue Category - Design'
+            self.ws['G6'] = 'Fail'
 
             self.wb.save(self.filename)
 
@@ -170,18 +174,18 @@ class RBugEvent(unittest.TestCase):
 
             SWF = self.driver.find_element(
                 By.ID, "mat-option-78").click()
-            print("\n 7 - Selecting 'Certificate' as Website Feature")
+            print("\n 11 - Selecting 'Certificate' as Website Feature")
             time.sleep(5)
 
-            self.ws['C6'] = 'Website Feature - Certificate'
-            self.ws['G6'] = 'Pass'
+            self.ws['C7'] = 'Website Feature - Certificate'
+            self.ws['G7'] = 'Pass'
             self.wb.save(self.filename)
 
         except Exception as e:
             print("\n\n ERROR IN Selecting Website Feature >>>>>>>>>>>>>>>\n\n")
-            print("\n 7 - Selecting 'Website Feature' gets fail")
-            self.ws['C6'] = 'Website Feature - Certificate'
-            self.ws['G6'] = 'Fail'
+            print("\n 11 - Selecting 'Website Feature' gets fail")
+            self.ws['C7'] = 'Website Feature - Certificate'
+            self.ws['G7'] = 'Fail'
 
             self.wb.save(self.filename)
 
@@ -193,20 +197,20 @@ class RBugEvent(unittest.TestCase):
             self.driver.find_element(By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-bug-report-modal/div/mat-dialog-content/form/div/div[4]/div/mat-form-field/div/div[1]/div').send_keys(
                 "Reporting a designing bug to developers.")
 
-            print("\n 8 - Entering Description Done")
+            print("\n 12 - Entering Description Done")
             time.sleep(5)
 
-            self.ws['C7'] = 'Description'
-            self.ws['G7'] = 'Pass'
+            self.ws['C8'] = 'Description'
+            self.ws['G8'] = 'Pass'
 
             self.wb.save(self.filename)
 
         except Exception as e:
             print("\n\n ERROR IN DESCRIPTION >>>>>>>>>>>>>>>\n\n")
-            print("\n 8 - Entering Description gets fail")
+            print("\n 12 - Entering Description gets fail")
 
-            self.ws['C7'] = 'Description'
-            self.ws['G7'] = 'Fail'
+            self.ws['C8'] = 'Description'
+            self.ws['G8'] = 'Fail'
 
             self.wb.save(self.filename)
 
@@ -219,24 +223,24 @@ class RBugEvent(unittest.TestCase):
             Add_Attachment = self.driver.find_element(
                 By.ID, "attachment_btn")
             Add_Attachment.click()
-            print("\n 9 - Clicking on Attachment Button")
+            print("\n 13 - Clicking on Attachment Button")
             time.sleep(8)
 
             pyautogui.write('/home/am.bhatia/Pictures/Wallpapers/tree.jpeg')
             time.sleep(8)
             pyautogui.press('enter')
             time.sleep(5)
-            print("\n 10 - Attachment Upload successfully")
+            print("\n 14 - Attachment Upload successfully")
 
-            self.ws['C8'] = 'Uploading Attachment gets Pass'
-            self.ws['G8'] = 'Pass'
+            self.ws['C9'] = 'Uploading Attachment gets Pass'
+            self.ws['G9'] = 'Pass'
             self.wb.save(self.filename)
 
         except Exception as e:
             print("\n\n ERROR IN ATTACHMENT >>>>>>>>>>>>>>>\n\n")
-            print("\n 10 - Attachment Uploading gets fail")
-            self.ws['C8'] = 'Uploading Attachment gets Fail'
-            self.ws['G8'] = 'Fail'
+            print("\n 14 - Attachment Uploading gets fail")
+            self.ws['C9'] = 'Uploading Attachment gets Fail'
+            self.ws['G9'] = 'Fail'
 
             self.wb.save(self.filename)
 
@@ -249,10 +253,10 @@ class RBugEvent(unittest.TestCase):
             time.sleep(5)
             submit.click()
 
-            print("\n 11 - All Bug Details get SUBMIT successfully.")
+            print("\n 15 - All Bug Details get SUBMIT successfully.")
 
-            self.ws['C9'] = 'Submit'
-            self.ws['G9'] = 'Pass'
+            self.ws['C10'] = 'Submit'
+            self.ws['G10'] = 'Pass'
             self.wb.save(self.filename)
 
             element = self.driver.find_element_by_tag_name('h2')
@@ -264,10 +268,10 @@ class RBugEvent(unittest.TestCase):
 
         except Exception as e:
             print("\n\n ERROR IN SUBMIT >>>>>>>>>>>>>>>\n\n")
-            print("\n 11 - Unable to submit all details")
+            print("\n 15 - Unable to submit all details")
 
-            self.ws['C9'] = 'Submit'
-            self.ws['G9'] = 'Fail'
+            self.ws['C10'] = 'Submit'
+            self.ws['G10'] = 'Fail'
             self.wb.save(self.filename)
 
     def OK_Button(self):
@@ -280,20 +284,20 @@ class RBugEvent(unittest.TestCase):
             time.sleep(5)
             ok.click()
 
-            print("\n 12 - Clicking OK Button")
+            print("\n 16 - Clicking OK Button")
             time.sleep(5)
 
-            self.ws['C10'] = 'OK Button'
-            self.ws['G10'] = 'Pass'
+            self.ws['C11'] = 'OK Button'
+            self.ws['G11'] = 'Pass'
             self.wb.save(self.filename)
             time.sleep(5)
 
         except Exception as e:
             print("\n\n ERROR IN OKButton >>>>>>>>>>>>>>>\n\n")
-            print("\n 12 - Unable to Click OK Button")
+            print("\n 16 - Unable to Click OK Button")
 
-            self.ws['C10'] = 'OK Button'
-            self.ws['G10'] = 'Fail'
+            self.ws['C11'] = 'OK Button'
+            self.ws['G11'] = 'Fail'
             self.wb.save(self.filename)
 
     def Logout(self):
@@ -302,24 +306,24 @@ class RBugEvent(unittest.TestCase):
         try:
             Icon = self.driver.find_element(
                 By.XPATH, '/html/body/app-root/div/app-navbar/div/div/div[2]/div/div[2]').click()
-            print("\n 13 - Clicking on icon . .")
+            print("\n 17 - Clicking on icon . .")
 
             time.sleep(5)
 
             logout = self.driver.find_element(
                 By.XPATH, '/html/body/div[2]/div[2]/div/div/div/button[2]').click()
-            print("\n 14 - Logout Successfull")
+            print("\n 18 - Logout Successfull")
 
-            self.ws['C13'] = 'Logout'
-            self.ws['G13'] = 'Pass'
+            self.ws['C12'] = 'Logout'
+            self.ws['G12'] = 'Pass'
             self.wb.save(self.filename)
 
         except Exception as e:
             print("\n\n ERROR IN LOGOUT >>>>>>>>>>>>>>>\n\n")
-            print("\n 14 - Unable to Logout")
+            print("\n 18 - Unable to Logout")
 
-            self.ws['C13'] = 'Logout'
-            self.ws['G13'] = 'Fail'
+            self.ws['C12'] = 'Logout'
+            self.ws['G12'] = 'Fail'
             self.wb.save(self.filename)
 
     def tearDown(self):

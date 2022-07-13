@@ -259,6 +259,23 @@ class CEvent(unittest.TestCase):
 
             print("\n 19 - Contribution Category - Certificate and Client Feedback")
 
+            #Clicking on Close button to close Dropdown list
+            element = self.driver.find_element(By.XPATH,'/html/body/div[2]/div[2]/div/mat-dialog-container/app-event-modal/div/div[3]/button')
+            time.sleep(5)
+            
+
+            action = ActionChains(self.driver)
+            time.sleep(5)
+
+  
+            # click the item
+            action.click(on_element = element)
+            time.sleep(5)
+
+
+            # perform the operation
+            action.perform()
+            time.sleep(5)
 
 
             self.ws['C9'] = 'Contribution Category - Certificate and Client Feedback'

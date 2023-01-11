@@ -24,13 +24,13 @@ from datetime import datetime, timedelta
 class CAuth(unittest.TestCase):
     
     def __init__(self): 
-        self.filename = '/C:Users/Aman Bhatia/OneDrive - Gemini Solutions/Desktop/Contripoint_Project/xyz.xlsx'
+        self.filename = '/Desktop/Contripoint_Project/xyz.xlsx'
         self.wb = load_workbook(filename=self.filename)
         self.index_sheet = 0
 
         if 'Certifications' not in self.wb.sheetnames:
             self.wb.create_sheet('Certifications')
-            self.wb.save('/C:Users/Aman Bhatia/OneDrive - Gemini Solutions/Desktop/Contripoint_Project/xyz.xlsx')
+            self.wb.save('/Desktop/Contripoint_Project/xyz.xlsx')
         self.wb = load_workbook(filename=self.filename)
         self.ws = self.wb.active
         for i, n in enumerate(self.wb.sheetnames):
@@ -45,7 +45,7 @@ class CAuth(unittest.TestCase):
         self.ws['C1'] = 'Test Case Module'
         self.ws['G1'] = 'Result'
         self.ws['H1'] = 'Date and Time'
-        self.wb.save('/C:Users/Aman Bhatia/OneDrive - Gemini Solutions/Desktop/Contripoint_Project/xyz.xlsx')
+        self.wb.save('/Desktop/Contripoint_Project/xyz.xlsx')
 
         # datetime object containing current date and time
         futuredate = str(datetime.now())

@@ -25,7 +25,11 @@ from datetime import datetime, timedelta
 class ITAuth(unittest.TestCase):
 
     def __init__(self):
-        self.filename = '/home/am.bhatia/Desktop/contripoint/xyz.xlsx'
+        
+        """ interact with the underlying operating system."""
+        import os
+        print(os.path.join(os.getcwd()+ "\\xyz.xlsx"),">>>>>>")
+        self.filename = os.path.join(os.getcwd()+ "\\xyz.xlsx")
         self.wb = load_workbook(filename=self.filename)
         self.index_sheet = 0
         if 'Interview Taken' not in self.wb.sheetnames:
@@ -45,7 +49,7 @@ class ITAuth(unittest.TestCase):
         self.ws['C1'] = 'Test Case Module'
         self.ws['G1'] = 'Result'
         self.ws['H1'] = 'Date and Time'
-        self.wb.save('/home/am.bhatia/Desktop/contripoint/xyz.xlsx')
+        self.wb.save(os.path.join(os.getcwd()+ "\\xyz.xlsx"))
 
         # datetime object containing current date and time
         futuredate = str(datetime.now())

@@ -83,4 +83,4 @@ class Authentication(unittest.TestCase):
 
 if __name__ == '__main__':
     # unittest.main()
-    unittest.main(testRunner= x.HTMLTestRunner( '/home/am.bhatia/Desktop/ContriPoint/testsuits'))
+    unittest.main(testRunner= x.HTMLTestRunner( 'C:\Users\Aman Bhatia\OneDrive - Gemini Solutions\Desktop\Contripoint_Project\test_suits'))

@@ -69,7 +69,7 @@ class Login(unittest.TestCase):
             self.driver.get(
                 "https://dev-contripoint.geminisolutions.com/#/dashboard")
             button = self.driver.find_element(
-                By.XPATH, '/html/body/app-root/div/div/app-login-screen/div/div/div/mat-card/div[2]/div/button')
+                By.XPATH, '//button[contains(., "Login with Gemini mail")]')
             button.click()
 
             print("\n 1- Login With Gemini mail \n")

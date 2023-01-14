@@ -67,7 +67,7 @@ class ITAuth(unittest.TestCase):
             driver.get(
                 "https://dev-contripoint.geminisolutions.com/#/login")
             button = driver.find_element(
-                By.XPATH, '/html/body/app-root/div/div/app-login-screen/div/div/div/mat-card/div[2]/div/button')
+                By.XPATH, '//button[contains(., "Login with Gemini mail")]')
             button.click()
             time.sleep(6)
 

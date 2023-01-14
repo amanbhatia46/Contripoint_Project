@@ -65,7 +65,7 @@ class MAuth(unittest.TestCase):
             driver.get(
                 "https://dev-contripoint.geminisolutions.com/#/login")
             button = driver.find_element(
-                By.XPATH, '/html/body/app-root/div/div/app-login-screen/div/div/div/mat-card/div[2]/div/button')
+                By.XPATH, '//button[contains(., "Login with Gemini mail")]')
             button.click()
             time.sleep(6)
 
@@ -365,4 +365,4 @@ if __name__ == '__main__':
     tb.OK_Button()
     
     # unittest.main()
-#    unittest.main(testRunner= x.HTMLTestRunner( '/home/am.bhatia/Desktop/ContriPoint/testsuits'))
+    #unittest.main(testRunner= x.HTMLTestRunner( '/home/am.bhatia/Desktop/ContriPoint/testsuits'))

@@ -76,7 +76,7 @@ class Css_Certifications():
         time.sleep(3)
 
         driver.find_element(
-            By.XPATH, '//*[@id="password"]/div[1]/div/div[1]/input').send_keys('Gemini@123#')
+            By.XPATH, '//*[@id="i0118"]').send_keys(login_Password)
         driver.find_element(
             By.XPATH, '//*[@id="passwordNext"]/div/button/span').click()
         time.sleep(6)

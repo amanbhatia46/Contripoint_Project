@@ -72,7 +72,7 @@ class MAuth(unittest.TestCase):
             window_handles = driver.window_handles
             driver.switch_to.window(window_handles[1])
             driver.find_element(
-                By.XPATH, '//*[@id="identifierId"]').send_keys('aman.bhatia@geminisolutions.in')
+                By.XPATH, '//*[@id="i0116"]').send_keys(login_Id)
             self.ws['A2'] = 'aman.bhatia@geminisolutions.in'
             driver.find_element(
                 By.XPATH, '//*[@id="identifierNext"]/div/button/span').click()

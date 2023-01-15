@@ -20,6 +20,7 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from openpyxl import load_workbook
 from datetime import datetime, timedelta
 
+from datainputs import *
 
 class CAuth(unittest.TestCase):
     
@@ -74,18 +75,36 @@ class CAuth(unittest.TestCase):
             window_handles = driver.window_handles
             driver.switch_to.window(window_handles[1])
             driver.find_element(
-                By.XPATH, '//*[@id="identifierId"]').send_keys('test.user@geminisolutions.in')
-            self.ws['A2'] = 'test.user@geminisolutions.in'
+                By.XPATH, '//*[@id="i0116"]').send_keys(login_Id)
+            self.ws['A2'] = 'aman.bhatia@geminisolutions.in'
             driver.find_element(
-                By.XPATH, '//*[@id="identifierNext"]/div/button/span').click()
+                By.XPATH, '//*[@id="idSIButton9"]').click()
             time.sleep(3)
 
             driver.find_element(
-                By.XPATH, '//*[@id="password"]/div[1]/div/div[1]/input').send_keys('Gemini@123#')
-            self.ws['B2'] = 'Gemini@123#'
+                By.XPATH, '//*[@id="i0118"]').send_keys(login_Password)
+            self.ws['B2'] = 'RitaNandini96'
             driver.find_element(
-                By.XPATH, '//*[@id="passwordNext"]/div/button/span').click()
+                By.XPATH, '//*[@id="idSIButton9"]').click()
             time.sleep(6)
+
+            # Entering Multi-factor Authentication (MFA) Code Manually
+            driver.find_element(By.ID, "idTxtBx_SAOTCC_OTC")
+            time.sleep(6)
+            print("\n 4- Entering and Verifying MFA Code \n")
+
+            driver.find_element(
+                By.XPATH, '//*[@id="idSubmit_SAOTCC_Continue"]').click() 
+            time.sleep(5)
+
+            driver.find_element(
+                By.XPATH, '//*[@id="KmsiCheckboxField"]').click()
+            time.sleep(5)
+
+            driver.find_element(By.ID, "idSIButton9").click()
+
+            print("\n 5- Login Successfull \n")
+
 
             driver.switch_to.window(window_handles[0])
             time.sleep(6)
@@ -208,7 +227,7 @@ class CAuth(unittest.TestCase):
             #Uploading Attatchment-
             self.driver.find_element(By.XPATH,'/html/body/div[2]/div[2]/div/mat-dialog-container/app-certificate-add-modal/div/mat-dialog-content/form/div/div[3]/div[2]/label').click()
             time.sleep(8)
-            pyautogui.write('/home/am.bhatia/Desktop/image.jpeg') 
+            pyautogui.write('"C:\Users\Aman Bhatia\OneDrive - Gemini Solutions\Desktop\wallpaper\5.jpg"') 
             pyautogui.press('enter')
             print("\n 6 - Attachment Upload successfully")
             self.ws['C7'] = 'Upload attatchment'

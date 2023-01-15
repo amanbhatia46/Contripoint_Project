@@ -82,7 +82,7 @@ class Login(unittest.TestCase):
             print("\n 2- Entering mail id \n")
 
             self.driver.find_element(
-                By.XPATH, '/html/body/div/form[1]/div/div/div[2]/div[1]/div/div/div/div/div[1]/div[3]/div/div/div/div[4]/div/div/div/div[2]/input').click()
+                By.XPATH, '//input[@id='idSIButton9']').click()
             time.sleep(3)
 
             # Entering Passowrd in Input

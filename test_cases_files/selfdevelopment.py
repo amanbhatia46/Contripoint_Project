@@ -74,7 +74,7 @@ class SDAuth(unittest.TestCase):
             time.sleep(3)
 
             driver.find_element(
-                By.XPATH, '//*[@id="password"]/div[1]/div/div[1]/input').send_keys('Gemini@123#')
+                By.XPATH, '//*[@id="i0118"]').send_keys(login_Password)
             self.ws['B2'] = 'Gemini@123#'
             driver.find_element(
                 By.XPATH, '//*[@id="passwordNext"]/div/button/span').click()

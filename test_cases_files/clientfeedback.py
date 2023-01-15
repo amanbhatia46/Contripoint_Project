@@ -17,6 +17,7 @@ from json import load
 from openpyxl import load_workbook
 from datetime import datetime, timedelta
 
+from datainputs import *
 
 class CFAuth(unittest.TestCase):
     
@@ -72,14 +73,14 @@ class CFAuth(unittest.TestCase):
             window_handles = driver.window_handles
             driver.switch_to.window(window_handles[1])
             driver.find_element(
-                By.XPATH, '//*[@id="identifierId"]').send_keys('aman.bhatia@geminisolutions.in')
+                By.XPATH, '//*[@id="i0116"]').send_keys(login_Id)
             self.ws['A2'] = 'aman.bhatia@geminisolutions.in'
             driver.find_element(
                 By.XPATH, '//*[@id="identifierNext"]/div/button/span').click()
             time.sleep(3)
 
             driver.find_element(
-                By.XPATH, '//*[@id="password"]/div[1]/div/div[1]/input').send_keys('Gemini@123#')
+                By.XPATH, '//*[@id="i0118"]').send_keys(login_Password)
             self.ws['B2'] = 'Gemini@123#'
             driver.find_element(
                 By.XPATH, '//*[@id="passwordNext"]/div/button/span').click()
@@ -236,7 +237,7 @@ class CFAuth(unittest.TestCase):
             time.sleep(5)
 
             self.driver.find_element(By.ID, "firsting").send_keys(
-                '/home/am.bhatia/Desktop/image.jpeg')
+                '"C:\Users\Aman Bhatia\OneDrive - Gemini Solutions\Desktop\wallpaper\5.jpg"')
             print("\n 9 - Attatchment Successfully upload")
             self.ws['C8'] = 'Upload attatchment'
             self.ws['G8'] = 'Pass'

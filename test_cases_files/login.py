@@ -52,13 +52,13 @@ class Authentication(unittest.TestCase):
             window_handles = driver.window_handles
             driver.switch_to.window(window_handles[1])
             driver.find_element(
-                By.XPATH, '//*[@id="identifierId"]').send_keys(login_Id)
+                By.XPATH, '//*[@id="i0116"]').send_keys(login_Id)
             driver.find_element(
                 By.XPATH, '//*[@id="identifierNext"]/div/button/span').click()
             time.sleep(3)
 
             driver.find_element(
-                By.XPATH, '//*[@id="password"]/div[1]/div/div[1]/input').send_keys(login_Password)
+                By.XPATH, '//*[@id="i0118"]').send_keys(login_Password)
             driver.find_element(
                 By.XPATH, '//*[@id="passwordNext"]/div/button/span').click()
             time.sleep(6)

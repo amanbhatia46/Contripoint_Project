@@ -86,7 +86,7 @@ class Login(unittest.TestCase):
             print("\n 2- Entering mail id \n")
 
             self.driver.find_element(
-                By.XPATH, '/html/body/div/form[1]/div/div/div[2]/div[1]/div/div/div/div/div[1]/div[3]/div/div/div/div[4]/div/div/div/div[2]/input').click()
+                By.XPATH, '//*[@id="idSIButton9"]').click()
             time.sleep(3)
 
             # Entering Passowrd in Input
@@ -96,7 +96,7 @@ class Login(unittest.TestCase):
             print("\n 3- Entering mail password \n")
 
             self.driver.find_element(
-                By.XPATH, '/html/body/div/form[1]/div/div/div[2]/div[1]/div/div/div/div/div/div[3]/div/div[2]/div/div[4]/div[2]/div/div/div/div/input').click()
+                By.XPATH, '//*[@id="idSIButton9"]').click()
             time.sleep(6)
 
             # Entering Multi-factor Authentication (MFA) Code Manually
@@ -105,7 +105,7 @@ class Login(unittest.TestCase):
             print("\n 4- Entering and Verifying MFA Code \n")
 
             self.driver.find_element(
-                By.XPATH, '//*[@id="idSubmit_SAOTCC_Continue"]').click()
+                By.XPATH, '//*[@id="idSubmit_SAOTCC_Continue"]').click() 
             time.sleep(5)
 
             self.driver.find_element(

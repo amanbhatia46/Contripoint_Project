@@ -34,7 +34,7 @@ class ITAuth(unittest.TestCase):
         self.index_sheet = 0
         if 'Interview Taken' not in self.wb.sheetnames:
             self.wb.create_sheet('Interview Taken')
-            self.wb.save('/home/am.bhatia/Desktop/contripoint/xyz.xlsx')
+            self.wb.save(os.path.join(os.getcwd()+ "\\xyz.xlsx"))
         self.wb = load_workbook(filename=self.filename)
         self.ws = self.wb.active
         for i, n in enumerate(self.wb.sheetnames):

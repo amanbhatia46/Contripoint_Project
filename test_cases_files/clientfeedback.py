@@ -237,7 +237,7 @@ class CFAuth(unittest.TestCase):
             time.sleep(5)
 
             self.driver.find_element(By.ID, "firsting").send_keys(
-                '"C:\Users\Aman Bhatia\OneDrive - Gemini Solutions\Desktop\wallpaper\5.jpg"')
+                'C:\Users\Aman Bhatia\OneDrive - Gemini Solutions\Desktop\wallpaper\5.jpg')
             print("\n 9 - Attatchment Successfully upload")
             self.ws['C8'] = 'Upload attatchment'
             self.ws['G8'] = 'Pass'

@@ -91,7 +91,7 @@ class CAuth(unittest.TestCase):
             # Entering Multi-factor Authentication (MFA) Code Manually
             driver.find_element(By.ID, "idTxtBx_SAOTCC_OTC")
             time.sleep(6)
-            print("\n 4- Entering and Verifying MFA Code \n")
+            print("\n Entering and Verifying MFA Code \n")
 
             driver.find_element(
                 By.XPATH, '//*[@id="idSubmit_SAOTCC_Continue"]').click() 
@@ -103,7 +103,7 @@ class CAuth(unittest.TestCase):
 
             driver.find_element(By.ID, "idSIButton9").click()
 
-            print("\n 5- Login Successfull \n")
+            print("\n Login Successfull \n")
 
 
             driver.switch_to.window(window_handles[0])
@@ -154,6 +154,8 @@ class CAuth(unittest.TestCase):
         """
         try:
             #Adding New Contribution
+            self.driver.execute_script("window.scrollTo(0,100)")
+
             self.driver.find_element(By.XPATH,'//*[@id="add_btn"]').click()
             time.sleep(6)
             print("\n 3 - Add New Contribution button gets selected")
@@ -225,13 +227,13 @@ class CAuth(unittest.TestCase):
         """
         try:
             #Uploading Attatchment-
-            self.driver.find_element(By.XPATH,'/html/body/div[2]/div[2]/div/mat-dialog-container/app-certificate-add-modal/div/mat-dialog-content/form/div/div[3]/div[2]/label').click()
+            self.driver.find_element(By.XPATH,'//*[@id="attachment_btn"]').click()
             time.sleep(8)
-            pyautogui.write('"C:\Users\Aman Bhatia\OneDrive - Gemini Solutions\Desktop\wallpaper\5.jpg"') 
-            pyautogui.press('enter')
+            pyautogui.write("C:\\Users\\Aman Bhatia\\OneDrive - Gemini Solutions\\Desktop\\wallpaper\\1.jpeg")
+            pyautogui.press('enter') 
             print("\n 6 - Attachment Upload successfully")
             self.ws['C7'] = 'Upload attatchment'
-            self.ws['G7'] = 'Fail'
+            self.ws['G7'] = 'Pass'
 
             self.wb.save(self.filename)
             time.sleep(3)
@@ -251,7 +253,7 @@ class CAuth(unittest.TestCase):
         """
         try:
             #Technology-
-            self.driver.find_element(By.XPATH,'/html/body/div[2]/div[2]/div/mat-dialog-container/app-certificate-add-modal/div/mat-dialog-content/form/div/div[2]/div[2]/mat-form-field/div/div[1]/div').click()
+            self.driver.find_element(By.XPATH,'//*[text()="Select Technology"]').click()
             print("\n 7 - Selecting Technology. . .")
             self.ws['C8'] = 'Date of completion'
             self.ws['G8'] = 'Pass'
@@ -259,7 +261,7 @@ class CAuth(unittest.TestCase):
             self.wb.save(self.filename)
             time.sleep(3)
 
-            self.driver.find_element(By.XPATH,'/html/body/div[2]/div[4]/div/div/div/mat-option[1]/mat-pseudo-checkbox').click()
+            self.driver.find_element(By.XPATH,'//*[text()="Android"]').click()
             print("\n 8 - 'ANDROID' got selected from Technology")
             
             time.sleep(3)
@@ -274,21 +276,45 @@ class CAuth(unittest.TestCase):
             self.wb.save(self.filename)
 
 
+    def Goal_Type(self):
+        """
+
+        """
+        try:
+            #Goal Type-
+            self.driver.find_element(By.XPATH,'//*[text()="Engineering Council (EC)"]').click()
+            print("\n 8 - Selecting Goal Type- Engineering Council (EC)")
+            self.ws['C9'] = 'Engineering Council (EC)'
+            self.ws['G9'] = 'Pass'
+
+            self.wb.save(self.filename)
+            time.sleep(3)
+
+        except Exception as e:
+            print("\n\nERROR IN Goal Type >>>>>>>>>>>>>>>\n\n")
+            print(e)
+            print("\n 8 - Unable to select Goal_Type")
+            self.ws['C9'] = 'Engineering Council (EC)'
+            self.ws['G9'] = 'Fail'
+
+            self.wb.save(self.filename)
+
+
     def Submit(self):
         """
 
         """
         try:
             #SUBMIT
-            element = self.driver.find_element(By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-certificate-add-modal/div/div[2]/div[1]/button')
+            element = self.driver.find_element(By.XPATH, '//*[contains(text(),"SUBMIT")]')
             actions = ActionChains(self.driver)
             actions.move_to_element(element).click().perform()
 
             self.driver.find_element(
                 By.CSS_SELECTOR, ".col-xs-3 > #add_btn").click()
             print("\n 9 - All Details get SUBMIT successfully.")
-            self.ws['C9'] = 'Submit'
-            self.ws['G9'] = 'Pass'
+            self.ws['C10'] = 'Submit'
+            self.ws['G10'] = 'Pass'
             self.wb.save(self.filename)
             time.sleep(5)
 
@@ -310,45 +336,13 @@ class CAuth(unittest.TestCase):
             print("\n\nERROR IN SUBMIT  >>>>>>>>>>>>>>>\n\n")
             print(e)
             print("\n 9 - Unable to Click Submit Button")
-            self.ws['C9'] = 'Submit'
-            self.ws['G9'] = 'Fail'
+            self.ws['C10'] = 'Submit'
+            self.ws['G10'] = 'Fail'
 
             self.wb.save(self.filename)
             time.sleep(3)
 
 
-    def OK_Button(self):
-        """
-        
-        """
-        try:
-            #OK Button
-            assert self.driver.find_element(
-                By.CSS_SELECTOR, "#ok_btn > .mat-button-wrapper").text == "OK"
-            time.sleep(5)
-
-            element = self.driver.find_element(By.ID, "ok_btn")
-            actions = ActionChains(self.driver)
-            actions.move_to_element(element).perform()
-            time.sleep(5)
-
-            self.driver.find_element(By.ID, "ok_btn").click()
-            print("\n 11 - Clicking OK Button")
-            self.ws['C10'] = 'OK Button'
-            self.ws['G10'] = 'Pass'
-
-            self.wb.save(self.filename)
-            time.sleep(5)
-
-        except Exception as e:
-            print("\n\nERROR IN OK Button >>>>>>>>>>>>>>>\n\n")
-            print(e)
-            print("\n 11 - Unable to Click OK Button")
-            self.ws['C10'] = 'OK Button'
-            self.ws['G10'] = 'Fail'
-
-            self.wb.save(self.filename)
-    
 
     # Anything declared in tearDown will be executed for all test cases
     def tearDown(self):
@@ -363,9 +357,9 @@ if __name__ == '__main__':
     tb.Name_Of_Certification()
     tb.Date_Of_Completion()
     tb.Uploading_Attachment()
+    tb.Goal_Type()
     tb.Technology()
     tb.Submit()
-    tb.OK_Button()
     #unittest.main()
     #unittest.main(testRunner= x.HTMLTestRunner( 'C:Users/Aman Bhatia/OneDrive - Gemini Solutions/Desktop/Contripoint_Project/testsuits'))
 

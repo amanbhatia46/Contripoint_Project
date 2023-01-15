@@ -2,13 +2,13 @@
 FUncitonal
 
 '''
-from json import load
-import unittest
-import time
+from lib2to3.pgen2 import driver
 import unittest
 import time
 import HtmlTestRunner as x
 import pyautogui
+from multiprocessing import Event
+from traceback import print_exc
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
@@ -31,18 +31,17 @@ class CAuth(unittest.TestCase):
         self.filename = os.path.join(os.getcwd()+ "\\xyz.xlsx")
         self.wb = load_workbook(filename=self.filename)
         self.index_sheet = 0
-
-        if 'Certifications' not in self.wb.sheetnames:
-            self.wb.create_sheet('Certifications')
-            self.wb.save('/Desktop/Contripoint_Project/xyz.xlsx')
+        if 'certifications' not in self.wb.sheetnames:
+            self.wb.create_sheet('certifications')
+            self.wb.save(os.path.join(os.getcwd()+ "\\xyz.xlsx"))
         self.wb = load_workbook(filename=self.filename)
         self.ws = self.wb.active
         for i, n in enumerate(self.wb.sheetnames):
-            if n == 'Certifications':
+            if n == 'certifications':
                 self.index_sheet = i
                 break
         self.wb.active = self.index_sheet
-        self.ws = self.wb.active            
+        self.ws = self.wb.active  
         self.wb.active = 1
         self.ws['A1'] = 'Email'
         self.ws['B1'] = 'Password'
@@ -66,6 +65,7 @@ class CAuth(unittest.TestCase):
             driver.maximize_window()
             driver.get(
                 "https://dev-contripoint.geminisolutions.com/#/login")
+            driver.implicitly_wait(10)  # seconds
             button = driver.find_element(
                 By.XPATH, '//button[contains(., "Login with Gemini mail")]')
             button.click()
@@ -111,7 +111,7 @@ class CAuth(unittest.TestCase):
         """
         try:
             #Certifications
-            a = self.driver.find_element(By.XPATH,'/html/body/app-root/div[3]/div/app-dash-board/div[3]/app-dash-cards/div/div[1]/div[1]/mat-card/mat-card-header/div[2]/mat-card-title')
+            a = self.driver.find_element(By.XPATH,'//*[contains(text(),"Certifications")]')
             a.click()
             print("\n 2 - Selecting 'Certifications' successfully")
             self.ws['C3'] = 'Certifications'

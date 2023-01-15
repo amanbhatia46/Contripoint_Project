@@ -21,16 +21,12 @@ from datainputs import *
 class Login(unittest.TestCase):
 
     def __init__(self):
-        
-        """ interact with the underlying operating system."""
-        import os
-        print(os.path.join(os.getcwd()+ "\\xyz.xlsx"),">>>>>>")
-        self.filename = os.path.join(os.getcwd()+ "\\xyz.xlsx")
+        self.filename = '/C:Users/Aman Bhatia/OneDrive - Gemini Solutions/Desktop/Contripoint_Project/xyz.xlsx'
         self.wb = load_workbook(filename=self.filename)
         self.index_sheet = 0
         if 'LoginMFA' not in self.wb.sheetnames:
             self.wb.create_sheet('LoginMFA')
-            self.wb.save(os.path.join(os.getcwd()+ "\\xyz.xlsx"))
+            self.wb.save('/C:Users/Aman Bhatia/OneDrive - Gemini Solutions/Desktop/Contripoint_Project/xyz.xlsx')
         self.wb = load_workbook(filename=self.filename)
         self.ws = self.wb.active
         for i, n in enumerate(self.wb.sheetnames):
@@ -45,7 +41,7 @@ class Login(unittest.TestCase):
         self.ws['C1'] = 'Test Case Module'
         self.ws['G1'] = 'Result'
         self.ws['H1'] = 'Date and Time'
-        self.wb.save(os.path.join(os.getcwd()+ "\\xyz.xlsx"))
+        self.wb.save('/C:Users/Aman Bhatia/OneDrive - Gemini Solutions/Desktop/Contripoint_Project/xyz.xlsx')
 
         # datetime object containing current date and time
         futuredate = str(datetime.now())
@@ -69,7 +65,7 @@ class Login(unittest.TestCase):
             self.driver.get(
                 "https://dev-contripoint.geminisolutions.com/#/dashboard")
             button = self.driver.find_element(
-                By.XPATH, '//button[contains(., "Login with Gemini mail")]')
+                By.XPATH, '/html/body/app-root/div/div/app-login-screen/div/div/div/mat-card/div[2]/div/button')
             button.click()
 
             print("\n 1- Login With Gemini mail \n")

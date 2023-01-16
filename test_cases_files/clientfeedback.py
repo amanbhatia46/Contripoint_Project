@@ -4,6 +4,7 @@ FUncitonal
 '''
 import unittest
 import time
+import pyautogui
 import HtmlTestRunner as x
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -65,6 +66,7 @@ class CFAuth(unittest.TestCase):
             driver.maximize_window()
             driver.get(
                 "https://dev-contripoint.geminisolutions.com/#/login")
+            driver.implicitly_wait(10)  # seconds
             button = driver.find_element(
                 By.XPATH, '//button[contains(., "Login with Gemini mail")]')
             button.click()
@@ -76,15 +78,33 @@ class CFAuth(unittest.TestCase):
                 By.XPATH, '//*[@id="i0116"]').send_keys(login_Id)
             self.ws['A2'] = 'aman.bhatia@geminisolutions.in'
             driver.find_element(
-                By.XPATH, '//*[@id="identifierNext"]/div/button/span').click()
+                By.XPATH, '//*[@id="idSIButton9"]').click()
             time.sleep(3)
 
             driver.find_element(
                 By.XPATH, '//*[@id="i0118"]').send_keys(login_Password)
-            self.ws['B2'] = 'Gemini@123#'
+            self.ws['B2'] = 'RitaNandini96'
             driver.find_element(
-                By.XPATH, '//*[@id="passwordNext"]/div/button/span').click()
+                By.XPATH, '//*[@id="idSIButton9"]').click()
             time.sleep(6)
+
+            # Entering Multi-factor Authentication (MFA) Code Manually
+            driver.find_element(By.ID, "idTxtBx_SAOTCC_OTC")
+            time.sleep(6)
+            print("\n Entering and Verifying MFA Code \n")
+
+            driver.find_element(
+                By.XPATH, '//*[@id="idSubmit_SAOTCC_Continue"]').click() 
+            time.sleep(5)
+
+            driver.find_element(
+                By.XPATH, '//*[@id="KmsiCheckboxField"]').click()
+            time.sleep(5)
+
+            driver.find_element(By.ID, "idSIButton9").click()
+
+            print("\n Login Successfull \n")
+
 
             driver.switch_to.window(window_handles[0])
             time.sleep(6)
@@ -100,6 +120,7 @@ class CFAuth(unittest.TestCase):
             self.ws['C2'] = 'Login'
             self.ws['G2'] = 'login failed'
             self.wb.save(self.filename)
+
                    
     def Clientfeedback(self):
         '''
@@ -109,7 +130,7 @@ class CFAuth(unittest.TestCase):
             
             #ClientFeedback
             clientfeedback = self.driver.find_element(
-                By.XPATH, '/html/body/app-root/div[3]/div/app-dash-board/div[3]/app-dash-cards/div/div[3]/div[1]/mat-card/mat-card-header')
+                By.XPATH, '//*[contains(text(),"Client Feedback")]')
             clientfeedback.click()
             print("\n 2 - Selecting 'ClientFeedback'")
             self.ws['C3'] = 'Selecting ClientFeedback'
@@ -133,9 +154,10 @@ class CFAuth(unittest.TestCase):
         try:
             #ADD NEW
             element = self.driver.find_element(
-                By.XPATH, '/html/body/app-root/div[3]/div/app-feedback-table/div/div/div/div[2]/div/div/div/div[2]/ul/div/button')
+                By.XPATH, '//*[@id="add_btn"]')
             actions = ActionChains(self.driver)
             actions.move_to_element(element).click().perform()
+            
             print("\n 3 - Selecting 'Add New' button gets selected")
             self.ws['C4'] = 'Add New'
             self.ws['G4'] = 'Pass'
@@ -158,7 +180,8 @@ class CFAuth(unittest.TestCase):
         try:
             #ProjectName
             self.driver.find_element(
-                By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-feedback-modal/div/mat-dialog-content/form/div/div[1]/div/mat-form-field/div/div[1]/div/input').send_keys('Skedular')
+                By.XPATH, '//*[@id="mat-input-0"]').send_keys('Skedular')
+            
             print("\n 4 - Project Name Done")
             self.ws['C5'] = 'Project Name'
             self.ws['G5'] = 'Pass'
@@ -236,13 +259,31 @@ class CFAuth(unittest.TestCase):
             print("\n 8 - Selecting Attachment from Drive . . .")
             time.sleep(5)
 
-            self.driver.find_element(By.ID, "firsting").send_keys(
-                'C:\Users\Aman Bhatia\OneDrive - Gemini Solutions\Desktop\wallpaper\5.jpg')
-            print("\n 9 - Attatchment Successfully upload")
-            self.ws['C8'] = 'Upload attatchment'
-            self.ws['G8'] = 'Pass'
+            # self.driver.find_element(By.ID, "firsting").send_keys(
+            #     'C:\\Users\\Aman Bhatia\\OneDrive - Gemini Solutions\\Desktop\\wallpaper\\1.jpeg')
+            # print("\n 9 - Attatchment Successfully upload")
+            # self.ws['C8'] = 'Upload attatchment'
+            # self.ws['G8'] = 'Pass'
+            # self.wb.save(self.filename)
+            # time.sleep(5)
+
+            pyautogui.write("C:\\Users\\Aman Bhatia\\OneDrive - Gemini Solutions\\Desktop\\wallpaper\\1.jpeg")
+            pyautogui.press('enter') 
+            print("\n 6 - Attachment Upload successfully")
+            self.ws['C7'] = 'Upload attatchment'
+            self.ws['G7'] = 'Pass'
+
             self.wb.save(self.filename)
-            time.sleep(5)
+            time.sleep(3)
+
+        except Exception as e:
+            print("\n\nERROR IN Uploading Attatchment >>>>>>>>>>>>>>>\n\n")
+            print(e)
+            print("\n 6 - Unable to upload the attatchment")
+            self.ws['C7'] = 'Upload attatchment'
+            self.ws['G7'] = 'Fail'
+
+            self.wb.save(self.filename)
 
         except Exception as e:
             print("\n\nERROR IN UPLOAD ATTACHMENT >>>>>>>>>>>>>>>\n\n")
@@ -250,6 +291,29 @@ class CFAuth(unittest.TestCase):
             print("\n 9 - Unable to upload attatchment")
             self.ws['C8'] = 'Upload attatchment'
             self.ws['G8'] = 'Fail'
+            self.wb.save(self.filename)
+
+    def Goal_Type(self):
+        """
+
+        """
+        try:
+            #Goal Type-
+            self.driver.find_element(By.XPATH,'//*[text()="Engineering Council (EC)"]').click()
+            print("\n 10 - Selecting Goal Type- Engineering Council (EC)")
+            self.ws['C9'] = 'Engineering Council (EC)'
+            self.ws['G9'] = 'Pass'
+
+            self.wb.save(self.filename)
+            time.sleep(3)
+
+        except Exception as e:
+            print("\n\nERROR IN Goal Type >>>>>>>>>>>>>>>\n\n")
+            print(e)
+            print("\n 10 - Unable to select Goal_Type")
+            self.ws['C9'] = 'Engineering Council (EC)'
+            self.ws['G9'] = 'Fail'
+
             self.wb.save(self.filename)
 
 
@@ -265,18 +329,18 @@ class CFAuth(unittest.TestCase):
             self.driver.find_element(
                 By.CSS_SELECTOR, ".col-xs-3 > #add_btn").click()
 
-            print("\n 10 - All Details get SUBMIT successfully.")
-            self.ws['C9'] = 'Submit'
-            self.ws['G9'] = 'Pass'
+            print("\n 11 - All Details get SUBMIT successfully.")
+            self.ws['C10'] = 'Submit'
+            self.ws['G10'] = 'Pass'
             self.wb.save(self.filename)
             time.sleep(5)
 
         except Exception as e:
             print("\n\nERROR IN SUBMIT >>>>>>>>>>>>>>>\n\n")
             print(e)
-            print("\n 10 - Unable to submit all details")
-            self.ws['C9'] = 'Submit'
-            self.ws['G9'] = 'Fail'
+            print("\n 11 - Unable to submit all details")
+            self.ws['C10'] = 'Submit'
+            self.ws['G10'] = 'Fail'
             self.wb.save(self.filename)
 
 
@@ -297,18 +361,18 @@ class CFAuth(unittest.TestCase):
             time.sleep(5)
 
             self.driver.find_element(By.ID, "ok_btn").click()
-            print("\n 11 - Clicking OK Button")
-            self.ws['C10'] = 'OK Button'
-            self.ws['G10'] = 'Fail'
+            print("\n 12 - Clicking OK Button")
+            self.ws['C11'] = 'OK Button'
+            self.ws['G11'] = 'Fail'
             self.wb.save(self.filename)
             time.sleep(5)
 
         except Exception as e:
             print("\n\nERROR IN OKButton >>>>>>>>>>>>>>>\n\n")
             print(e)
-            print("\n 11 - Unable to Click OK Button")
-            self.ws['C10'] = 'OK Button'
-            self.ws['G10'] = 'Fail'
+            print("\n 12 - Unable to Click OK Button")
+            self.ws['C11'] = 'OK Button'
+            self.ws['G11'] = 'Fail'
             self.wb.save(self.filename)
 
     def tearDown(self):
@@ -324,6 +388,7 @@ if __name__ == '__main__':
     tb.ClientName()
     tb.Enter_ClientFeedback()
     tb.Upload_attatchment()
+    tb.Goal_Type()
     tb.Submit()
     tb.OK_Button()
     

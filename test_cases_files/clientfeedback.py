@@ -251,44 +251,26 @@ class CFAuth(unittest.TestCase):
             assert self.driver.find_element(
                 By.ID, "attachment_btn").text == "Upload attachment"
 
-            print("\n 7 - Uploading Attatchment . . . ")
             self.wb.save(self.filename)
             time.sleep(5)
 
             self.driver.find_element(By.ID, "attachment_btn").click()
-            print("\n 8 - Selecting Attachment from Drive . . .")
+            print("\n 7 - Selecting Attachment from Drive . . .")
             time.sleep(5)
-
-            # self.driver.find_element(By.ID, "firsting").send_keys(
-            #     'C:\\Users\\Aman Bhatia\\OneDrive - Gemini Solutions\\Desktop\\wallpaper\\1.jpeg')
-            # print("\n 9 - Attatchment Successfully upload")
-            # self.ws['C8'] = 'Upload attatchment'
-            # self.ws['G8'] = 'Pass'
-            # self.wb.save(self.filename)
-            # time.sleep(5)
 
             pyautogui.write("C:\\Users\\Aman Bhatia\\OneDrive - Gemini Solutions\\Desktop\\wallpaper\\1.jpeg")
             pyautogui.press('enter') 
-            print("\n 6 - Attachment Upload successfully")
-            self.ws['C7'] = 'Upload attatchment'
-            self.ws['G7'] = 'Pass'
+            print("\n 8 - Attachment Upload successfully")
+            self.ws['C8'] = 'Upload attatchment'
+            self.ws['G8'] = 'Pass'
 
             self.wb.save(self.filename)
             time.sleep(3)
 
         except Exception as e:
-            print("\n\nERROR IN Uploading Attatchment >>>>>>>>>>>>>>>\n\n")
-            print(e)
-            print("\n 6 - Unable to upload the attatchment")
-            self.ws['C7'] = 'Upload attatchment'
-            self.ws['G7'] = 'Fail'
-
-            self.wb.save(self.filename)
-
-        except Exception as e:
             print("\n\nERROR IN UPLOAD ATTACHMENT >>>>>>>>>>>>>>>\n\n")
             print(e)
-            print("\n 9 - Unable to upload attatchment")
+            print("\n 8 - Unable to upload attatchment")
             self.ws['C8'] = 'Upload attatchment'
             self.ws['G8'] = 'Fail'
             self.wb.save(self.filename)
@@ -300,7 +282,7 @@ class CFAuth(unittest.TestCase):
         try:
             #Goal Type-
             self.driver.find_element(By.XPATH,'//*[text()="Engineering Council (EC)"]').click()
-            print("\n 10 - Selecting Goal Type- Engineering Council (EC)")
+            print("\n 9 - Selecting Goal Type- Engineering Council (EC)")
             self.ws['C9'] = 'Engineering Council (EC)'
             self.ws['G9'] = 'Pass'
 
@@ -310,7 +292,7 @@ class CFAuth(unittest.TestCase):
         except Exception as e:
             print("\n\nERROR IN Goal Type >>>>>>>>>>>>>>>\n\n")
             print(e)
-            print("\n 10 - Unable to select Goal_Type")
+            print("\n 9 - Unable to select Goal_Type")
             self.ws['C9'] = 'Engineering Council (EC)'
             self.ws['G9'] = 'Fail'
 
@@ -329,7 +311,7 @@ class CFAuth(unittest.TestCase):
             self.driver.find_element(
                 By.CSS_SELECTOR, ".col-xs-3 > #add_btn").click()
 
-            print("\n 11 - All Details get SUBMIT successfully.")
+            print("\n 10 - All Details get SUBMIT successfully.")
             self.ws['C10'] = 'Submit'
             self.ws['G10'] = 'Pass'
             self.wb.save(self.filename)
@@ -338,7 +320,7 @@ class CFAuth(unittest.TestCase):
         except Exception as e:
             print("\n\nERROR IN SUBMIT >>>>>>>>>>>>>>>\n\n")
             print(e)
-            print("\n 11 - Unable to submit all details")
+            print("\n 10 - Unable to submit all details")
             self.ws['C10'] = 'Submit'
             self.ws['G10'] = 'Fail'
             self.wb.save(self.filename)
@@ -361,7 +343,7 @@ class CFAuth(unittest.TestCase):
             time.sleep(5)
 
             self.driver.find_element(By.ID, "ok_btn").click()
-            print("\n 12 - Clicking OK Button")
+            print("\n 11 - Clicking OK Button")
             self.ws['C11'] = 'OK Button'
             self.ws['G11'] = 'Fail'
             self.wb.save(self.filename)
@@ -370,7 +352,7 @@ class CFAuth(unittest.TestCase):
         except Exception as e:
             print("\n\nERROR IN OKButton >>>>>>>>>>>>>>>\n\n")
             print(e)
-            print("\n 12 - Unable to Click OK Button")
+            print("\n 11 - Unable to Click OK Button")
             self.ws['C11'] = 'OK Button'
             self.ws['G11'] = 'Fail'
             self.wb.save(self.filename)

@@ -130,7 +130,7 @@ class CFAuth(unittest.TestCase):
             
             #ClientFeedback
             clientfeedback = self.driver.find_element(
-                By.XPATH, '//*[contains(text(),"Client Feedback")]')
+                By.XPATH, '//div[text()="Client Feedback"]')
             clientfeedback.click()
             print("\n 2 - Selecting 'ClientFeedback'")
             self.ws['C3'] = 'Selecting ClientFeedback'

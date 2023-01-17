@@ -131,7 +131,7 @@ class ITAuth(unittest.TestCase):
         try:
 
             self.driver.find_element(
-                By.XPATH, '//*[contains(text(),"Interview Taken")]').click()
+                By.XPATH, '//div[text()="Interviews Taken"]').click()
             print("\n 2 - Selecting 'Interview Taken' successfully")
             self.ws['C3'] = 'Interview Taken'
             self.ws['G3'] = 'Pass'

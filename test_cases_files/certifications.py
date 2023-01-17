@@ -130,7 +130,7 @@ class CAuth(unittest.TestCase):
         """
         try:
             #Certifications
-            a = self.driver.find_element(By.XPATH,'//*[contains(text(),"Certifications")]')
+            a = self.driver.find_element(By.XPATH,'//div[text()="Certificate"]')
             a.click()
             print("\n 2 - Selecting 'Certifications' successfully")
             self.ws['C3'] = 'Certifications'

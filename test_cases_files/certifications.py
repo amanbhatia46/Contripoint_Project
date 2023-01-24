@@ -1,26 +1,6 @@
-'''
-FUncitonal
-
-'''
-from lib2to3.pgen2 import driver
-import unittest
-import time
-import HtmlTestRunner as x
-import pyautogui
-from multiprocessing import Event
-from traceback import print_exc
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.support.select import Select
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-from openpyxl import load_workbook
-from datetime import datetime, timedelta
-
+from Functionals import *
 from datainputs import *
+
 
 class CAuth(unittest.TestCase):
     
@@ -58,63 +38,29 @@ class CAuth(unittest.TestCase):
 
     def setUp(self):
         try:
-            s=Service(ChromeDriverManager().install())
-            self.driver = webdriver.Chrome(service=s)
-            print("\n\n\n\n\n>>>>>>>>> CERTIFICATIONS >>>>>>>>>>>>")
+            chrome_options = Options()
+            chrome_options.add_experimental_option('debuggerAddress', 'localhost:9222')
+            
+            self.driver = webdriver.Chrome(options=chrome_options,executable_path="C:\\Users\\Aman Bhatia\\OneDrive - Gemini Solutions\\Desktop\\Contripoint_Project\\ChromeDriver\\chromedriver.exe")
+            print("Browser Connected")
 
-            driver = self.driver
-            driver.maximize_window()
-            driver.get(
-                "https://dev-contripoint.geminisolutions.com/#/login")
-            driver.implicitly_wait(10)  # seconds
-            button = driver.find_element(
-                By.XPATH, '//button[contains(., "Login with Gemini mail")]')
-            button.click()
-            time.sleep(6)
+            # driver = self.driver
 
-            window_handles = driver.window_handles
-            driver.switch_to.window(window_handles[1])
-            driver.find_element(
-                By.XPATH, '//*[@id="i0116"]').send_keys(login_Id)
-            self.ws['A2'] = 'aman.bhatia@geminisolutions.in'
-            driver.find_element(
-                By.XPATH, '//*[@id="idSIButton9"]').click()
-            time.sleep(3)
+            self.driver.get(
+                "https://dev-contripoint.geminisolutions.com/#/dashboard")
 
-            driver.find_element(
-                By.XPATH, '//*[@id="i0118"]').send_keys(login_Password)
-            self.ws['B2'] = 'RitaNandini96'
-            driver.find_element(
-                By.XPATH, '//*[@id="idSIButton9"]').click()
-            time.sleep(6)
-
-            # Entering Multi-factor Authentication (MFA) Code Manually
-            driver.find_element(By.ID, "idTxtBx_SAOTCC_OTC")
-            time.sleep(6)
-            print("\n Entering and Verifying MFA Code \n")
-
-            driver.find_element(
-                By.XPATH, '//*[@id="idSubmit_SAOTCC_Continue"]').click() 
             time.sleep(5)
-
-            driver.find_element(
-                By.XPATH, '//*[@id="KmsiCheckboxField"]').click()
-            time.sleep(5)
-
-            driver.find_element(By.ID, "idSIButton9").click()
 
             print("\n Login Successfull \n")
 
-
-            driver.switch_to.window(window_handles[0])
             time.sleep(6)
             print("\n 1 - Gemini Id and Password successfully login")
             self.ws['C2'] = 'Login'
             self.ws['G2'] = 'login Success'
 
-            self.wb.save(self.filename)
-
         except Exception as e:
+            import traceback
+            print(traceback.print_exc())
             print(e)
             print("\n 1 - Gemini Id and Password  login failed")
             self.ws['C2'] = 'Login'
@@ -129,6 +75,10 @@ class CAuth(unittest.TestCase):
 
         """
         try:
+            ''' Scroll to the page top '''
+            self.driver.execute_script("window.scroll(0, 0);")
+            time.sleep(5)
+
             #Certifications
             a = self.driver.find_element(By.XPATH,'//div[text()="Certificate"]')
             a.click()
@@ -229,7 +179,7 @@ class CAuth(unittest.TestCase):
             #Uploading Attatchment-
             self.driver.find_element(By.XPATH,'//*[@id="attachment_btn"]').click()
             time.sleep(8)
-            pyautogui.write("C:\\Users\\Aman Bhatia\\OneDrive - Gemini Solutions\\Desktop\\wallpaper\\1.jpeg")
+            pyautogui.write(Attachment)
             pyautogui.press('enter') 
             print("\n 6 - Attachment Upload successfully")
             self.ws['C7'] = 'Upload attatchment'
@@ -362,4 +312,3 @@ if __name__ == '__main__':
     tb.Submit()
     #unittest.main()
     #unittest.main(testRunner= x.HTMLTestRunner( 'C:Users/Aman Bhatia/OneDrive - Gemini Solutions/Desktop/Contripoint_Project/testsuits'))
-

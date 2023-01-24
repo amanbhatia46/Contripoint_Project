@@ -1,18 +1,6 @@
-from json import load
-import unittest
-import time
-import HtmlTestRunner as x
-import pyautogui
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.support.select import Select
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-from openpyxl import load_workbook
-from datetime import datetime, timedelta
+from Functionals import *
+from datainputs import *
+
 
 
 class SDAuth(unittest.TestCase):
@@ -51,42 +39,29 @@ class SDAuth(unittest.TestCase):
 
     def setUp(self):
         try:
-            s = Service(ChromeDriverManager().install())
-            self.driver = webdriver.Chrome(service=s)
-            print("\n\n\n\n\n>>>>>>>>> PROJECTS >>>>>>>>>>>>")
+            chrome_options = Options()
+            chrome_options.add_experimental_option('debuggerAddress', 'localhost:9222')
+            
+            self.driver = webdriver.Chrome(options=chrome_options,executable_path="C:\\Users\\Aman Bhatia\\OneDrive - Gemini Solutions\\Desktop\\Contripoint_Project\\ChromeDriver\\chromedriver.exe")
+            print("Browser Connected")
 
-            driver = self.driver
-            driver.maximize_window()
-            driver.get(
-                "https://dev-contripoint.geminisolutions.com/#/login")
-            button = driver.find_element(
-                By.XPATH, '//button[contains(., "Login with Gemini mail")]')
-            button.click()
+            # driver = self.driver
+
+            self.driver.get(
+                "https://dev-contripoint.geminisolutions.com/#/dashboard")
+
+            time.sleep(5)
+
+            print("\n Login Successfull \n")
+
             time.sleep(6)
-
-            window_handles = driver.window_handles
-            driver.switch_to.window(window_handles[1])
-            driver.find_element(
-                By.XPATH, '//*[@id="identifierId"]').send_keys('test.user@geminisolutions.in')
-            self.ws['A2'] = 'test.user@geminisolutions.in'
-            driver.find_element(
-                By.XPATH, '//*[@id="identifierNext"]/div/button/span').click()
-            time.sleep(3)
-
-            driver.find_element(
-                By.XPATH, '//*[@id="i0118"]').send_keys(login_Password)
-            self.ws['B2'] = 'Gemini@123#'
-            driver.find_element(
-                By.XPATH, '//*[@id="passwordNext"]/div/button/span').click()
-            time.sleep(6)
-
-            driver.switch_to.window(window_handles[0])
-            time.sleep(6)
+            
             print("\n 1 - Gemini Id and Password successfully login")
             self.ws['C2'] = 'Login'
             self.ws['G2'] = 'login Success'
 
             self.wb.save(self.filename)
+
 
         except Exception as e:
             print(e)
@@ -103,7 +78,7 @@ class SDAuth(unittest.TestCase):
             
             # SelfDevelopment
             SelfDevelopment = self.driver.find_element(
-                By.XPATH, '/html/body/app-root/div[3]/div/app-dash-board/div[3]/app-dash-cards/div/div[3]/div[2]/mat-card/mat-card-header')
+                By.XPATH, '//div[text()="Self Development"]')
             SelfDevelopment.click()
             print("\n 2 - Selecting 'SelfDevelopment'")
             self.ws['C3'] = 'SelfDevelopment'
@@ -128,10 +103,12 @@ class SDAuth(unittest.TestCase):
         try:
 
             # ADD NEW
-            element = self.driver.find_element(
-                By.XPATH, '/html/body/app-root/div[3]/div/app-self-development-table/div/div/div/div[2]/div/div/div/div[2]/ul/div/button')
-            actions = ActionChains(self.driver)
-            actions.move_to_element(element).click().perform()
+            ''' Scroll to the page top '''
+            self.driver.execute_script("window.scroll(0, 0);")
+            time.sleep(5)
+
+            button = self.driver.find_element(
+                By.XPATH, "//button[@id='add_btn']").click()
             print("\n 3 - Selecting 'Add New' button gets selected")
             time.sleep(6)
             self.ws['C4'] = 'Add New Button'
@@ -154,17 +131,7 @@ class SDAuth(unittest.TestCase):
 
         '''
         try:
-
-            # Name of skill developed
-            assert self.driver.find_element(
-                By.CSS_SELECTOR, ".ng-tns-c85-15 > .mat-form-field-infix").text == "Name of skill developed *"
-            time.sleep(5)
-
-            self.driver.find_element(By.ID, "mat-input-0").click()
-            time.sleep(5)
-
-            self.driver.find_element(
-                By.ID, "mat-input-0").send_keys("Machine Learning")
+            self.driver.find_element(By.XPATH,'//input[@formcontrolname="summary"]').send_keys("Machine Learning")
             print("\n 4 - Name of Skill - 'Machine Learning'")
             time.sleep(5)
             self.ws['C5'] = 'Skill_Name'
@@ -184,16 +151,11 @@ class SDAuth(unittest.TestCase):
 
 
     def Duration(self):
-        '''
-
-        '''
+        ''' '''
         try:
 
             # Duration
-            self.driver.find_element(By.ID, "mat-input-1").click()
-            time.sleep(5)
-
-            self.driver.find_element(By.ID, "mat-input-1").send_keys("2")
+            self.driver.find_element(By.XPATH,'//input[@formcontrolname="duration"]').send_keys("2")
             print("\n 5 - Duration in weeks- '2'")
             self.ws['C6'] = 'Duration'
             self.ws['G6'] = 'Pass'
@@ -218,7 +180,7 @@ class SDAuth(unittest.TestCase):
         try:
 
             # Start Date
-            self.driver.find_element(By.ID, "mat-input-2").click()
+            self.driver.find_element(By.XPATH,'//input[@formcontrolname="date"]').click()
             print("\n 6 - Opening Calander . . .")
             time.sleep(5)
 
@@ -226,8 +188,8 @@ class SDAuth(unittest.TestCase):
                 By.CSS_SELECTOR, ".mat-calendar-body-today").click()
             print("\n 7 - Date Done")
             time.sleep(5)
-            self.ws['C6'] = 'Start Date'
-            self.ws['G6'] = 'Pass'
+            self.ws['C7'] = 'Start Date'
+            self.ws['G7'] = 'Pass'
 
             self.wb.save(self.filename)
             time.sleep(4)
@@ -236,8 +198,8 @@ class SDAuth(unittest.TestCase):
             print("\n\nERROR IN Start Date >>>>>>>>>>>>>>>\n\n")
             print(e)
             print("\n 7 - Start Date gets fail")
-            self.ws['C6'] = 'Start Date'
-            self.ws['G6'] = 'Fail'
+            self.ws['C7'] = 'Start Date'
+            self.ws['G7'] = 'Fail'
 
             self.wb.save(self.filename)
 
@@ -247,23 +209,46 @@ class SDAuth(unittest.TestCase):
         """
         try:
             #Enter Description
-            self.driver.find_element(By.ID, "mat-input-3").click()
-            time.sleep(5)
-
-            self.driver.find_element(By.ID, "mat-input-3").send_keys(
+            self.driver.find_element(By.XPATH,'//textarea[@formcontrolname="description"]').send_keys(
                 "Machine learning is the study of computer algorithms that can improve automatically through experience and by the use of data. It is seen as a part of artificial intelligence")
             print("\n 8 - Entering Description Done")
             time.sleep(5)
-            self.ws['C7'] = 'Description'
-            self.ws['G7'] = 'Pass'
+            self.ws['C8'] = 'Description'
+            self.ws['G8'] = 'Pass'
             self.wb.save(self.filename)
 
         except Exception as e:
-            print("\n\nERROR IN Project Status >>>>>>>>>>>>>>>\n\n")
+            print("\n\nERROR IN Entering Description >>>>>>>>>>>>>>>\n\n")
             print(e)
             print("\n 8 - Entering Description gets fail")
-            self.ws['C7'] = 'Description'
-            self.ws['G7'] = 'Fail'
+            self.ws['C8'] = 'Description'
+            self.ws['G8'] = 'Fail'
+            self.wb.save(self.filename)
+
+    def Goal_Type(self):
+        """
+
+        """
+        try:
+            # Goal Type-
+            self.driver.find_element(
+                By.XPATH, '//span[text()="Engineering Council (EC)"]').click()
+            time.sleep(5)
+
+            print("\n 9 - Selecting Goal Type- Engineering Council (EC)")
+            self.ws['C9'] = 'Engineering Council (EC)'
+            self.ws['G9'] = 'Pass'
+
+            self.wb.save(self.filename)
+            time.sleep(3)
+
+        except Exception as e:
+            print("\n\nERROR IN Goal Type >>>>>>>>>>>>>>>\n\n")
+            print(e)
+            print("\n 9 - Unable to select Goal_Type")
+            self.ws['C9'] = 'Engineering Council (EC)'
+            self.ws['G9'] = 'Fail'
+
             self.wb.save(self.filename)
 
     def Submit(self):
@@ -271,28 +256,33 @@ class SDAuth(unittest.TestCase):
 
         """
         try:
-
             #SUBMIT
             assert self.driver.find_element(
                 By.CSS_SELECTOR, ".col-xs-3 > #add_btn").text == "SUBMIT"
-            time.sleep(5)
+            time.sleep(6)
+
+            Submit_button = ActionChains(self.driver).move_to_element(self.driver.find_element(
+                By.XPATH, '//button[text()="SUBMIT"]'))
+            Submit_button.click().perform()
+            time.sleep(6)
 
             self.driver.find_element(
-                By.CSS_SELECTOR, ".col-xs-3 > #add_btn").click()
-            time.sleep(5)
+                By.XPATH, '//button[text()="SUBMIT"]').click()
 
-            print("\n 9 - All Details get SUBMIT successfully.")
-            self.ws['C8'] = 'Submit'
-            self.ws['G8'] = 'Pass'
+            time.sleep(6)
+            
+            print("\n 10 - All Details get SUBMIT successfully.")
+            self.ws['C10'] = 'Submit'
+            self.ws['G10'] = 'Pass'
             self.wb.save(self.filename)
             time.sleep(5)
 
         except Exception as e:
             print("\n\nERROR IN SUBMIT  >>>>>>>>>>>>>>>\n\n")
             print(e)
-            print("\n 9 - Unable to Click Submit Button")
-            self.ws['C8'] = 'Submit'
-            self.ws['G8'] = 'Fail'
+            print("\n 10 - Unable to Click Submit Button")
+            self.ws['C10'] = 'Submit'
+            self.ws['G10'] = 'Fail'
 
             self.wb.save(self.filename)
 
@@ -304,17 +294,17 @@ class SDAuth(unittest.TestCase):
 
             #OK Button
             assert self.driver.find_element(By.ID, "ok_btn").text == "OK"
-            time.sleep(5)
+            time.sleep(6)
 
             element = self.driver.find_element(By.ID, "ok_btn")
             actions = ActionChains(self.driver)
             actions.move_to_element(element).perform()
-            time.sleep(5)
+            time.sleep(6)
 
             self.driver.find_element(By.ID, "ok_btn").click()
-            print("\n 10 - Clicking OK Button")
-            self.ws['C9'] = 'OK Button'
-            self.ws['G9'] = 'Pass'
+            print("\n 11 - Clicking OK Button")
+            self.ws['C11'] = 'OK Button'
+            self.ws['G11'] = 'Pass'
 
             self.wb.save(self.filename)
             time.sleep(4)
@@ -322,9 +312,9 @@ class SDAuth(unittest.TestCase):
         except Exception as e:
             print("\n\nERROR IN OK Button >>>>>>>>>>>>>>>\n\n")
             print(e)
-            print("\n 10 - Unable to Click OK Button")
-            self.ws['C9'] = 'OK Button'
-            self.ws['G9'] = 'Fail'
+            print("\n 11 - Unable to Click OK Button")
+            self.ws['C11'] = 'OK Button'
+            self.ws['G11'] = 'Fail'
 
             self.wb.save(self.filename)
 
@@ -341,8 +331,9 @@ if __name__ == '__main__':
     tb.Duration()
     tb.StartDate()
     tb.Description()
+    tb.Goal_Type()
     tb.Submit()
     tb.OK_Button()
     # unittest.main()
-#    unittest.main(testRunner= x.HTMLTestRunner( '/home/am.bhatia/Desktop/ContriPoint/testsuits'))
+    # unittest.main(testRunner= x.HTMLTestRunner( '/home/am.bhatia/Desktop/ContriPoint/testsuits'))
 

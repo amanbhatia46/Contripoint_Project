@@ -1,21 +1,4 @@
-from lib2to3.pgen2 import driver
-import unittest
-import time
-import HtmlTestRunner as x
-import pyautogui
-from multiprocessing import Event
-from traceback import print_exc
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.support.select import Select
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-from openpyxl import load_workbook
-from datetime import datetime, timedelta
-
+from Functionals import *
 from datainputs import *
 
 class Login(unittest.TestCase):
@@ -114,13 +97,19 @@ class Login(unittest.TestCase):
 
             self.driver.find_element(By.ID, "idSIButton9").click()
 
-            print("\n 5- Login Successfull \n")
+            print(
+                "\n 5 - You have login successfully and welcome to the site: " + self.driver.title)
 
             print("\n 6 - Gemini Id and Password successfully login \n")
             self.ws['C2'] = 'Login'
             self.ws['G2'] = 'login Success'
 
             self.wb.save(self.filename)
+
+            
+            print("\n 6 - The TITLE of the page is: ", self.driver.title)
+            print("\n 7 - The URL of the page is: ", self.driver.current_url)
+            print("\n 8 - Login to contripoint is successfully completed")
 
         except Exception as e:
 
@@ -139,3 +128,5 @@ if __name__ == '__main__':
     tb = Login()
     tb.setExternalDriver()
     tb.MFA()
+    # unittest.main()
+    # unittest.main(testRunner= x.HTMLTestRunner( 'C:\Users\Aman Bhatia\OneDrive - Gemini Solutions\Desktop\Contripoint_Project\test_suits'))

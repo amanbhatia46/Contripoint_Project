@@ -28,18 +28,26 @@ class CAuth(unittest.TestCase):
         chrome_options = Options()
         chrome_options.add_experimental_option('debuggerAddress', 'localhost:9222')
             
-        browser = webdriver.Chrome(options=chrome_options,executable_path="C:\\Users\\Aman Bhatia\\OneDrive - Gemini Solutions\\Desktop\\Contripoint_Project\\ChromeDriver\\chromedriver.exe")
+        self.driver = webdriver.Chrome(options=chrome_options,executable_path="C:\\Users\\Aman Bhatia\\OneDrive - Gemini Solutions\\Desktop\\Contripoint_Project\\ChromeDriver\\chromedriver.exe")
         print("Browser Connected")
 
-        driver.implicitly_wait(5)
-        driver.get(
+        # driver= self.driver
+        # driver.implicitly_wait(5)
+        self.driver.get(
                 'https://dev-contripoint.geminisolutions.com/#/dashboard')
+
+        time.sleep(5)
 
 
         #Certifications
-        a = self.driver.find_element(By.XPATH,'//*[contains(text(),"Certifications")]')
-        a.click()            
+        self.driver.find_element(By.XPATH,'//div[text()="Certificate"]').click()            
         print("\n 2 - Selecting 'Certifications' successfully")
+
+        self.driver.execute_script("window.scrollTo(0,100)")
+
+        self.driver.find_element(By.XPATH,'//*[@id="add_btn"]').click()
+        time.sleep(6)
+
 
     def tearDown(self):
         self.driver.quit()

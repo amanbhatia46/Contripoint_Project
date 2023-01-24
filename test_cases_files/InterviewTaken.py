@@ -1,29 +1,4 @@
-'''
-FUncitonal
-
-'''
-from json import load
-from telnetlib import EC
-
-from turtle import position
-import unittest
-import time
-import unittest
-import time
-import HtmlTestRunner as x
-import pyautogui
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.support.select import Select
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-from selenium.webdriver.support import expected_conditions as EC
-from openpyxl import load_workbook
-from datetime import datetime, timedelta
-
+from Functionals import *
 from datainputs import *
 
 
@@ -62,55 +37,23 @@ class ITAuth(unittest.TestCase):
 
     def setUp(self):
         try:
-            s = Service(ChromeDriverManager().install())
-            self.driver = webdriver.Chrome(service=s)
-            print("\n\n\n\n\n>>>>>>>>> INTERVIEW TAKEN >>>>>>>>>>>>")
+            chrome_options = Options()
+            chrome_options.add_experimental_option('debuggerAddress', 'localhost:9222')
+            
+            self.driver = webdriver.Chrome(options=chrome_options,executable_path="C:\\Users\\Aman Bhatia\\OneDrive - Gemini Solutions\\Desktop\\Contripoint_Project\\ChromeDriver\\chromedriver.exe")
+            print("Browser Connected")
 
-            driver = self.driver
-            driver.maximize_window()
-            driver.get(
-                "https://dev-contripoint.geminisolutions.com/#/login")
-            driver.implicitly_wait(10)  # seconds
-            button = driver.find_element(
-                By.XPATH, '//button[contains(., "Login with Gemini mail")]')
-            button.click()
-            time.sleep(6)
+            # driver = self.driver
 
-            window_handles = driver.window_handles
-            driver.switch_to.window(window_handles[1])
-            driver.find_element(
-                By.XPATH, '//*[@id="i0116"]').send_keys(login_Id)
-            self.ws['A2'] = 'aman.bhatia@geminisolutions.in'
-            driver.find_element(
-                By.XPATH, '//*[@id="idSIButton9"]').click()
-            time.sleep(3)
+            self.driver.get(
+                "https://dev-contripoint.geminisolutions.com/#/dashboard")
 
-            driver.find_element(
-                By.XPATH, '//*[@id="i0118"]').send_keys(login_Password)
-            self.ws['B2'] = 'RitaNandini96'
-            driver.find_element(
-                By.XPATH, '//*[@id="idSIButton9"]').click()
-            time.sleep(6)
-
-            # Entering Multi-factor Authentication (MFA) Code Manually
-            driver.find_element(By.ID, "idTxtBx_SAOTCC_OTC")
-            time.sleep(6)
-            print("\n Entering and Verifying MFA Code \n")
-
-            driver.find_element(
-                By.XPATH, '//*[@id="idSubmit_SAOTCC_Continue"]').click()
             time.sleep(5)
-
-            driver.find_element(
-                By.XPATH, '//*[@id="KmsiCheckboxField"]').click()
-            time.sleep(5)
-
-            driver.find_element(By.ID, "idSIButton9").click()
 
             print("\n Login Successfull \n")
 
-            driver.switch_to.window(window_handles[0])
             time.sleep(6)
+            
             print("\n 1 - Gemini Id and Password successfully login")
             self.ws['C2'] = 'Login'
             self.ws['G2'] = 'login Success'
@@ -129,7 +72,7 @@ class ITAuth(unittest.TestCase):
 
         """
         try:
-
+            """Selecting Interview Taken"""
             self.driver.find_element(
                 By.XPATH, '//div[text()="Interviews Taken"]').click()
             print("\n 2 - Selecting 'Interview Taken' successfully")
@@ -146,18 +89,19 @@ class ITAuth(unittest.TestCase):
 
             self.wb.save(self.filename)
 
-            print(
-                "\n 3 - sample test case of entering 'Interview Taken' successfully open")
+            print("\n 3 - sample test case of entering 'Interview Taken' successfully open")
 
     def Add_New_Button(self):
         """
 
         """
         try:
-            self.driver.execute_script("window.scrollTo(0,100)")
+            ''' Scroll to the page top '''
+            self.driver.execute_script("window.scroll(0, 0);")
+            time.sleep(5)
 
-            b = self.driver.find_element(
-                By.XPATH, "//*[@id='add_btn']").click()
+            button = self.driver.find_element(
+                By.XPATH, "//button[@id='add_btn']").click()
             time.sleep(6)
             print("\n 4 - 'Add New' button gets selected")
             self.ws['C4'] = 'Add New Button'
@@ -182,26 +126,26 @@ class ITAuth(unittest.TestCase):
         try:
             # # position for which Interview was taken
             c = self.driver.find_element(
-                By.XPATH, '//*[@id="mat-select-0"]/div/div[2]').click()
+                By.XPATH, '//span[text()="Select Position"]').click()
             print("\n 5 - position done")
 
             print("\n 6 - Selecting Positions from the drop down list . . .")
 
             BussinessAnalystwithCRM = self.driver.find_element(
-                By.XPATH, '//*[@id="mat-option-14"]/span').click()
+                By.XPATH, '//mat-option[@ng-reflect-value="Business Analyst with CRM"]').click()
             print("\n 7 - Bussiness Analyst with CRM")
             time.sleep(3)
             CloudEngineer = self.driver.find_element(
-                By.XPATH, '//*[@id="mat-option-16"]/span').click()
+                By.XPATH, '//mat-option[@ng-reflect-value="Cloud Engineer"]').click()
             print("\n 8 - Cloud Engineer")
             time.sleep(3)
             CollaborationPlatform = self.driver.find_element(
-                By.XPATH, '//*[@id="mat-option-18"]/span').click()
+                By.XPATH, '//mat-option[@ng-reflect-value="Collaboration Platform Adminis"]').click()
             print("\n 9 - Collaboration Platform")
             time.sleep(3)
             AdministratorDevOpsEngineer = self.driver.find_element(
-                By.XPATH, '//*[@id="mat-option-22"]/span').click()
-            print("\n 10 - Administrator DevOps Engineer")
+                By.XPATH, '//mat-option[@ng-reflect-value="Data Warehouse Developer"]').click()
+            print("\n 10 - Data Warehouse Developer")
             time.sleep(6)
 
             self.ws['C5'] = 'Interview Position'
@@ -226,13 +170,15 @@ class ITAuth(unittest.TestCase):
         try:
             ExpLevel = self.driver.find_element(
                 By.CSS_SELECTOR, ".cdk-overlay-transparent-backdrop").click()
+            time.sleep(5)
+            
             self.driver.find_element(
-                By.XPATH, '//*[contains(text(),"Select Interviewee Experience Level")]').click()
+                By.XPATH, '//span[text()="Select Interviewee Experience Level"]').click()
             print("\n 11 - Selecting 'Interviewee Exp Level'")
             time.sleep(6)
 
             self.driver.find_element(
-                By.XPATH, '//*[@id="mat-radio-4"]').click()
+                By.XPATH, '//mat-option[@ng-reflect-value="Junior (Less than 5 years)"]').click()
             print("\n 12 - Junior (Less than 5 years)")
 
             self.ws['C6'] = 'Experience Level'
@@ -255,8 +201,8 @@ class ITAuth(unittest.TestCase):
 
         """
         try:
-            IntNumber = self.driver.find_element(
-                By.XPATH, '//input[@id="mat-input-0"]').send_keys("2")
+            Interview_Number = self.driver.find_element(
+                By.XPATH, '//input[@placeholder="No. Of Interview Taken In A Month "]').send_keys("2")
             print("\n 13 - Adding No. of Interview Taken")
             time.sleep(6)
 
@@ -280,8 +226,8 @@ class ITAuth(unittest.TestCase):
 
         """
         try:
-            IntMonth = self.driver.find_element(
-                By.XPATH, '//*[@id="mat-select-4"]/div/div[2]/div').click()
+            Interview_Month = self.driver.find_element(
+                By.XPATH, '//span[text()="Select Month"]').click()
             print("\n 14 -Selecting the Month . . . ")
             time.sleep(6)
 
@@ -312,7 +258,7 @@ class ITAuth(unittest.TestCase):
         try:
             # Goal Type-
             self.driver.find_element(
-                By.XPATH, '//*[text()="Engineering Council (EC)"]').click()
+                By.XPATH, '//span[text()="Engineering Council (EC)"]').click()
             print("\n 14 - Selecting Goal Type- Engineering Council (EC)")
             self.ws['C9'] = 'Engineering Council (EC)'
             self.ws['G9'] = 'Pass'
@@ -336,7 +282,7 @@ class ITAuth(unittest.TestCase):
         """
         try:
             self.driver.find_element(
-                By.XPATH,'//textarea[@id="mat-input-1"]').send_keys("Automation testing")
+                By.XPATH,'//textarea[@formcontrolname="description"]').send_keys("Automation testing")
             time.sleep(4)
             print("\n 15 - Entering Description Done")
             self.ws['C10'] = 'Description'
@@ -357,7 +303,7 @@ class ITAuth(unittest.TestCase):
         """
         try:
             Submit = self.driver.find_element(
-                By.XPATH, '//button[contains(text(),"SUBMIT")]')
+                By.XPATH, '//button[@id="add_btn"]')
             Submit.click()
             print("\n 16 - All Details get submit successfully.")
             time.sleep(6)

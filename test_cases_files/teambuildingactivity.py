@@ -1,29 +1,11 @@
-'''
-FUncitonal
-
-'''
-from json import load
-import unittest
-import time
-import HtmlTestRunner as x
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.support.select import Select
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-from openpyxl import load_workbook
-from datetime import datetime, timedelta
-
+from Functionals import *
+from datainputs import *
 
 
 class TBAuth(unittest.TestCase):
     
 
     def __init__(self):
-        def __init__(self):
         
             """ interact with the underlying operating system."""
             import os
@@ -57,36 +39,21 @@ class TBAuth(unittest.TestCase):
 
     def setUp(self):
         try:
-            s=Service(ChromeDriverManager().install())
-            self.driver = webdriver.Chrome(service=s)
-            print("\n\n\n\n\n>>>>>>>>>>TEAM BUILDING ACTIVITY>>>>>>>>>>>>")
+            chrome_options = Options()
+            chrome_options.add_experimental_option('debuggerAddress', 'localhost:9222')
+            
+            self.driver = webdriver.Chrome(options=chrome_options,executable_path="C:\\Users\\Aman Bhatia\\OneDrive - Gemini Solutions\\Desktop\\Contripoint_Project\\ChromeDriver\\chromedriver.exe")
+            print("Browser Connected")
 
-            driver = self.driver
-            driver.maximize_window()
-            driver.get(
-                "https://dev-contripoint.geminisolutions.com/#/login")
-            button = driver.find_element(
-                By.XPATH, '//button[contains(., "Login with Gemini mail")]')
-            button.click()
-            time.sleep(6)
+            # driver = self.driver
 
-            window_handles = driver.window_handles
-            driver.switch_to.window(window_handles[1])
-            driver.find_element(
-                By.XPATH, '//*[@id="i0116"]').send_keys(login_Id)
-            self.ws['A2'] = 'aman.bhatia@geminisolutions.in'
-            driver.find_element(
-                By.XPATH, '//*[@id="identifierNext"]/div/button/span').click()
-            time.sleep(3)
+            self.driver.get(
+                "https://dev-contripoint.geminisolutions.com/#/dashboard")
 
-            driver.find_element(
-                By.XPATH, '//*[@id="password"]/div[1]/div/div[1]/input').send_keys('AmanBhatia96')
-            self.ws['B2'] = 'AmanBhatia96'
-            driver.find_element(
-                By.XPATH, '//*[@id="passwordNext"]/div/button/span').click()
-            time.sleep(6)
+            time.sleep(5)
 
-            driver.switch_to.window(window_handles[0])
+            print("\n Login Successfull \n")
+
             time.sleep(6)
             print("\n 1 - Gemini Id and Password successfully login")
             self.ws['C2'] = 'Login'
@@ -106,9 +73,9 @@ class TBAuth(unittest.TestCase):
 
         '''
         try:
-            #TeamBuildingActivity
+            #TeamBuildingActivity  
             TeamBuildingActivity = self.driver.find_element(
-                By.XPATH, '/html/body/app-root/div[3]/div/app-dash-board/div[3]/app-dash-cards/div/div[2]/div[3]/mat-card/mat-card-header')
+                By.XPATH, '//div[text()="Team Building Activity"]')
             TeamBuildingActivity.click()
             print("\n 2 - Selecting 'Team Building Activity'")
             self.ws['C3'] = 'Team Building Activity'
@@ -130,11 +97,13 @@ class TBAuth(unittest.TestCase):
 
         '''
         try:
-            #ADD NEW
-            assert self.driver.find_element(By.ID, "add_btn").text == "ADD NEW"
+            # ADD NEW
+            ''' Scroll to the page top '''
+            self.driver.execute_script("window.scroll(0, 0);")
             time.sleep(5)
-            
-            self.driver.find_element(By.ID, "add_btn").click()
+
+            button = self.driver.find_element(
+                By.XPATH, "//button[@id='add_btn']").click()
             print("\n 3 - 'Add New' button gets selected")
             time.sleep(5)
 
@@ -156,11 +125,7 @@ class TBAuth(unittest.TestCase):
         '''
         try:
             # Name of Activity Conducted
-            self.driver.find_element(By.ID, "mat-input-0").click()
-            time.sleep(5)
-
-            self.driver.find_element(
-                By.ID, "mat-input-0").send_keys("Project")
+            self.driver.find_element(By.XPATH,'//input[@ng-reflect-name="summary"]').send_keys("Project")
             print("\n 4 - Name of Activity Conducted")
 
             self.ws['C5'] = 'Name of Activity Conducted'
@@ -183,7 +148,7 @@ class TBAuth(unittest.TestCase):
         '''
         try:
             #No. Of Participants in the Activity
-            self.driver.find_element(By.ID, "mat-input-2").send_keys("2")
+            self.driver.find_element(By.XPATH,'//input[@ng-reflect-name="headCount"]').send_keys("2")
             print("\n 5 - No. Of Participants in the Activity - '2'")
 
             self.ws['C6'] = 'No. Of Participants in the Activity'
@@ -206,7 +171,7 @@ class TBAuth(unittest.TestCase):
         '''
         try:
             #Enter Description 
-            self.driver.find_element(By.ID, "mat-input-3").send_keys("If you want to lift yourself up, lift up with the team")
+            self.driver.find_element(By.XPATH,'//textarea[@formcontrolname="description"]').send_keys("If you want to lift yourself up, lift up with the team")
             print("\n 6 - Entering Description Done")
 
             self.ws['C7'] = 'Description'
@@ -221,6 +186,32 @@ class TBAuth(unittest.TestCase):
             self.ws['C7'] = 'Description'
             self.ws['G7'] = 'Fail'
             self.wb.save(self.filename)
+
+    def Goal_Type(self):
+        """
+
+        """
+        try:
+            # Goal Type-
+            self.driver.find_element(
+                By.XPATH, '//span[text()="Engineering Council (EC) "]').click()
+            time.sleep(5)
+
+            print("\n 6 - Selecting Goal Type- Engineering Council (EC)")
+            self.ws['C8'] = 'Engineering Council (EC)'
+            self.ws['G8'] = 'Pass'
+
+            self.wb.save(self.filename)
+            time.sleep(3)
+
+        except Exception as e:
+            print("\n\nERROR IN Goal Type >>>>>>>>>>>>>>>\n\n")
+            print(e)
+            print("\n 6 - Unable to select Goal_Type")
+            self.ws['C8'] = 'Engineering Council (EC)'
+            self.ws['G8'] = 'Fail'
+
+            self.wb.save(self.filename)
         
     def DateoftheActivity(self):
         '''
@@ -232,8 +223,8 @@ class TBAuth(unittest.TestCase):
                 By.CSS_SELECTOR, ".mat-datepicker-toggle-default-icon").click()
             print("\n 7 - Selecting 'Date of the Activity' . . . ")
 
-            self.ws['C8'] = 'Date of the Activity'
-            self.ws['G8'] = 'Pass'
+            self.ws['C9'] = 'Date of the Activity'
+            self.ws['G9'] = 'Pass'
             self.wb.save(self.filename)
             time.sleep(5)
 
@@ -247,8 +238,8 @@ class TBAuth(unittest.TestCase):
             print("\n\nERROR IN DateoftheActivity >>>>>>>>>>>>>>>\n\n")
             print(e)
             print("\n 7 - Fail to select the Date of the Activity from the calander")
-            self.ws['C8'] = 'Date of the Activity'
-            self.ws['G8'] = 'Fail'
+            self.ws['C9'] = 'Date of the Activity'
+            self.ws['G9'] = 'Fail'
             self.wb.save(self.filename)
 
     def SubmitButton(self):
@@ -257,25 +248,21 @@ class TBAuth(unittest.TestCase):
         '''
         try:
             #SUBMIT Button
-            assert self.driver.find_element(
-                By.CSS_SELECTOR, ".col-xs-3 > #add_btn").text == "ADD"
-            time.sleep(5)
-
             self.driver.find_element(
-                By.CSS_SELECTOR, ".col-xs-3 > #add_btn").click()
-            print("\n 8 - All Details get SUBMIT successfully.")
+                By.XPATH,'//button[@type="submit"]').click()
+            print("\n 9 - All Details get SUBMIT successfully.")
 
-            self.ws['C9'] = 'SUBMIT'
-            self.ws['G9'] = 'Pass'
+            self.ws['C10'] = 'SUBMIT'
+            self.ws['G10'] = 'Pass'
             self.wb.save(self.filename)
             time.sleep(5)
         
         except Exception as e:
             print("\n\nERROR IN SubmitButton >>>>>>>>>>>>>>>\n\n")
             print(e)
-            print("\n 8 - All Details get fail while SUBMIT.")
-            self.ws['C9'] = 'SUBMIT'
-            self.ws['G9'] = 'Fail'
+            print("\n 9 - All Details get fail while SUBMIT.")
+            self.ws['C10'] = 'SUBMIT'
+            self.ws['G10'] = 'Fail'
             self.wb.save(self.filename)
 
     def OKButton(self):
@@ -294,10 +281,10 @@ class TBAuth(unittest.TestCase):
             time.sleep(5)
 
             self.driver.find_element(By.ID, "ok_btn").click()
-            print("\n 9 - Clicking OK Button")
+            print("\n 10 - Clicking OK Button")
 
-            self.ws['C10'] = 'OK BUTTON'
-            self.ws['G10'] = 'Pass'
+            self.ws['C11'] = 'OK BUTTON'
+            self.ws['G11'] = 'Pass'
             self.wb.save(self.filename)
             time.sleep(5)
 
@@ -323,6 +310,7 @@ if __name__ == '__main__':
     tb.NameofActivityConducted()
     tb.NumberOfParticipants()
     tb.EnterDescription()
+    tb.Goal_Type()
     tb.DateoftheActivity()
     tb.SubmitButton()
     tb.OKButton()

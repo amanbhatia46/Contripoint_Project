@@ -2,22 +2,23 @@ from Functionals import *
 from datainputs import *
 
 
-class MAuth(unittest.TestCase):
+class TSAuth(unittest.TestCase):
 
     def __init__(self):
+        
         """ interact with the underlying operating system."""
         import os
-        print(os.path.join(os.getcwd() + "\\xyz.xlsx"), ">>>>>>")
-        self.filename = os.path.join(os.getcwd() + "\\xyz.xlsx")
+        print(os.path.join(os.getcwd()+ "\\xyz.xlsx"),">>>>>>")
+        self.filename = os.path.join(os.getcwd()+ "\\xyz.xlsx")
         self.wb = load_workbook(filename=self.filename)
         self.index_sheet = 0
-        if 'Mentorship' not in self.wb.sheetnames:
-            self.wb.create_sheet('Mentorship')
-            self.wb.save(os.path.join(os.getcwd() + "\\xyz.xlsx"))
+        if 'TrainingSessions' not in self.wb.sheetnames:
+            self.wb.create_sheet('TrainingSessions')
+            self.wb.save(os.path.join(os.getcwd()+ "\\xyz.xlsx"))
         self.wb = load_workbook(filename=self.filename)
         self.ws = self.wb.active
         for i, n in enumerate(self.wb.sheetnames):
-            if n == 'Mentorship':
+            if n == 'TrainingSessions':
                 self.index_sheet = i
                 break
         self.wb.active = self.index_sheet
@@ -28,7 +29,8 @@ class MAuth(unittest.TestCase):
         self.ws['C1'] = 'Test Case Module'
         self.ws['G1'] = 'Result'
         self.ws['H1'] = 'Date and Time'
-        self.wb.save(os.path.join(os.getcwd() + "\\xyz.xlsx"))
+        self.wb.save(os.path.join(os.getcwd()+ "\\xyz.xlsx"))
+
 
         # datetime object containing current date and time
         futuredate = str(datetime.now())
@@ -38,11 +40,9 @@ class MAuth(unittest.TestCase):
     def setUp(self):
         try:
             chrome_options = Options()
-            chrome_options.add_experimental_option(
-                'debuggerAddress', 'localhost:9222')
-
-            self.driver = webdriver.Chrome(
-                options=chrome_options, executable_path="C:\\Users\\Aman Bhatia\\OneDrive - Gemini Solutions\\Desktop\\Contripoint_Project\\ChromeDriver\\chromedriver.exe")
+            chrome_options.add_experimental_option('debuggerAddress', 'localhost:9222')
+            
+            self.driver = webdriver.Chrome(options=chrome_options,executable_path="C:\\Users\\Aman Bhatia\\OneDrive - Gemini Solutions\\Desktop\\Contripoint_Project\\ChromeDriver\\chromedriver.exe")
             print("Browser Connected")
 
             # driver = self.driver
@@ -53,14 +53,13 @@ class MAuth(unittest.TestCase):
             time.sleep(5)
 
             print("\n Login Successfull \n")
-
-            time.sleep(6)
-
+            
             print("\n 1 - Gemini Id and Password successfully login")
             self.ws['C2'] = 'Login'
             self.ws['G2'] = 'login Success'
 
             self.wb.save(self.filename)
+
 
         except Exception as e:
             print(e)
@@ -69,26 +68,29 @@ class MAuth(unittest.TestCase):
             self.ws['G2'] = 'login failed'
             self.wb.save(self.filename)
 
-    def Mentorship(self):
-        '''
 
-        '''
+    def Training_Session(self):
+        """
+
+        """
         try:
-
-            # Mentorship
-            self.driver.find_element(
-                By.XPATH, '//div[text()="Mentorship"]').click()
-            print("\n 2 - Selecting 'Mentorship'")
-            self.ws['C3'] = 'Mentorship'
+            # Training&Session
+            trainingsession = self.driver.find_element(
+                By.XPATH, '//div[text()="Training & Sessions"]')
+            trainingsession.click()
+            print("\n 2 - Selecting 'TRAINING & SESSION'")
+            time.sleep(6)
+            self.ws['C3'] = 'TRAINING & SESSION'
             self.ws['G3'] = 'Pass'
             self.wb.save(self.filename)
-            time.sleep(6)
 
         except Exception as e:
+            print("\n\nERROR IN TRAINING & SESSION >>>>>>>>>>>>>>>\n\n")
             print(e)
-            print("\n 2 - Mentorship failed")
-            self.ws['C3'] = 'Mentorship'
+            print("\n 2 - Selecting TRAINING & SESSION gets fail")
+            self.ws['C3'] = 'TRAINING & SESSION'
             self.ws['G3'] = 'Fail'
+
             self.wb.save(self.filename)
 
     def Add_New(self):
@@ -96,18 +98,20 @@ class MAuth(unittest.TestCase):
 
         """
         try:
+            # ADD NEW
             ''' Scroll to the page top '''
             self.driver.execute_script("window.scroll(0, 0);")
             time.sleep(5)
 
             button = self.driver.find_element(
                 By.XPATH, "//button[@id='add_btn']").click()
-            time.sleep(6)
+
+            print("\n 3 - 'Add New' button gets selected")
+            time.sleep(5)
             self.ws['C4'] = 'Add New Button'
             self.ws['G4'] = 'Pass'
 
             self.wb.save(self.filename)
-            time.sleep(6)
 
         except Exception as e:
             print("\n\nERROR IN Adding New Button >>>>>>>>>>>>>>>\n\n")
@@ -118,111 +122,128 @@ class MAuth(unittest.TestCase):
 
             self.wb.save(self.filename)
 
-    def Eligible_Employees(self):
-        """//input[@name= "searchText" and @type="text"]
+    def SessionName(self):
+        """
+
         """
         try:
-            # Colleagues Mentored
+            # sessionName
             self.driver.find_element(
-                By.XPATH, '//input[@name= "searchText" and @type="text"]').click()
-            print("\n 4 - Selecting Mentors From The List . . .")
-            time.sleep(6)
+                By.XPATH,'//input[@formcontrolname="summary"]').send_keys("Selenium with Python")
 
-            self.driver.find_element(
-                By.XPATH, '//input[@name= "searchText" and @type="text"]').send_keys("Alpana Upadhyay")
-            time.sleep(5)
-
-            self.driver.find_element(
-                By.XPATH, '//div[text()= " GSI G 1181 Alpana Upadhyay "]').click()
-            print("\n 5 - 'GSI G 960 Aaradhya Ahuja'")
-            time.sleep(6)
-
-            self.driver.find_element(
-                By.XPATH, '//input[@name= "searchText" and @type="text"]').clear()
-            time.sleep(5)
-
-            self.driver.find_element(
-                By.XPATH, '//input[@name= "searchText" and @type="text"]').send_keys("Neha Goel")
-            time.sleep(5)
-
-            self.driver.find_element(
-                By.XPATH, '//div[text()= " GSI G 1160 Neha Goel "]').click()
-            print("\n 6 - 'GSI G 960 Aaradhya Ahuja'")
-            time.sleep(6)
-
-            self.driver.find_element(
-                By.XPATH, '//input[@name= "searchText" and @type="text"]').clear()
-            time.sleep(5)
-
-            self.driver.find_element(
-                By.XPATH, '//input[@name= "searchText" and @type="text"]').send_keys("Ekansh Kothiyal")
-            time.sleep(5)
-
-            self.driver.find_element(
-                By.XPATH, '//div[text()= " GSI G 1286 Ekansh Kothiyal "]').click()
-            print("\n 7 - 'GSI G 960 Aaradhya Ahuja'")
-            time.sleep(6)
-
-            print("\n 8 - Mentors got selected")
-            self.ws['C5'] = 'Mentorship'
+            print("\n 4 - Name of Training & Session Conducted - 'Selenium with Python'")
+            self.ws['C5'] = 'SessionName'
             self.ws['G5'] = 'Pass'
-
             self.wb.save(self.filename)
             time.sleep(5)
 
+            # SessionsHeadcount
+            self.driver.find_element(
+                By.XPATH, '//input[@formcontrolname="activityCount"]').send_keys("2")
+            print("\n 5 - Sessions Done ")
+            time.sleep(5)
+
         except Exception as e:
-            print("\n\nERROR IN MENTORSHIP >>>>>>>>>>>>>>>\n\n")
+            print("\n\nERROR IN SESSION NAME >>>>>>>>>>>>>>>\n\n")
             print(e)
-            print("\n 8 - Selecting Mentors from dropdown list gets fail")
-            self.ws['C5'] = 'Mentorship'
+            print("\n 4 - Adding SessionName gets fail")
+            self.ws['C5'] = 'SessionName'
             self.ws['G5'] = 'Fail'
 
             self.wb.save(self.filename)
 
-    def Mentorship_Duration(self):
+    def Description(self):
         """
 
         """
         try:
-            # Mentorship Duration
-            self.driver.find_element(
-                By.XPATH, '//input[@formcontrolname= "duration"]').send_keys("2")
-            print("\n 9 - Duration in weeks - '2'")
-            self.ws['C6'] = 'Mentorship'
-            self.ws['G6'] = 'Pass'
+            # Enter Description
+            Description = ActionChains(self.driver).move_to_element(self.driver.find_element(
+                By.XPATH, '//textarea[@formcontrolname="description"]'))
+            Description.click().perform()
 
+            self.driver.find_element(
+                By.XPATH,'//textarea[@formcontrolname="description"]').send_keys("Covered all the concepts of Selenium Pyhton")
+            print("\n 6 - Description")
+            self.ws['C6'] = 'Description'
+            self.ws['G6'] = 'Pass'
             self.wb.save(self.filename)
-            time.sleep(6)
+            time.sleep(5)
 
         except Exception as e:
-            print("\n\nERROR IN Mentorship Duration >>>>>>>>>>>>>>>\n\n")
+            print("\n\nERROR IN Project Status >>>>>>>>>>>>>>>\n\n")
             print(e)
-            print("\n 9 - Selecting Mentors from dropdown list gets fail")
-            self.ws['C6'] = 'Mentorship'
+            print("\n 6 - Entering Description gets fail")
+            self.ws['C6'] = 'Description'
             self.ws['G6'] = 'Fail'
-
             self.wb.save(self.filename)
 
-    def Enter_Description(self):
+    def NumberOfSessionProvided(self):
         """
+
         """
         try:
+            # No. Of Training&Session Provided
+            self.driver.find_element(By.XPATH,'//input[@formcontrolname="count"]').send_keys("5")
+            print("\n 7 - No. Of Training & Session Provided")
+            time.sleep(5)
 
-            # Enter Description
-            self.driver.find_element(
-                By.XPATH, '//textarea[@formcontrolname= "description"]').send_keys("Adding Mentorship")
-            print("\n 10 - Entering Description")
-            self.ws['C7'] = 'Enter Description'
+            self.ws['C7'] = 'Number Of Session Provided'
             self.ws['G7'] = 'Pass'
             self.wb.save(self.filename)
-            time.sleep(6)
 
         except Exception as e:
-            print("\n\nERROR IN Enter Description >>>>>>>>>>>>>>>\n\n")
+            print("\n\nERROR IN Number Of Session Provided >>>>>>>>>>>>>>>\n\n")
             print(e)
-            print("\n 10 - Entering Description gets fail")
-            self.ws['C7'] = 'Enter Description'
+            print("\n 7 - Number Of Session Provided gets fail")
+            self.ws['C7'] = 'Number Of Session Provided'
             self.ws['G7'] = 'Fail'
+            self.wb.save(self.filename)
+
+    def DateOfSession(self):
+        '''
+        '''
+        try:
+            #Start Date
+            self.driver.find_element(By.XPATH,'//input[@formcontrolname="startDate"]').click()
+            time.sleep(5)
+            # actions = self.driver.find_element(
+            #     By.XPATH, '//*[@id="mat-dialog-0"]/app-training-modal/div/mat-dialog-content/form/div[4]/div[2]/mat-form-field/div/div[1]/div[2]/mat-datepicker-toggle/button')
+            # actions.click()
+            
+
+            self.driver.find_element(
+                By.CSS_SELECTOR, ".mat-calendar-body-today").click()
+            time.sleep(5)
+            print("\n 8 - Start date done.")
+
+            self.ws['C8'] = 'Start Date'
+            self.ws['G8'] = 'Pass'
+            self.wb.save(self.filename)
+
+            #End Date
+            self.driver.find_element(By.XPATH,'//input[@formcontrolname="endDate"]').click()
+            time.sleep(5)
+
+            self.driver.find_element(
+                By.CSS_SELECTOR, ".mat-calendar-body-today").click()
+            time.sleep(5)
+            print("\n 9 - Start and End date done.")
+
+            self.ws['C9'] = 'Session Date'
+            self.ws['G9'] = 'Pass'
+            self.wb.save(self.filename)
+
+
+            print("\n 9 - Date Of Session Done")
+            time.sleep(5)
+
+        except Exception as e:
+            print("\n\nERROR IN Date OF Session >>>>>>>>>>>>>>>\n\n")
+            print(e)
+            print("\n 9 - Date of Session gets fail")
+            self.ws['C9'] = 'Date of Session'
+            self.ws['G9'] = 'Fail'
             self.wb.save(self.filename)
 
     def Goal_Type(self):
@@ -230,12 +251,11 @@ class MAuth(unittest.TestCase):
 
         """
         try:
-            # Goal Type-
-            self.driver.find_element(
-                By.XPATH, '//span[text()="Engineering Council (EC)"]').click()
-            print("\n 11 - Selecting Goal Type- Engineering Council (EC)")
-            self.ws['C8'] = 'Engineering Council (EC)'
-            self.ws['G8'] = 'Pass'
+            #Goal Type-
+            self.driver.find_element(By.XPATH,'//*[text()="Engineering Council (EC)"]').click()
+            print("\n 10 - Selecting Goal Type- Engineering Council (EC)")
+            self.ws['C10'] = 'Engineering Council (EC)'
+            self.ws['G10'] = 'Pass'
 
             self.wb.save(self.filename)
             time.sleep(3)
@@ -243,39 +263,35 @@ class MAuth(unittest.TestCase):
         except Exception as e:
             print("\n\nERROR IN Goal Type >>>>>>>>>>>>>>>\n\n")
             print(e)
-            print("\n 11 - Unable to select Goal_Type")
-            self.ws['C8'] = 'Engineering Council (EC)'
-            self.ws['G8'] = 'Fail'
-
-            self.wb.save(self.filename)
+            print("\n 10 - Unable to select Goal_Type")
+            self.ws['C10'] = 'Engineering Council (EC)'
+            self.ws['G10'] = 'Fail'
 
     def Technology(self):
         """
-
         """
         try:
-            # Technology-
+            # Technology Discussed
             self.driver.find_element(
-                By.XPATH, '//span[text()= "Select Technology"]').click()
+                By.XPATH,'//span[text()="Select Technology *"]').click()
+            print("\n 11 - Opening Technology List . . .")
+
+            self.ws['C11'] = 'Technology Dropdown'
+            self.ws['G11'] = 'Pass'
+            self.wb.save(self.filename)
+            time.sleep(6)
+
+            self.driver.find_element(
+                By.XPATH, '//mat-option[@ng-reflect-value="Automation Testing"]').click()
+            print("\n 12 - 'Automation Testing' gets select from the list")
             time.sleep(5)
 
-            self.driver.find_element(
-                By.XPATH, '//mat-option[@ng-reflect-value= "Automation Testing"]').click()
-            print("\n 12 - Selecting Technology- Automation Testing")
-
-            self.ws['C9'] = 'Technology- Automation Testing'
-            self.ws['G9'] = 'Pass'
-
-            self.wb.save(self.filename)
-            time.sleep(3)
-
         except Exception as e:
-            print("\n\nERROR IN Goal Type >>>>>>>>>>>>>>>\n\n")
+            print("\n\nERROR IN Technology >>>>>>>>>>>>>>>\n\n")
             print(e)
-            print("\n 12 - Selecting Technology- Automation Testing")
-            self.ws['C9'] = 'Technology- Automation Testing'
-            self.ws['G9'] = 'Fail'
-
+            print("\n 11 -'Technology' gets fail")
+            self.ws['C11'] = 'Technology'
+            self.ws['G11'] = 'Fail'
             self.wb.save(self.filename)
 
     def Submit(self):
@@ -283,32 +299,23 @@ class MAuth(unittest.TestCase):
 
         """
         try:
-            # SUBMIT
-            assert self.driver.find_element(
-                By.CSS_SELECTOR, ".col-xs-3 > #add_btn").text == "SUBMIT"
-            time.sleep(6)
+            # Submit
+            submit= self.driver.find_element(
+                By.XPATH, '//button[@type="submit"]')
+            submit.click()
+            time.sleep(5)
 
-            Submit_button = ActionChains(self.driver).move_to_element(self.driver.find_element(
-                By.XPATH, '//span[text()="SUBMIT"]'))
-            Submit_button.click().perform()
-            time.sleep(6)
-
-            self.driver.find_element(
-                By.XPATH, '//span[text()="SUBMIT"]').click()
-
-            time.sleep(6)
-            print("\n 13 - All Details get submit successfully.")
-
-            self.ws['C10'] = 'Submit'
-            self.ws['G10'] = 'Pass'
+            print("\n 12 - All Details get submit successfully.")
+            self.ws['C12'] = 'Submit'
+            self.ws['G12'] = 'Pass'
             self.wb.save(self.filename)
 
         except Exception as e:
             print("\n\nERROR IN SUBMIT  >>>>>>>>>>>>>>>\n\n")
             print(e)
-            print("\n 13 - Unable to Click OK Button")
-            self.ws['C10'] = 'Submit'
-            self.ws['G10'] = 'Fail'
+            print("\n 12 - Unable to Click Submit Button")
+            self.ws['C12'] = 'Submit'
+            self.ws['G12'] = 'Fail'
 
             self.wb.save(self.filename)
             time.sleep(3)
@@ -318,28 +325,30 @@ class MAuth(unittest.TestCase):
 
         """
         try:
-            assert self.driver.find_element(By.ID, "ok_btn").text == "OK"
-            time.sleep(6)
+            # OK Button
+            assert self.driver.find_element(
+                By.CSS_SELECTOR, "#ok_btn > .mat-button-wrapper").text == "OK"
+            time.sleep(5)
 
             element = self.driver.find_element(By.ID, "ok_btn")
             actions = ActionChains(self.driver)
             actions.move_to_element(element).perform()
-            time.sleep(6)
+            time.sleep(5)
 
             self.driver.find_element(By.ID, "ok_btn").click()
+            print("\n 13 - Clicking OK Button")
+            self.ws['C13'] = 'OK Button'
+            self.ws['G13'] = 'Pass'
 
-            print("\n 14 - Clicking OK Button")
-            self.ws['C11'] = 'OK Button'
-            self.ws['G11'] = 'Pass'
-            time.sleep(4)
             self.wb.save(self.filename)
+            time.sleep(4)
 
         except Exception as e:
             print("\n\nERROR IN OK Button >>>>>>>>>>>>>>>\n\n")
             print(e)
-            print("\n 14 - Unable to Click OK Button")
-            self.ws['C11'] = 'OK Button'
-            self.ws['G11'] = 'Fail'
+            print("\n 13 - Unable to Click OK Button")
+            self.ws['C13'] = 'OK Button'
+            self.ws['G13'] = 'Fail'
 
             self.wb.save(self.filename)
 
@@ -348,17 +357,18 @@ class MAuth(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    tb = MAuth()
+    tb = TSAuth()
     tb.setUp()
-    tb.Mentorship()
+    tb.Training_Session()
     tb.Add_New()
-    tb.Eligible_Employees()
-    tb.Mentorship_Duration()
-    tb.Goal_Type()
+    tb.SessionName()
+    tb.NumberOfSessionProvided()
+    tb.DateOfSession()
     tb.Technology()
-    tb.Enter_Description()
+    tb.Description()
+    tb.Goal_Type()
     tb.Submit()
     tb.OK_Button()
 
     # unittest.main()
-    # unittest.main(testRunner= x.HTMLTestRunner( '/home/am.bhatia/Desktop/ContriPoint/testsuits'))
+#    unittest.main(testRunner= x.HTMLTestRunner( '/home/am.bhatia/Desktop/ContriPoint/testsuits'))

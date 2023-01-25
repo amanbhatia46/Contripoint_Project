@@ -1,18 +1,5 @@
-from json import load
-import unittest
-import time
-import HtmlTestRunner as x
-import pyautogui
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.support.select import Select
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-from openpyxl import load_workbook
-from datetime import datetime, timedelta
+from Functionals import *
+from datainputs import *
 
 
 class PAuth(unittest.TestCase):
@@ -51,37 +38,23 @@ class PAuth(unittest.TestCase):
 
     def setUp(self):
         try:
-            s = Service(ChromeDriverManager().install())
-            self.driver = webdriver.Chrome(service=s)
-            print("\n\n\n\n\n>>>>>>>>> PROJECTS >>>>>>>>>>>>")
+            chrome_options = Options()
+            chrome_options.add_experimental_option('debuggerAddress', 'localhost:9222')
+            
+            self.driver = webdriver.Chrome(options=chrome_options,executable_path="C:\\Users\\Aman Bhatia\\OneDrive - Gemini Solutions\\Desktop\\Contripoint_Project\\ChromeDriver\\chromedriver.exe")
+            print("Browser Connected")
 
-            driver = self.driver
-            driver.maximize_window()
-            driver.get(
-                "https://dev-contripoint.geminisolutions.com/#/login")
-            button = driver.find_element(
-                By.XPATH, '//button[contains(., "Login with Gemini mail")]')
-            button.click()
+            # driver = self.driver
+
+            self.driver.get(
+                "https://dev-contripoint.geminisolutions.com/#/dashboard")
+
+            time.sleep(5)
+
+            print("\n Login Successfull \n")
+
             time.sleep(6)
-
-            window_handles = driver.window_handles
-            driver.switch_to.window(window_handles[1])
-            driver.find_element(
-                By.XPATH, '//*[@id="identifierId"]').send_keys('test.user@geminisolutions.in')
-            self.ws['A2'] = 'test.user@geminisolutions.in'
-            driver.find_element(
-                By.XPATH, '//*[@id="identifierNext"]/div/button/span').click()
-            time.sleep(3)
-
-            driver.find_element(
-                By.XPATH, '//*[@id="i0118"]').send_keys(login_Password)
-            self.ws['B2'] = 'Gemini@123#'
-            driver.find_element(
-                By.XPATH, '//*[@id="passwordNext"]/div/button/span').click()
-            time.sleep(6)
-
-            driver.switch_to.window(window_handles[0])
-            time.sleep(6)
+            
             print("\n 1 - Gemini Id and Password successfully login")
             self.ws['C2'] = 'Login'
             self.ws['G2'] = 'login Success'
@@ -102,7 +75,8 @@ class PAuth(unittest.TestCase):
         try:
             # Projects -
             self.driver.find_element(
-                By.CSS_SELECTOR, ".row:nth-child(2) > .col-lg-4:nth-child(2) .mat-card-title").click()
+                By.XPATH, '//div[text()="Project"]').click()
+
             print("\n 2 - Clicking on module - 'Projects'")
             self.ws['C3'] = 'Project'
             self.ws['G3'] = 'Pass'
@@ -125,8 +99,13 @@ class PAuth(unittest.TestCase):
 
         """
         try:
-            # ADD Button -
-            self.driver.find_element(By.XPATH, '//*[@id="add_btn"]').click()
+             # ADD NEW
+            ''' Scroll to the page top '''
+            self.driver.execute_script("window.scroll(0, 0);")
+            time.sleep(5)
+
+            button = self.driver.find_element(
+                By.XPATH, "//button[@id='add_btn']").click()
             print("\n 4 - 'Add New' button gets selected")
 
             self.ws['C4'] = 'Add New Button'
@@ -150,9 +129,7 @@ class PAuth(unittest.TestCase):
         """
         try:
             # Select Project Type *
-            self.driver.find_element(By.ID, "mat-input-0").click()
-            self.driver.find_element(
-                By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-project-modal/div/mat-dialog-content/form/div/div[1]/div/div/div[2]/mat-radio-group/mat-radio-button[1]').click()
+            self.driver.find_element(By.XPATH,'//mat-radio-button[@ng-reflect-value="Inhouse"]').click()
             print("\n 5 - Project Type gets selected as 'Inhouse'")
 
             self.ws['C5'] = 'Project type'
@@ -175,7 +152,7 @@ class PAuth(unittest.TestCase):
         try:
             # Project Title -
             self.driver.find_element(
-                By.ID, "mat-input-0").send_keys("contripoint")
+                By.XPATH,'//input[@formcontrolname="projectName"]').send_keys("contripoint")
 
             print("\n 7 - Project Title savesuccessfully")
 
@@ -194,34 +171,16 @@ class PAuth(unittest.TestCase):
 
             self.wb.save(self.filename)
 
-    def Date_of_Completion(self):
+    def Start_Date(self):
         """
 
         """
         try:
-            self.driver.find_element(
-                By.CSS_SELECTOR, ".ng-tns-c85-17 > .mat-form-field-infix").click()
-            time.sleep(4)  # calander
-            print("\n 8 - Selecting Date Of Completion . . . ")
-
-            element = self.driver.find_element(
-                By.CSS_SELECTOR, ".mat-datepicker-toggle-default-icon")
-            time.sleep(3)
-
-            actions = ActionChains(self.driver)
-            actions.move_to_element(element).perform()
-
-            print("\n 9 - Date Of Completion get selected")
-            time.sleep(3)
+            # calander
 
             self.driver.find_element(
-                By.CSS_SELECTOR, ".mat-datepicker-toggle-default-icon").click()
-            time.sleep(3)
-            print("\n 10 - Opening the calander . . .")
+                By.XPATH,'//input[@formcontrolname="date"]').send_keys("7/1/2022")
 
-            date = self.driver.find_element(
-                By.XPATH, '//*[@id="mat-datepicker-0"]/div/mat-month-view/table/tbody/tr[5]/td[6]/div[1]')
-            date.click()
             time.sleep(5)
             print("\n 11 - Date Of Completion")
             self.ws['C7'] = 'Date Of Completion'
@@ -242,12 +201,9 @@ class PAuth(unittest.TestCase):
         """
         """
         try:
-            ActionChains(self.driver).move_to_element(self.driver.find_element(
-                By.CSS_SELECTOR, ".ng-tns-c85-19 > .mat-form-field-infix")).click()
-            print("\n 12 - Selecting Project Status . . .")
+            self.driver.find_element(
+                By.XPATH,'//mat-radio-button[@value= "ongoing"]').click()
 
-            self.driver.find_element_by_xpath(
-                '/html/body/div[2]/div[2]/div/mat-dialog-container/app-project-modal/div/mat-dialog-content/form/div/div[3]/div/div/div[2]/mat-radio-group/mat-radio-button[2]').click()
             print("\n 13 - Project Status Done")
             self.ws['C8'] = 'Project Status'
             self.ws['G8'] = 'Pass'
@@ -269,7 +225,7 @@ class PAuth(unittest.TestCase):
         """
         try:
             self.driver.find_element(
-                By.ID, "mat-input-3").send_keys("internal project")
+                By.XPATH, '//textarea[@formcontrolname="description"]').send_keys("internal project")
             time.sleep(4)
             print("\n 14 - Entering Description Done")
             self.ws['C8'] = 'Description'
@@ -284,25 +240,51 @@ class PAuth(unittest.TestCase):
             self.ws['G8'] = 'Fail'
             self.wb.save(self.filename)
 
+    def Goal_Type(self):
+        """
+
+        """
+        try:
+            # Goal Type-
+            self.driver.find_element(
+                By.XPATH, '//span[text()="Engineering Council (EC)"]').click()
+            time.sleep(5)
+
+            print("\n 15 - Selecting Goal Type- Engineering Council (EC)")
+            self.ws['C9'] = 'Engineering Council (EC)'
+            self.ws['G9'] = 'Pass'
+
+            self.wb.save(self.filename)
+            time.sleep(3)
+
+        except Exception as e:
+            print("\n\nERROR IN Goal Type >>>>>>>>>>>>>>>\n\n")
+            print(e)
+            print("\n 15 - Unable to select Goal_Type")
+            self.ws['C9'] = 'Engineering Council (EC)'
+            self.ws['G9'] = 'Fail'
+
+            self.wb.save(self.filename)
+
     def Submit(self):
         """
 
         """
         try:
             self.driver.find_element(
-                By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-project-modal/div/div[2]/div[1]/button').click()
+                By.XPATH, '//button[@type="submit"]').click()
             time.sleep(4)
-            print("\n 15 - All Details get submit successfully.")
-            self.ws['C9'] = 'Submit'
-            self.ws['G9'] = 'Pass'
+            print("\n 16 - All Details get submit successfully.")
+            self.ws['C10'] = 'Submit'
+            self.ws['G10'] = 'Pass'
             self.wb.save(self.filename)
 
         except Exception as e:
             print("\n\nERROR IN SUBMIT  >>>>>>>>>>>>>>>\n\n")
             print(e)
-            print("\n 15 - Unable to Click Submit Button")
-            self.ws['C9'] = 'Submit'
-            self.ws['G9'] = 'Fail'
+            print("\n 116 - Unable to Click Submit Button")
+            self.ws['C10'] = 'Submit'
+            self.ws['G10'] = 'Fail'
 
             self.wb.save(self.filename)
             time.sleep(3)
@@ -312,11 +294,10 @@ class PAuth(unittest.TestCase):
 
         """
         try:
-            self.driver.find_element(
-                By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-confirmation-modal/div/div[4]/button').click()
-            print("\n 16 - Clicking OK Button")
-            self.ws['C10'] = 'OK Button'
-            self.ws['G10'] = 'Pass'
+            self.driver.find_element(By.ID, "ok_btn").click()
+            print("\n 17 - Clicking OK Button")
+            self.ws['C11'] = 'OK Button'
+            self.ws['G11'] = 'Pass'
 
             self.wb.save(self.filename)
             time.sleep(4)
@@ -324,9 +305,9 @@ class PAuth(unittest.TestCase):
         except Exception as e:
             print("\n\nERROR IN OK Button >>>>>>>>>>>>>>>\n\n")
             print(e)
-            print("\n 16 - Unable to Click OK Button")
-            self.ws['C10'] = 'OK Button'
-            self.ws['G10'] = 'Fail'
+            print("\n 17 - Unable to Click OK Button")
+            self.ws['C11'] = 'OK Button'
+            self.ws['G11'] = 'Fail'
 
             self.wb.save(self.filename)
 
@@ -341,9 +322,10 @@ if __name__ == '__main__':
     tb.Add_New()
     tb.Project_Type()
     tb.Project_Title()
-    tb.Date_of_Completion()
+    tb.Start_Date()
     tb.Project_Status()
     tb.Description()
+    tb.Goal_Type()
     tb.Submit()
     tb.OK_Button()
     # unittest.main()

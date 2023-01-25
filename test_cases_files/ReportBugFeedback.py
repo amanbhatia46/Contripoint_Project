@@ -1,38 +1,19 @@
-from typing import KeysView
-import unittest
-import time
-import HtmlTestRunner as x
-import pyautogui
-from multiprocessing import Event
-from traceback import print_exc
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.support.select import Select
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-from openpyxl import load_workbook
-from datetime import datetime, timedelta
-
+from Functionals import *
 from datainputs import *
-from LoginMFA import *
 
 
 class RBugEvent(unittest.TestCase):
 
     def __init__(self):
-        
         """ interact with the underlying operating system."""
         import os
-        print(os.path.join(os.getcwd()+ "\\xyz.xlsx"),">>>>>>")
-        self.filename = os.path.join(os.getcwd()+ "\\xyz.xlsx")
+        print(os.path.join(os.getcwd() + "\\xyz.xlsx"), ">>>>>>")
+        self.filename = os.path.join(os.getcwd() + "\\xyz.xlsx")
         self.wb = load_workbook(filename=self.filename)
         self.index_sheet = 0
         if 'Report Bug' not in self.wb.sheetnames:
             self.wb.create_sheet('Report Bug')
-            self.wb.save(os.path.join(os.getcwd()+ "\\xyz.xlsx"))
+            self.wb.save(os.path.join(os.getcwd() + "\\xyz.xlsx"))
         self.wb = load_workbook(filename=self.filename)
         self.ws = self.wb.active
         for i, n in enumerate(self.wb.sheetnames):
@@ -47,34 +28,63 @@ class RBugEvent(unittest.TestCase):
         self.ws['C1'] = 'Test Case Module'
         self.ws['G1'] = 'Result'
         self.ws['H1'] = 'Date and Time'
-        self.wb.save(os.path.join(os.getcwd()+ "\\xyz.xlsx"))
+        self.wb.save(os.path.join(os.getcwd() + "\\xyz.xlsx"))
 
         # datetime object containing current date and time
         futuredate = str(datetime.now())
         print(futuredate)
         self.ws['H2'] = futuredate
 
-    def setExternalDriver(self, driver):
-        self.driver = driver
+    def setUp(self):
+        try:
+            chrome_options = Options()
+            chrome_options.add_experimental_option(
+                'debuggerAddress', 'localhost:9222')
+
+            self.driver = webdriver.Chrome(
+                options=chrome_options, executable_path="C:\\Users\\Aman Bhatia\\OneDrive - Gemini Solutions\\Desktop\\Contripoint_Project\\ChromeDriver\\chromedriver.exe")
+            print("Browser Connected")
+
+            # driver = self.driver
+
+            self.driver.get(
+                "https://dev-contripoint.geminisolutions.com/#/dashboard")
+
+            time.sleep(5)
+
+            print("\n Login Successfull \n")
+
+            time.sleep(6)
+
+            print("\n 1 - Gemini Id and Password successfully login")
+            self.ws['C2'] = 'Login'
+            self.ws['G2'] = 'login Success'
+
+            self.wb.save(self.filename)
+
+        except Exception as e:
+            print(e)
+            print("\n 1 - Gemini Id and Password  login failed")
+            self.ws['C2'] = 'Login'
+            self.ws['G2'] = 'login failed'
+            self.wb.save(self.filename)
 
     def Report_Bug(self):
         """
             Report Bug
         """
         try:
-
-            window_handles = self.driver.window_handles
-            self.driver.switch_to.window(window_handles[0])
+            ''' Scroll to the page down '''
+            self.driver.execute_script("window.scroll(200, 0);")
             time.sleep(5)
 
             # Report a Bug/Feedback
             Bug = self.driver.find_element(
-                By.XPATH, '/html/body/app-root/div/app-footer/div/div/div/div/div[2]/div/div[1]/button')
-            time.sleep(6)
+                By.XPATH, '//button[text()="Report a Bug/Feedback"]')
+            time.sleep(5)
             Bug.click()
 
             print("\n 7 - Selecting 'Report a Bug/Feedback' . .")
-            time.sleep(6)
 
             self.ws['C3'] = 'Report a Bug/Feedback'
             self.ws['G3'] = 'Pass'
@@ -93,25 +103,12 @@ class RBugEvent(unittest.TestCase):
 
         """
         try:
-            # KeysView.CONTROL + KeysView.HOME
+            ''' Scroll to the page top '''
+            self.driver.execute_script("window.scroll(0, 0);")
+            time.sleep(3)
 
-            self.driver.execute_script(
-                "window.scrollTo(0,document.body.scrollHeight)")
-            time.sleep(5)
-
-            element = self.driver.find_element(
-                By.XPATH, '/html/body/app-root/div/div/app-bug-report-table/div/div/div/div[2]/div/div/div/div[2]/ul/div/button')
-            time.sleep(5)
-
-            action = ActionChains(self.driver)
-            time.sleep(5)
-
-            # click the item
-            action.click(on_element=element)
-            time.sleep(5)
-
-            # perform the operation
-            action.perform()
+            self.driver.find_element(
+                By.XPATH, '//button[@id="add_btn"]').click()
             time.sleep(5)
 
             print("\n 8 - Clicking on  ADD NEW button")
@@ -134,7 +131,7 @@ class RBugEvent(unittest.TestCase):
         """
         try:
             self.driver.find_element(
-                By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-bug-report-modal/div/mat-dialog-content/form/div/div[1]/div/mat-form-field/div/div[1]/div/input').send_keys("Design work")
+                By.XPATH, '//input[@formcontrolname="bugTitle"]').send_keys("Design work")
             time.sleep(5)
             print("\n 9 - Issue Subject - 'Design work' ")
             self.ws['C5'] = 'Issue Subject'
@@ -156,13 +153,13 @@ class RBugEvent(unittest.TestCase):
         """
         try:
             Dropdown = self.driver.find_element(
-                By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-bug-report-modal/div/mat-dialog-content/form/div/div[2]/div[1]/mat-form-field/div/div[1]/div')
+                By.XPATH, '//span[text()="Select Issue"]')
             time.sleep(5)
             Dropdown.click()
             time.sleep(5)
 
             Design = self.driver.find_element(
-                By.XPATH, '/html/body/div[2]/div[4]/div/div/div/mat-option[1]')
+                By.XPATH, '//span[text()=" Design "]')
             time.sleep(5)
             Design.click()
             print("\n 10 - Selecting 'Design'")
@@ -186,14 +183,14 @@ class RBugEvent(unittest.TestCase):
         """
         try:
             Dropdown = self.driver.find_element(
-                By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-bug-report-modal/div/mat-dialog-content/form/div/div[2]/div[2]/mat-form-field/div/div[1]/div')
+                By.XPATH, '//span[text()="Select Website Feature"]')
             time.sleep(5)
             Dropdown.click()
 
             self.driver.find_element(
-                By.XPATH, '/html/body/div[2]/div[4]/div/div/div/mat-option[1]').click()
+                By.XPATH, '//span[text()=" Certificate "]').click()
             time.sleep(5)
-            
+
             print("\n 11 - Selecting 'Certificate' as Website Feature")
             time.sleep(5)
 
@@ -214,8 +211,7 @@ class RBugEvent(unittest.TestCase):
             Enter Event's Description
         """
         try:
-
-            self.driver.find_element(By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-bug-report-modal/div/mat-dialog-content/form/div/div[4]/div/mat-form-field/div/div[1]/div/textarea').send_keys(
+            self.driver.find_element(By.XPATH, '//textarea[@formcontrolname="description"]').send_keys(
                 "Reporting a bug to the team.")
 
             print("\n 12 - Entering Description Done")
@@ -247,7 +243,7 @@ class RBugEvent(unittest.TestCase):
             print("\n 13 - Clicking on Attachment Button")
             time.sleep(8)
 
-            pyautogui.write('/home/am.bhatia/Pictures/Wallpapers/tree.jpeg')
+            pyautogui.write(Attachment)
             time.sleep(8)
             pyautogui.press('enter')
             time.sleep(5)
@@ -270,7 +266,7 @@ class RBugEvent(unittest.TestCase):
         '''
         try:
             submit = self.driver.find_element(
-                By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-bug-report-modal/div/div[2]/div[1]/button')
+                By.XPATH, '//button[@id="upload_btn"]')
             time.sleep(5)
             submit.click()
 
@@ -282,10 +278,12 @@ class RBugEvent(unittest.TestCase):
 
             element = self.driver.find_element_by_tag_name('h2')
 
-            if element.text != u'Design work':
-                print("\n Verify Passed : element text is Design work") % element.text
+            if element.text != u'Design':
+                print("\n Verify Passed : element text is Design") % element.text
             else:
-                print("\n Verify Failed : element text is not Design work") % element.text
+                print(
+                    "\n Verify Failed : element text is not Design") % element.text
+            time.sleep(6)
 
         except Exception as e:
             print("\n\n ERROR IN SUBMIT >>>>>>>>>>>>>>>\n\n")
@@ -300,51 +298,30 @@ class RBugEvent(unittest.TestCase):
             OK Button
         '''
         try:
+            window_handles = self.driver.window_handles
+            time.sleep(5)
+            self.driver.switch_to.window(window_handles[0])
 
-            ok = self.driver.find_element(By.ID, "ok_btn")
+            ok = self.driver.find_element(
+                By.XPATH,'//button//span[text()="OK"]')
             time.sleep(5)
             ok.click()
+            time.sleep(5)
 
             print("\n 16 - Clicking OK Button")
-            time.sleep(5)
 
             self.ws['C11'] = 'OK Button'
             self.ws['G11'] = 'Pass'
             self.wb.save(self.filename)
-            time.sleep(5)
 
         except Exception as e:
             print("\n\n ERROR IN OKButton >>>>>>>>>>>>>>>\n\n")
             print("\n 16 - Unable to Click OK Button")
-
+            import traceback
+            print(traceback)
+            print(e)
             self.ws['C11'] = 'OK Button'
             self.ws['G11'] = 'Fail'
-            self.wb.save(self.filename)
-
-    def Logout(self):
-        """
-        """
-        try:
-            Icon = self.driver.find_element(
-                By.XPATH, '/html/body/app-root/div/app-navbar/div/div/div[2]/div/div[2]').click()
-            print("\n 17 - Clicking on icon . .")
-
-            time.sleep(5)
-
-            logout = self.driver.find_element(
-                By.XPATH, '/html/body/div[2]/div[2]/div/div/div/button[2]').click()
-            print("\n 18 - Logout Successfull")
-
-            self.ws['C12'] = 'Logout'
-            self.ws['G12'] = 'Pass'
-            self.wb.save(self.filename)
-
-        except Exception as e:
-            print("\n\n ERROR IN LOGOUT >>>>>>>>>>>>>>>\n\n")
-            print("\n 18 - Unable to Logout")
-
-            self.ws['C12'] = 'Logout'
-            self.ws['G12'] = 'Fail'
             self.wb.save(self.filename)
 
     def tearDown(self):
@@ -353,10 +330,7 @@ class RBugEvent(unittest.TestCase):
 
 if __name__ == '__main__':
     tb = RBugEvent()
-    login = Login()
-    dr = login.setExternalDriver()
-    login.MFA()
-    tb.setExternalDriver(driver=dr)
+    tb.setUp()
     tb.Report_Bug()
     tb.Add_New()
     tb.Issue_Subject()
@@ -366,4 +340,3 @@ if __name__ == '__main__':
     tb.attachment_button()
     tb.Submit()
     tb.OK_Button()
-    tb.Logout()

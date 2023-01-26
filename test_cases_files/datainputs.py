@@ -12,3 +12,5 @@ Attachment= "C:\\Users\\Aman Bhatia\\OneDrive - Gemini Solutions\\Desktop\\wallp
 
 Pdf_file = "C:\\Users\Aman Bhatia\\Downloads\\AllotBudgetSheet.xlsx"
 
+occasionalreward= "C:\\Users\\Aman Bhatia\\Downloads\\OccasionalRewardSheet.xlsx"
+

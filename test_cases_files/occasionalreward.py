@@ -164,7 +164,7 @@ class  AllotOccasionalReward (unittest.TestCase):
             time.sleep(6)
             
             pyautogui.write(occasionalreward)
-            
+            time.sleep(6)
             pyautogui.press('enter')
             print("\n 7 - Budget Excel sheet Upload successfully")
             self.ws['C5'] = ' Allot Occasional Reward  Excel sheet'
@@ -288,9 +288,9 @@ class  AllotOccasionalReward (unittest.TestCase):
             self.ws['C9'] = 'Occasional Reward BUTTON'
             self.ws['G9'] = 'Pass'
             self.wb.save(self.filename)
+            
 
-            ''' Scroll to the page down '''
-            self.driver.execute_script("window.scroll(0, 300);")
+            self.wb.save(self.filename)
 
         except Exception as e:
             print("\n\nERROR IN View Button >>>>>>>>>>>>>>>\n\n")

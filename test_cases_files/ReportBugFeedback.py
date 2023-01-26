@@ -45,16 +45,16 @@ class RBugEvent(unittest.TestCase):
                 options=chrome_options, executable_path="C:\\Users\\Aman Bhatia\\OneDrive - Gemini Solutions\\Desktop\\Contripoint_Project\\ChromeDriver\\chromedriver.exe")
             print("Browser Connected")
 
-            # driver = self.driver
+            self.driver.implicitly_wait(12)
 
             self.driver.get(
                 "https://dev-contripoint.geminisolutions.com/#/dashboard")
 
-            time.sleep(5)
+            
 
             print("\n Login Successfull \n")
 
-            time.sleep(6)
+            
 
             print("\n 1 - Gemini Id and Password successfully login")
             self.ws['C2'] = 'Login'
@@ -75,13 +75,13 @@ class RBugEvent(unittest.TestCase):
         """
         try:
             ''' Scroll to the page down '''
-            self.driver.execute_script("window.scroll(200, 0);")
-            time.sleep(5)
+            self.driver.execute_script("window.scroll(250, 0);")
+            
 
             # Report a Bug/Feedback
             Bug = self.driver.find_element(
                 By.XPATH, '//button[text()="Report a Bug/Feedback"]')
-            time.sleep(5)
+            
             Bug.click()
 
             print("\n 7 - Selecting 'Report a Bug/Feedback' . .")
@@ -105,11 +105,11 @@ class RBugEvent(unittest.TestCase):
         try:
             ''' Scroll to the page top '''
             self.driver.execute_script("window.scroll(0, 0);")
-            time.sleep(3)
+            
 
             self.driver.find_element(
-                By.XPATH, '//button[@id="add_btn"]').click()
-            time.sleep(5)
+                By.XPATH, '//button[text()="ADD NEW"]').click()
+            
 
             print("\n 8 - Clicking on  ADD NEW button")
             self.ws['C4'] = 'Add New'
@@ -132,7 +132,7 @@ class RBugEvent(unittest.TestCase):
         try:
             self.driver.find_element(
                 By.XPATH, '//input[@formcontrolname="bugTitle"]').send_keys("Design work")
-            time.sleep(5)
+            
             print("\n 9 - Issue Subject - 'Design work' ")
             self.ws['C5'] = 'Issue Subject'
             self.ws['G5'] = 'Pass'
@@ -154,16 +154,16 @@ class RBugEvent(unittest.TestCase):
         try:
             Dropdown = self.driver.find_element(
                 By.XPATH, '//span[text()="Select Issue"]')
-            time.sleep(5)
+            
             Dropdown.click()
-            time.sleep(5)
+            
 
             Design = self.driver.find_element(
                 By.XPATH, '//span[text()=" Design "]')
-            time.sleep(5)
+            
             Design.click()
             print("\n 10 - Selecting 'Design'")
-            time.sleep(5)
+            
 
             self.ws['C6'] = 'Issue Category - Design'
             self.ws['G6'] = 'Pass'
@@ -184,15 +184,15 @@ class RBugEvent(unittest.TestCase):
         try:
             Dropdown = self.driver.find_element(
                 By.XPATH, '//span[text()="Select Website Feature"]')
-            time.sleep(5)
+            
             Dropdown.click()
 
             self.driver.find_element(
                 By.XPATH, '//span[text()=" Certificate "]').click()
-            time.sleep(5)
+            
 
             print("\n 11 - Selecting 'Certificate' as Website Feature")
-            time.sleep(5)
+            
 
             self.ws['C7'] = 'Website Feature - Certificate'
             self.ws['G7'] = 'Pass'
@@ -215,7 +215,7 @@ class RBugEvent(unittest.TestCase):
                 "Reporting a bug to the team.")
 
             print("\n 12 - Entering Description Done")
-            time.sleep(5)
+            
 
             self.ws['C8'] = 'Description'
             self.ws['G8'] = 'Pass'
@@ -244,9 +244,8 @@ class RBugEvent(unittest.TestCase):
             time.sleep(8)
 
             pyautogui.write(Attachment)
-            time.sleep(8)
+            
             pyautogui.press('enter')
-            time.sleep(5)
             print("\n 14 - Attachment Upload successfully")
 
             self.ws['C9'] = 'Uploading Attachment gets Pass'
@@ -267,7 +266,7 @@ class RBugEvent(unittest.TestCase):
         try:
             submit = self.driver.find_element(
                 By.XPATH, '//button[@id="upload_btn"]')
-            time.sleep(5)
+            
             submit.click()
 
             print("\n 15 - All Bug Details get SUBMIT successfully.")
@@ -283,7 +282,7 @@ class RBugEvent(unittest.TestCase):
             else:
                 print(
                     "\n Verify Failed : element text is not Design") % element.text
-            time.sleep(6)
+            
 
         except Exception as e:
             print("\n\n ERROR IN SUBMIT >>>>>>>>>>>>>>>\n\n")
@@ -299,14 +298,14 @@ class RBugEvent(unittest.TestCase):
         '''
         try:
             window_handles = self.driver.window_handles
-            time.sleep(5)
+            
             self.driver.switch_to.window(window_handles[0])
 
             ok = self.driver.find_element(
                 By.XPATH,'//button//span[text()="OK"]')
-            time.sleep(5)
+            
             ok.click()
-            time.sleep(5)
+            
 
             print("\n 16 - Clicking OK Button")
 

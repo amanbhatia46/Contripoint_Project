@@ -45,12 +45,12 @@ class TSAuth(unittest.TestCase):
             self.driver = webdriver.Chrome(options=chrome_options,executable_path="C:\\Users\\Aman Bhatia\\OneDrive - Gemini Solutions\\Desktop\\Contripoint_Project\\ChromeDriver\\chromedriver.exe")
             print("Browser Connected")
 
-            # driver = self.driver
+            self.driver.implicitly_wait(15)
 
             self.driver.get(
                 "https://dev-contripoint.geminisolutions.com/#/dashboard")
 
-            time.sleep(5)
+            
 
             print("\n Login Successfull \n")
             
@@ -79,7 +79,7 @@ class TSAuth(unittest.TestCase):
                 By.XPATH, '//div[text()="Training & Sessions"]')
             trainingsession.click()
             print("\n 2 - Selecting 'TRAINING & SESSION'")
-            time.sleep(6)
+            
             self.ws['C3'] = 'TRAINING & SESSION'
             self.ws['G3'] = 'Pass'
             self.wb.save(self.filename)
@@ -101,13 +101,13 @@ class TSAuth(unittest.TestCase):
             # ADD NEW
             ''' Scroll to the page top '''
             self.driver.execute_script("window.scroll(0, 0);")
-            time.sleep(5)
+            
 
             button = self.driver.find_element(
                 By.XPATH, "//button[@id='add_btn']").click()
 
             print("\n 3 - 'Add New' button gets selected")
-            time.sleep(5)
+            
             self.ws['C4'] = 'Add New Button'
             self.ws['G4'] = 'Pass'
 
@@ -127,21 +127,22 @@ class TSAuth(unittest.TestCase):
 
         """
         try:
+            time.sleep(5)
             # sessionName
             self.driver.find_element(
-                By.XPATH,'//input[@formcontrolname="summary"]').send_keys("Selenium with Python")
+                By.XPATH,'//input[@type="text" and @formcontrolname="summary"]').send_keys("Selenium with Python")
 
             print("\n 4 - Name of Training & Session Conducted - 'Selenium with Python'")
             self.ws['C5'] = 'SessionName'
             self.ws['G5'] = 'Pass'
             self.wb.save(self.filename)
-            time.sleep(5)
+            
 
             # SessionsHeadcount
             self.driver.find_element(
                 By.XPATH, '//input[@formcontrolname="activityCount"]').send_keys("2")
             print("\n 5 - Sessions Done ")
-            time.sleep(5)
+            
 
         except Exception as e:
             print("\n\nERROR IN SESSION NAME >>>>>>>>>>>>>>>\n\n")
@@ -168,7 +169,7 @@ class TSAuth(unittest.TestCase):
             self.ws['C6'] = 'Description'
             self.ws['G6'] = 'Pass'
             self.wb.save(self.filename)
-            time.sleep(5)
+            
 
         except Exception as e:
             print("\n\nERROR IN Project Status >>>>>>>>>>>>>>>\n\n")
@@ -186,7 +187,7 @@ class TSAuth(unittest.TestCase):
             # No. Of Training&Session Provided
             self.driver.find_element(By.XPATH,'//input[@formcontrolname="count"]').send_keys("5")
             print("\n 7 - No. Of Training & Session Provided")
-            time.sleep(5)
+            
 
             self.ws['C7'] = 'Number Of Session Provided'
             self.ws['G7'] = 'Pass'
@@ -206,7 +207,7 @@ class TSAuth(unittest.TestCase):
         try:
             #Start Date
             self.driver.find_element(By.XPATH,'//input[@formcontrolname="startDate"]').click()
-            time.sleep(5)
+            
             # actions = self.driver.find_element(
             #     By.XPATH, '//*[@id="mat-dialog-0"]/app-training-modal/div/mat-dialog-content/form/div[4]/div[2]/mat-form-field/div/div[1]/div[2]/mat-datepicker-toggle/button')
             # actions.click()
@@ -214,7 +215,7 @@ class TSAuth(unittest.TestCase):
 
             self.driver.find_element(
                 By.CSS_SELECTOR, ".mat-calendar-body-today").click()
-            time.sleep(5)
+            
             print("\n 8 - Start date done.")
 
             self.ws['C8'] = 'Start Date'
@@ -223,11 +224,11 @@ class TSAuth(unittest.TestCase):
 
             #End Date
             self.driver.find_element(By.XPATH,'//input[@formcontrolname="endDate"]').click()
-            time.sleep(5)
+            
 
             self.driver.find_element(
                 By.CSS_SELECTOR, ".mat-calendar-body-today").click()
-            time.sleep(5)
+            
             print("\n 9 - Start and End date done.")
 
             self.ws['C9'] = 'Session Date'
@@ -236,7 +237,7 @@ class TSAuth(unittest.TestCase):
 
 
             print("\n 9 - Date Of Session Done")
-            time.sleep(5)
+            
 
         except Exception as e:
             print("\n\nERROR IN Date OF Session >>>>>>>>>>>>>>>\n\n")
@@ -258,7 +259,7 @@ class TSAuth(unittest.TestCase):
             self.ws['G10'] = 'Pass'
 
             self.wb.save(self.filename)
-            time.sleep(3)
+            
 
         except Exception as e:
             print("\n\nERROR IN Goal Type >>>>>>>>>>>>>>>\n\n")
@@ -279,12 +280,12 @@ class TSAuth(unittest.TestCase):
             self.ws['C11'] = 'Technology Dropdown'
             self.ws['G11'] = 'Pass'
             self.wb.save(self.filename)
-            time.sleep(6)
+            
 
             self.driver.find_element(
                 By.XPATH, '//mat-option[@ng-reflect-value="Automation Testing"]').click()
             print("\n 12 - 'Automation Testing' gets select from the list")
-            time.sleep(5)
+            
 
         except Exception as e:
             print("\n\nERROR IN Technology >>>>>>>>>>>>>>>\n\n")
@@ -303,7 +304,7 @@ class TSAuth(unittest.TestCase):
             submit= self.driver.find_element(
                 By.XPATH, '//button[@type="submit"]')
             submit.click()
-            time.sleep(5)
+            
 
             print("\n 12 - All Details get submit successfully.")
             self.ws['C12'] = 'Submit'
@@ -318,7 +319,7 @@ class TSAuth(unittest.TestCase):
             self.ws['G12'] = 'Fail'
 
             self.wb.save(self.filename)
-            time.sleep(3)
+            
 
     def OK_Button(self):
         """
@@ -328,12 +329,12 @@ class TSAuth(unittest.TestCase):
             # OK Button
             assert self.driver.find_element(
                 By.CSS_SELECTOR, "#ok_btn > .mat-button-wrapper").text == "OK"
-            time.sleep(5)
+            
 
             element = self.driver.find_element(By.ID, "ok_btn")
             actions = ActionChains(self.driver)
             actions.move_to_element(element).perform()
-            time.sleep(5)
+            
 
             self.driver.find_element(By.ID, "ok_btn").click()
             print("\n 13 - Clicking OK Button")
@@ -341,7 +342,7 @@ class TSAuth(unittest.TestCase):
             self.ws['G13'] = 'Pass'
 
             self.wb.save(self.filename)
-            time.sleep(4)
+            
 
         except Exception as e:
             print("\n\nERROR IN OK Button >>>>>>>>>>>>>>>\n\n")

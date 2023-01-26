@@ -46,15 +46,15 @@ class CFAuth(unittest.TestCase):
             self.driver = webdriver.Chrome(options=chrome_options,executable_path="C:\\Users\\Aman Bhatia\\OneDrive - Gemini Solutions\\Desktop\\Contripoint_Project\\ChromeDriver\\chromedriver.exe")
             print("Browser Connected")
 
-
+            self.driver.implicitly_wait(12)
             self.driver.get(
                 "https://dev-contripoint.geminisolutions.com/#/dashboard")
 
-            time.sleep(5)
+            #
 
             print("\n Login Successfull \n")
 
-            time.sleep(6)
+            #
             print("\n 1 - Gemini Id and Password successfully login")
             self.ws['C2'] = 'Login'
             self.ws['G2'] = 'login Success'
@@ -83,7 +83,7 @@ class CFAuth(unittest.TestCase):
             self.ws['C3'] = 'Selecting ClientFeedback'
             self.ws['G3'] = 'Pass'
             self.wb.save(self.filename)
-            time.sleep(6)
+            #
 
         except Exception as e:
             print("\n\nERROR IN CLIENT FEEDBACK >>>>>>>>>>>>>>>\n\n")
@@ -101,14 +101,14 @@ class CFAuth(unittest.TestCase):
         try:
             ''' Scroll to the page top '''
             self.driver.execute_script("window.scroll(0, 0);")
-            time.sleep(5)
+            #
             
             #ADD NEW
             element = self.driver.find_element(
                 By.XPATH, '//button[@id="add_btn"]')
             actions = ActionChains(self.driver)
             actions.move_to_element(element).click().perform()
-            time.sleep(6)
+            #
             
             print("\n 3 - Selecting 'Add New' button gets selected")
             self.ws['C4'] = 'Add New'
@@ -138,7 +138,7 @@ class CFAuth(unittest.TestCase):
             self.ws['C5'] = 'Project Name'
             self.ws['G5'] = 'Pass'
             self.wb.save(self.filename)
-            time.sleep(5)
+            #
 
         except Exception as e:
             print("\n\nERROR IN PROJECT NAME >>>>>>>>>>>>>>>\n\n")
@@ -161,7 +161,7 @@ class CFAuth(unittest.TestCase):
             self.ws['C6'] = 'Client Name'
             self.ws['G6'] = 'Pass'
             self.wb.save(self.filename)
-            time.sleep(5)
+            #
 
         except Exception as e:
             print("\n\nERROR IN CLIENT NAME >>>>>>>>>>>>>>>\n\n")
@@ -183,7 +183,7 @@ class CFAuth(unittest.TestCase):
             self.ws['C7'] = 'Enter Client Feedback'
             self.ws['G7'] = 'Pass'
             self.wb.save(self.filename)
-            time.sleep(5)
+            #
 
         except Exception as e:
             print("\n\nERROR IN CLIENT FEEDBACK >>>>>>>>>>>>>>>\n\n")
@@ -204,7 +204,7 @@ class CFAuth(unittest.TestCase):
                 By.ID, "attachment_btn").text == "Upload attachment"
 
             self.wb.save(self.filename)
-            time.sleep(5)
+            #
 
             self.driver.find_element(By.ID, "attachment_btn").click()
             print("\n 7 - Selecting Attachment from Drive . . .")
@@ -217,7 +217,6 @@ class CFAuth(unittest.TestCase):
             self.ws['G8'] = 'Pass'
 
             self.wb.save(self.filename)
-            time.sleep(3)
 
         except Exception as e:
             print("\n\nERROR IN UPLOAD ATTACHMENT >>>>>>>>>>>>>>>\n\n")
@@ -239,7 +238,7 @@ class CFAuth(unittest.TestCase):
             self.ws['G9'] = 'Pass'
 
             self.wb.save(self.filename)
-            time.sleep(3)
+            
 
         except Exception as e:
             print("\n\nERROR IN Goal Type >>>>>>>>>>>>>>>\n\n")
@@ -267,7 +266,7 @@ class CFAuth(unittest.TestCase):
             self.ws['C10'] = 'Submit'
             self.ws['G10'] = 'Pass'
             self.wb.save(self.filename)
-            time.sleep(5)
+            #
 
         except Exception as e:
             print("\n\nERROR IN SUBMIT >>>>>>>>>>>>>>>\n\n")
@@ -287,19 +286,19 @@ class CFAuth(unittest.TestCase):
             #OK Button
             assert self.driver.find_element(
                 By.CSS_SELECTOR, "#ok_btn > .mat-button-wrapper").text == "OK"
-            time.sleep(5)
+            #
 
-            element = self.driver.find_element(By.ID, "ok_btn")
+            element = self.driver.find_element(By.XPATH,'//button[@type="submit" and @id="ok_btn"]')
             actions = ActionChains(self.driver)
             actions.move_to_element(element).perform()
-            time.sleep(5)
+            #
 
-            self.driver.find_element(By.ID, "ok_btn").click()
+            self.driver.find_element(By.XPATH, '//button[@type="submit" and @id="ok_btn"]').click()
             print("\n 11 - Clicking OK Button")
             self.ws['C11'] = 'OK Button'
             self.ws['G11'] = 'Fail'
             self.wb.save(self.filename)
-            time.sleep(5)
+            #
 
         except Exception as e:
             print("\n\nERROR IN OKButton >>>>>>>>>>>>>>>\n\n")

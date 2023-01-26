@@ -45,16 +45,16 @@ class MAuth(unittest.TestCase):
                 options=chrome_options, executable_path="C:\\Users\\Aman Bhatia\\OneDrive - Gemini Solutions\\Desktop\\Contripoint_Project\\ChromeDriver\\chromedriver.exe")
             print("Browser Connected")
 
-            # driver = self.driver
+            self.driver.implicitly_wait(25)
 
             self.driver.get(
                 "https://dev-contripoint.geminisolutions.com/#/dashboard")
 
-            time.sleep(5)
+            
 
             print("\n Login Successfull \n")
 
-            time.sleep(6)
+            
 
             print("\n 1 - Gemini Id and Password successfully login")
             self.ws['C2'] = 'Login'
@@ -82,7 +82,7 @@ class MAuth(unittest.TestCase):
             self.ws['C3'] = 'Mentorship'
             self.ws['G3'] = 'Pass'
             self.wb.save(self.filename)
-            time.sleep(6)
+            
 
         except Exception as e:
             print(e)
@@ -98,16 +98,16 @@ class MAuth(unittest.TestCase):
         try:
             ''' Scroll to the page top '''
             self.driver.execute_script("window.scroll(0, 0);")
-            time.sleep(5)
+            
 
             button = self.driver.find_element(
                 By.XPATH, "//button[@id='add_btn']").click()
-            time.sleep(6)
+            
             self.ws['C4'] = 'Add New Button'
             self.ws['G4'] = 'Pass'
 
             self.wb.save(self.filename)
-            time.sleep(6)
+            
 
         except Exception as e:
             print("\n\nERROR IN Adding New Button >>>>>>>>>>>>>>>\n\n")
@@ -119,56 +119,65 @@ class MAuth(unittest.TestCase):
             self.wb.save(self.filename)
 
     def Eligible_Employees(self):
-        """//input[@name= "searchText" and @type="text"]
+        """
         """
         try:
+            
             # Colleagues Mentored
             self.driver.find_element(
                 By.XPATH, '//input[@name= "searchText" and @type="text"]').click()
             print("\n 4 - Selecting Mentors From The List . . .")
-            time.sleep(6)
+            #time.sleep(5)
+            
 
             self.driver.find_element(
                 By.XPATH, '//input[@name= "searchText" and @type="text"]').send_keys("Alpana Upadhyay")
-            time.sleep(5)
+            #time.sleep(5)
+            
 
             self.driver.find_element(
                 By.XPATH, '//div[text()= " GSI G 1181 Alpana Upadhyay "]').click()
-            print("\n 5 - 'GSI G 960 Aaradhya Ahuja'")
-            time.sleep(6)
+            print("\n 5 - 'GSI G 1181 Alpana Upadhyay'")
+            #time.sleep(5)
+            
 
             self.driver.find_element(
                 By.XPATH, '//input[@name= "searchText" and @type="text"]').clear()
-            time.sleep(5)
+            #time.sleep(5)
+            
 
             self.driver.find_element(
                 By.XPATH, '//input[@name= "searchText" and @type="text"]').send_keys("Neha Goel")
-            time.sleep(5)
+            #time.sleep(5)
+            
 
             self.driver.find_element(
                 By.XPATH, '//div[text()= " GSI G 1160 Neha Goel "]').click()
-            print("\n 6 - 'GSI G 960 Aaradhya Ahuja'")
-            time.sleep(6)
+            print("\n 6 - 'GSI G 1160 Neha Goel'")
+            #time.sleep(5)
+            
 
             self.driver.find_element(
                 By.XPATH, '//input[@name= "searchText" and @type="text"]').clear()
-            time.sleep(5)
+            #time.sleep(5)
+            
 
             self.driver.find_element(
                 By.XPATH, '//input[@name= "searchText" and @type="text"]').send_keys("Ekansh Kothiyal")
-            time.sleep(5)
+            #time.sleep(5)
+            
 
             self.driver.find_element(
                 By.XPATH, '//div[text()= " GSI G 1286 Ekansh Kothiyal "]').click()
-            print("\n 7 - 'GSI G 960 Aaradhya Ahuja'")
-            time.sleep(6)
+            print("\n 7 - 'GSI G 1286 Ekansh Kothiyal'")
+            
 
             print("\n 8 - Mentors got selected")
             self.ws['C5'] = 'Mentorship'
             self.ws['G5'] = 'Pass'
 
             self.wb.save(self.filename)
-            time.sleep(5)
+            
 
         except Exception as e:
             print("\n\nERROR IN MENTORSHIP >>>>>>>>>>>>>>>\n\n")
@@ -192,7 +201,7 @@ class MAuth(unittest.TestCase):
             self.ws['G6'] = 'Pass'
 
             self.wb.save(self.filename)
-            time.sleep(6)
+            
 
         except Exception as e:
             print("\n\nERROR IN Mentorship Duration >>>>>>>>>>>>>>>\n\n")
@@ -215,7 +224,7 @@ class MAuth(unittest.TestCase):
             self.ws['C7'] = 'Enter Description'
             self.ws['G7'] = 'Pass'
             self.wb.save(self.filename)
-            time.sleep(6)
+            
 
         except Exception as e:
             print("\n\nERROR IN Enter Description >>>>>>>>>>>>>>>\n\n")
@@ -238,7 +247,7 @@ class MAuth(unittest.TestCase):
             self.ws['G8'] = 'Pass'
 
             self.wb.save(self.filename)
-            time.sleep(3)
+            
 
         except Exception as e:
             print("\n\nERROR IN Goal Type >>>>>>>>>>>>>>>\n\n")
@@ -257,7 +266,7 @@ class MAuth(unittest.TestCase):
             # Technology-
             self.driver.find_element(
                 By.XPATH, '//span[text()= "Select Technology"]').click()
-            time.sleep(5)
+            
 
             self.driver.find_element(
                 By.XPATH, '//mat-option[@ng-reflect-value= "Automation Testing"]').click()
@@ -267,7 +276,7 @@ class MAuth(unittest.TestCase):
             self.ws['G9'] = 'Pass'
 
             self.wb.save(self.filename)
-            time.sleep(3)
+            
 
         except Exception as e:
             print("\n\nERROR IN Goal Type >>>>>>>>>>>>>>>\n\n")
@@ -286,17 +295,17 @@ class MAuth(unittest.TestCase):
             # SUBMIT
             assert self.driver.find_element(
                 By.CSS_SELECTOR, ".col-xs-3 > #add_btn").text == "SUBMIT"
-            time.sleep(6)
+            
 
             Submit_button = ActionChains(self.driver).move_to_element(self.driver.find_element(
                 By.XPATH, '//span[text()="SUBMIT"]'))
             Submit_button.click().perform()
-            time.sleep(6)
+            
 
             self.driver.find_element(
                 By.XPATH, '//span[text()="SUBMIT"]').click()
 
-            time.sleep(6)
+            
             print("\n 13 - All Details get submit successfully.")
 
             self.ws['C10'] = 'Submit'
@@ -311,27 +320,19 @@ class MAuth(unittest.TestCase):
             self.ws['G10'] = 'Fail'
 
             self.wb.save(self.filename)
-            time.sleep(3)
+            
 
     def OK_Button(self):
         """
 
         """
         try:
-            assert self.driver.find_element(By.ID, "ok_btn").text == "OK"
-            time.sleep(6)
-
-            element = self.driver.find_element(By.ID, "ok_btn")
-            actions = ActionChains(self.driver)
-            actions.move_to_element(element).perform()
-            time.sleep(6)
-
-            self.driver.find_element(By.ID, "ok_btn").click()
+            self.driver.find_element(By.XPATH,'//span[text()="OK"]').click()
 
             print("\n 14 - Clicking OK Button")
             self.ws['C11'] = 'OK Button'
             self.ws['G11'] = 'Pass'
-            time.sleep(4)
+            
             self.wb.save(self.filename)
 
         except Exception as e:

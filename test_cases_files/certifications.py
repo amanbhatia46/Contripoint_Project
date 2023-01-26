@@ -44,16 +44,15 @@ class CAuth(unittest.TestCase):
             self.driver = webdriver.Chrome(options=chrome_options,executable_path="C:\\Users\\Aman Bhatia\\OneDrive - Gemini Solutions\\Desktop\\Contripoint_Project\\ChromeDriver\\chromedriver.exe")
             print("Browser Connected")
 
-            # driver = self.driver
-
+            self.driver.implicitly_wait(10)
             self.driver.get(
                 "https://dev-contripoint.geminisolutions.com/#/dashboard")
 
-            time.sleep(5)
+            
 
             print("\n Login Successfull \n")
 
-            time.sleep(6)
+            
             print("\n 1 - Gemini Id and Password successfully login")
             self.ws['C2'] = 'Login'
             self.ws['G2'] = 'login Success'
@@ -77,7 +76,7 @@ class CAuth(unittest.TestCase):
         try:
             ''' Scroll to the page top '''
             self.driver.execute_script("window.scroll(0, 0);")
-            time.sleep(5)
+            
 
             #Certifications
             a = self.driver.find_element(By.XPATH,'//div[text()="Certificate"]')
@@ -88,7 +87,7 @@ class CAuth(unittest.TestCase):
 
             self.wb.save(self.filename)
 
-            time.sleep(3)
+            
         
         except Exception as e:
             print("\n\nERROR IN Certifications >>>>>>>>>>>>>>>\n\n")
@@ -107,7 +106,7 @@ class CAuth(unittest.TestCase):
             self.driver.execute_script("window.scrollTo(0,100)")
 
             self.driver.find_element(By.XPATH,'//*[@id="add_btn"]').click()
-            time.sleep(6)
+            
             print("\n 3 - Add New Contribution button gets selected")
             self.ws['C4'] = 'Add New Contribution'
             self.ws['G4'] = 'Pass'
@@ -135,7 +134,7 @@ class CAuth(unittest.TestCase):
             self.ws['G5'] = 'Pass'
 
             self.wb.save(self.filename)
-            time.sleep(3)
+            
 
         except Exception as e:
             print("\n\nERROR IN Name Of Certificate >>>>>>>>>>>>>>>\n\n")
@@ -160,7 +159,7 @@ class CAuth(unittest.TestCase):
             self.ws['G6'] = 'Pass'
 
             self.wb.save(self.filename)
-            time.sleep(3)
+            
 
         except Exception as e:
             print("\n\nERROR IN Date of Completion >>>>>>>>>>>>>>>\n\n")
@@ -186,7 +185,7 @@ class CAuth(unittest.TestCase):
             self.ws['G7'] = 'Pass'
 
             self.wb.save(self.filename)
-            time.sleep(3)
+            
 
         except Exception as e:
             print("\n\nERROR IN Uploading Attatchment >>>>>>>>>>>>>>>\n\n")
@@ -209,12 +208,12 @@ class CAuth(unittest.TestCase):
             self.ws['G8'] = 'Pass'
 
             self.wb.save(self.filename)
-            time.sleep(3)
+            
 
             self.driver.find_element(By.XPATH,'//*[text()="Android"]').click()
             print("\n 8 - 'ANDROID' got selected from Technology")
             
-            time.sleep(3)
+            
 
         except Exception as e:
             print("\n\nERROR IN TECHNOLOGY >>>>>>>>>>>>>>>\n\n")
@@ -238,7 +237,7 @@ class CAuth(unittest.TestCase):
             self.ws['G9'] = 'Pass'
 
             self.wb.save(self.filename)
-            time.sleep(3)
+            
 
         except Exception as e:
             print("\n\nERROR IN Goal Type >>>>>>>>>>>>>>>\n\n")
@@ -266,21 +265,21 @@ class CAuth(unittest.TestCase):
             self.ws['C10'] = 'Submit'
             self.ws['G10'] = 'Pass'
             self.wb.save(self.filename)
-            time.sleep(5)
+            
 
             #OK Button
             assert self.driver.find_element(
                 By.CSS_SELECTOR, "#ok_btn > .mat-button-wrapper").text == "OK"
-            time.sleep(5)
+            
 
             element = self.driver.find_element(By.ID, "ok_btn")
             actions = ActionChains(self.driver)
             actions.move_to_element(element).perform()
-            time.sleep(5)
+            
 
             self.driver.find_element(By.ID, "ok_btn").click()
             print("\n 10 - Clicking OK Button")
-            time.sleep(3)
+            
 
         except Exception as e:
             print("\n\nERROR IN SUBMIT  >>>>>>>>>>>>>>>\n\n")
@@ -290,7 +289,7 @@ class CAuth(unittest.TestCase):
             self.ws['G10'] = 'Fail'
 
             self.wb.save(self.filename)
-            time.sleep(3)
+            
 
 
 

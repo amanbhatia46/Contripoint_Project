@@ -45,16 +45,16 @@ class SDAuth(unittest.TestCase):
             self.driver = webdriver.Chrome(options=chrome_options,executable_path="C:\\Users\\Aman Bhatia\\OneDrive - Gemini Solutions\\Desktop\\Contripoint_Project\\ChromeDriver\\chromedriver.exe")
             print("Browser Connected")
 
-            # driver = self.driver
+            self.driver.implicitly_wait(20)
 
             self.driver.get(
                 "https://dev-contripoint.geminisolutions.com/#/dashboard")
 
-            time.sleep(5)
+            
 
             print("\n Login Successfull \n")
 
-            time.sleep(6)
+            
             
             print("\n 1 - Gemini Id and Password successfully login")
             self.ws['C2'] = 'Login'
@@ -84,7 +84,7 @@ class SDAuth(unittest.TestCase):
             self.ws['C3'] = 'SelfDevelopment'
             self.ws['G3'] = 'Pass'
             self.wb.save(self.filename)
-            time.sleep(4)
+            
 
         except Exception as e:
             print("\n\nERROR IN SelfDevelopment >>>>>>>>>>>>>>>\n\n")
@@ -94,7 +94,7 @@ class SDAuth(unittest.TestCase):
             self.ws['G3'] = 'Fail'
 
             self.wb.save(self.filename)
-            time.sleep(6)
+            
 
     def Add_New(self):
         '''
@@ -105,12 +105,12 @@ class SDAuth(unittest.TestCase):
             # ADD NEW
             ''' Scroll to the page top '''
             self.driver.execute_script("window.scroll(0, 0);")
-            time.sleep(5)
+            
 
             button = self.driver.find_element(
                 By.XPATH, "//button[@id='add_btn']").click()
             print("\n 3 - Selecting 'Add New' button gets selected")
-            time.sleep(6)
+            
             self.ws['C4'] = 'Add New Button'
             self.ws['G4'] = 'Pass'
 
@@ -133,12 +133,12 @@ class SDAuth(unittest.TestCase):
         try:
             self.driver.find_element(By.XPATH,'//input[@formcontrolname="summary"]').send_keys("Machine Learning")
             print("\n 4 - Name of Skill - 'Machine Learning'")
-            time.sleep(5)
+            
             self.ws['C5'] = 'Skill_Name'
             self.ws['G5'] = 'Pass'
 
             self.wb.save(self.filename)
-            time.sleep(4)
+            
 
         except Exception as e:
             print("\n\nERROR IN Skill Name >>>>>>>>>>>>>>>\n\n")
@@ -161,7 +161,7 @@ class SDAuth(unittest.TestCase):
             self.ws['G6'] = 'Pass'
 
             self.wb.save(self.filename)
-            time.sleep(4)
+            
 
         except Exception as e:
             print("\n\nERROR IN Duration >>>>>>>>>>>>>>>\n\n")
@@ -182,17 +182,17 @@ class SDAuth(unittest.TestCase):
             # Start Date
             self.driver.find_element(By.XPATH,'//input[@formcontrolname="date"]').click()
             print("\n 6 - Opening Calander . . .")
-            time.sleep(5)
+            
 
             self.driver.find_element(
                 By.CSS_SELECTOR, ".mat-calendar-body-today").click()
             print("\n 7 - Date Done")
-            time.sleep(5)
+            
             self.ws['C7'] = 'Start Date'
             self.ws['G7'] = 'Pass'
 
             self.wb.save(self.filename)
-            time.sleep(4)
+            
 
         except Exception as e:
             print("\n\nERROR IN Start Date >>>>>>>>>>>>>>>\n\n")
@@ -212,7 +212,7 @@ class SDAuth(unittest.TestCase):
             self.driver.find_element(By.XPATH,'//textarea[@formcontrolname="description"]').send_keys(
                 "Machine learning is the study of computer algorithms that can improve automatically through experience and by the use of data. It is seen as a part of artificial intelligence")
             print("\n 8 - Entering Description Done")
-            time.sleep(5)
+            
             self.ws['C8'] = 'Description'
             self.ws['G8'] = 'Pass'
             self.wb.save(self.filename)
@@ -233,14 +233,14 @@ class SDAuth(unittest.TestCase):
             # Goal Type-
             self.driver.find_element(
                 By.XPATH, '//span[text()="Engineering Council (EC)"]').click()
-            time.sleep(5)
+            
 
             print("\n 9 - Selecting Goal Type- Engineering Council (EC)")
             self.ws['C9'] = 'Engineering Council (EC)'
             self.ws['G9'] = 'Pass'
 
             self.wb.save(self.filename)
-            time.sleep(3)
+            
 
         except Exception as e:
             print("\n\nERROR IN Goal Type >>>>>>>>>>>>>>>\n\n")
@@ -259,23 +259,23 @@ class SDAuth(unittest.TestCase):
             #SUBMIT
             assert self.driver.find_element(
                 By.CSS_SELECTOR, ".col-xs-3 > #add_btn").text == "SUBMIT"
-            time.sleep(6)
+            
 
             Submit_button = ActionChains(self.driver).move_to_element(self.driver.find_element(
                 By.XPATH, '//button[text()="SUBMIT"]'))
             Submit_button.click().perform()
-            time.sleep(6)
+            
 
             self.driver.find_element(
                 By.XPATH, '//button[text()="SUBMIT"]').click()
 
-            time.sleep(6)
+            
             
             print("\n 10 - All Details get SUBMIT successfully.")
             self.ws['C10'] = 'Submit'
             self.ws['G10'] = 'Pass'
             self.wb.save(self.filename)
-            time.sleep(5)
+            
 
         except Exception as e:
             print("\n\nERROR IN SUBMIT  >>>>>>>>>>>>>>>\n\n")
@@ -294,12 +294,12 @@ class SDAuth(unittest.TestCase):
 
             #OK Button
             assert self.driver.find_element(By.ID, "ok_btn").text == "OK"
-            time.sleep(6)
+            
 
             element = self.driver.find_element(By.ID, "ok_btn")
             actions = ActionChains(self.driver)
             actions.move_to_element(element).perform()
-            time.sleep(6)
+            
 
             self.driver.find_element(By.ID, "ok_btn").click()
             print("\n 11 - Clicking OK Button")
@@ -307,7 +307,7 @@ class SDAuth(unittest.TestCase):
             self.ws['G11'] = 'Pass'
 
             self.wb.save(self.filename)
-            time.sleep(4)
+            
 
         except Exception as e:
             print("\n\nERROR IN OK Button >>>>>>>>>>>>>>>\n\n")

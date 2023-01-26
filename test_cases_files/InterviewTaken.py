@@ -43,16 +43,16 @@ class ITAuth(unittest.TestCase):
             self.driver = webdriver.Chrome(options=chrome_options,executable_path="C:\\Users\\Aman Bhatia\\OneDrive - Gemini Solutions\\Desktop\\Contripoint_Project\\ChromeDriver\\chromedriver.exe")
             print("Browser Connected")
 
-            # driver = self.driver
+            self.driver.implicitly_wait(25)
 
             self.driver.get(
                 "https://dev-contripoint.geminisolutions.com/#/dashboard")
 
-            time.sleep(5)
+            
 
             print("\n Login Successfull \n")
 
-            time.sleep(6)
+            
             
             print("\n 1 - Gemini Id and Password successfully login")
             self.ws['C2'] = 'Login'
@@ -78,7 +78,7 @@ class ITAuth(unittest.TestCase):
             print("\n 2 - Selecting 'Interview Taken' successfully")
             self.ws['C3'] = 'Interview Taken'
             self.ws['G3'] = 'Pass'
-            time.sleep(4)
+            
 
         except Exception as e:
             print("\n\nERROR IN Interview Taken >>>>>>>>>>>>>>>\n\n")
@@ -98,17 +98,17 @@ class ITAuth(unittest.TestCase):
         try:
             ''' Scroll to the page top '''
             self.driver.execute_script("window.scroll(0, 0);")
-            time.sleep(5)
+            
 
             button = self.driver.find_element(
                 By.XPATH, "//button[@id='add_btn']").click()
-            time.sleep(6)
+            
             print("\n 4 - 'Add New' button gets selected")
             self.ws['C4'] = 'Add New Button'
             self.ws['G4'] = 'Pass'
 
             self.wb.save(self.filename)
-            time.sleep(4)
+            
 
         except Exception as e:
             print("\n\nERROR IN Adding New Button >>>>>>>>>>>>>>>\n\n")
@@ -124,9 +124,19 @@ class ITAuth(unittest.TestCase):
 
         """
         try:
-            # # position for which Interview was taken
-            c = self.driver.find_element(
-                By.XPATH, '//span[text()="Select Position"]').click()
+            time.sleep(5)
+            # position for which Interview was taken
+            element = self.driver.find_element(By.XPATH,'//mat-select[@ng-reflect-placeholder="Select Position"]')
+            actions = ActionChains(self.driver)
+            actions.move_to_element(element).perform()
+            # time.sleep(5)
+
+            self.driver.find_element(By.XPATH,'//mat-select[@ng-reflect-placeholder="Select Position"]').click()
+            # Position= self.driver.find_element(
+            #     By.XPATH, '//mat-select[@ng-reflect-placeholder="Select Position"]')
+            # time.sleep(5)
+            # position.click()
+            
             print("\n 5 - position done")
 
             print("\n 6 - Selecting Positions from the drop down list . . .")
@@ -134,25 +144,25 @@ class ITAuth(unittest.TestCase):
             BussinessAnalystwithCRM = self.driver.find_element(
                 By.XPATH, '//mat-option[@ng-reflect-value="Business Analyst with CRM"]').click()
             print("\n 7 - Bussiness Analyst with CRM")
-            time.sleep(3)
+            
             CloudEngineer = self.driver.find_element(
                 By.XPATH, '//mat-option[@ng-reflect-value="Cloud Engineer"]').click()
             print("\n 8 - Cloud Engineer")
-            time.sleep(3)
+            
             CollaborationPlatform = self.driver.find_element(
                 By.XPATH, '//mat-option[@ng-reflect-value="Collaboration Platform Adminis"]').click()
             print("\n 9 - Collaboration Platform")
-            time.sleep(3)
+            
             AdministratorDevOpsEngineer = self.driver.find_element(
                 By.XPATH, '//mat-option[@ng-reflect-value="Data Warehouse Developer"]').click()
             print("\n 10 - Data Warehouse Developer")
-            time.sleep(6)
+            
 
             self.ws['C5'] = 'Interview Position'
             self.ws['G5'] = 'Pass'
 
             self.wb.save(self.filename)
-            time.sleep(4)
+            
 
         except Exception as e:
             print("\n\nERROR IN Interview Position >>>>>>>>>>>>>>>\n\n")
@@ -170,12 +180,12 @@ class ITAuth(unittest.TestCase):
         try:
             ExpLevel = self.driver.find_element(
                 By.CSS_SELECTOR, ".cdk-overlay-transparent-backdrop").click()
-            time.sleep(5)
+            
             
             self.driver.find_element(
                 By.XPATH, '//span[text()="Select Interviewee Experience Level"]').click()
             print("\n 11 - Selecting 'Interviewee Exp Level'")
-            time.sleep(6)
+            
 
             self.driver.find_element(
                 By.XPATH, '//mat-option[@ng-reflect-value="Junior (Less than 5 years)"]').click()
@@ -185,7 +195,7 @@ class ITAuth(unittest.TestCase):
             self.ws['G6'] = 'Pass'
 
             self.wb.save(self.filename)
-            time.sleep(4)
+            
 
         except Exception as e:
             print("\n\nERROR IN Experience Level >>>>>>>>>>>>>>>\n\n")
@@ -204,13 +214,13 @@ class ITAuth(unittest.TestCase):
             Interview_Number = self.driver.find_element(
                 By.XPATH, '//input[@placeholder="No. Of Interview Taken In A Month "]').send_keys("2")
             print("\n 13 - Adding No. of Interview Taken")
-            time.sleep(6)
+            
 
             self.ws['C7'] = 'No. of Interview Taken'
             self.ws['G7'] = 'Pass'
 
             self.wb.save(self.filename)
-            time.sleep(4)
+            
 
         except Exception as e:
             print("\n\nERROR IN No. of Interview Taken >>>>>>>>>>>>>>>\n\n")
@@ -229,18 +239,18 @@ class ITAuth(unittest.TestCase):
             Interview_Month = self.driver.find_element(
                 By.XPATH, '//span[text()="Select Month"]').click()
             print("\n 14 -Selecting the Month . . . ")
-            time.sleep(6)
+            
 
             Month = ActionChains(self.driver).move_to_element(self.driver.find_element(
                 By.XPATH, '//span[text()=" January "]')).click().perform()
             print("\n 15 - Selecting 'JANUARY' Month from the list")
-            time.sleep(6)
+            
 
             self.ws['C8'] = 'Interview Month'
             self.ws['G8'] = 'Pass'
 
             self.wb.save(self.filename)
-            time.sleep(4)
+            
 
         except Exception as e:
             print("\n\nERROR IN Interview Month >>>>>>>>>>>>>>>\n\n")
@@ -264,7 +274,7 @@ class ITAuth(unittest.TestCase):
             self.ws['G9'] = 'Pass'
 
             self.wb.save(self.filename)
-            time.sleep(3)
+            
 
         except Exception as e:
             print("\n\nERROR IN Goal Type >>>>>>>>>>>>>>>\n\n")
@@ -283,7 +293,7 @@ class ITAuth(unittest.TestCase):
         try:
             self.driver.find_element(
                 By.XPATH,'//textarea[@formcontrolname="description"]').send_keys("Automation testing")
-            time.sleep(4)
+            
             print("\n 15 - Entering Description Done")
             self.ws['C10'] = 'Description'
             self.ws['G10'] = 'Pass'
@@ -303,10 +313,10 @@ class ITAuth(unittest.TestCase):
         """
         try:
             Submit = self.driver.find_element(
-                By.XPATH, '//button[@id="add_btn"]')
+                By.XPATH, '//button[@type="submit" and @id="add_btn"]')
             Submit.click()
             print("\n 16 - All Details get submit successfully.")
-            time.sleep(6)
+            
 
             self.ws['C11'] = 'Submit'
             self.ws['G11'] = 'Pass'
@@ -320,7 +330,7 @@ class ITAuth(unittest.TestCase):
             self.ws['G11'] = 'Fail'
 
             self.wb.save(self.filename)
-            time.sleep(3)
+            
 
     def OK_Button(self):
         """
@@ -332,7 +342,7 @@ class ITAuth(unittest.TestCase):
             print("\n 17 - Clicking OK Button")
             self.ws['C12'] = 'OK Button'
             self.ws['G12'] = 'Pass'
-            time.sleep(4)
+            
             self.wb.save(self.filename)
 
         except Exception as e:

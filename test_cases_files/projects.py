@@ -44,16 +44,16 @@ class PAuth(unittest.TestCase):
             self.driver = webdriver.Chrome(options=chrome_options,executable_path="C:\\Users\\Aman Bhatia\\OneDrive - Gemini Solutions\\Desktop\\Contripoint_Project\\ChromeDriver\\chromedriver.exe")
             print("Browser Connected")
 
-            # driver = self.driver
+            self.driver.implicitly_wait(20)
 
             self.driver.get(
                 "https://dev-contripoint.geminisolutions.com/#/dashboard")
 
-            time.sleep(5)
+            
 
             print("\n Login Successfull \n")
 
-            time.sleep(6)
+            
             
             print("\n 1 - Gemini Id and Password successfully login")
             self.ws['C2'] = 'Login'
@@ -81,7 +81,7 @@ class PAuth(unittest.TestCase):
             self.ws['C3'] = 'Project'
             self.ws['G3'] = 'Pass'
             self.wb.save(self.filename)
-            time.sleep(4)
+            
 
         except Exception as e:
             print("\n\nERROR IN PROJECTS >>>>>>>>>>>>>>>\n\n")
@@ -102,7 +102,7 @@ class PAuth(unittest.TestCase):
              # ADD NEW
             ''' Scroll to the page top '''
             self.driver.execute_script("window.scroll(0, 0);")
-            time.sleep(5)
+            
 
             button = self.driver.find_element(
                 By.XPATH, "//button[@id='add_btn']").click()
@@ -112,7 +112,7 @@ class PAuth(unittest.TestCase):
             self.ws['G4'] = 'Pass'
 
             self.wb.save(self.filename)
-            time.sleep(4)
+            
 
         except Exception as e:
             print("\n\nERROR IN Adding New Button >>>>>>>>>>>>>>>\n\n")
@@ -135,7 +135,7 @@ class PAuth(unittest.TestCase):
             self.ws['C5'] = 'Project type'
             self.ws['G5'] = 'Pass'
             self.wb.save(self.filename)
-            time.sleep(4)
+            
 
         except Exception as e:
             print("\n\nERROR IN Project Type >>>>>>>>>>>>>>>\n\n")
@@ -160,7 +160,7 @@ class PAuth(unittest.TestCase):
             self.ws['G6'] = 'Pass'
 
             self.wb.save(self.filename)
-            time.sleep(4)
+            
 
         except Exception as e:
             print("\n\nERROR IN Project Title >>>>>>>>>>>>>>>\n\n")
@@ -181,7 +181,7 @@ class PAuth(unittest.TestCase):
             self.driver.find_element(
                 By.XPATH,'//input[@formcontrolname="date"]').send_keys("7/1/2022")
 
-            time.sleep(5)
+            
             print("\n 11 - Date Of Completion")
             self.ws['C7'] = 'Date Of Completion'
             self.ws['G7'] = 'Pass'
@@ -207,7 +207,7 @@ class PAuth(unittest.TestCase):
             print("\n 13 - Project Status Done")
             self.ws['C8'] = 'Project Status'
             self.ws['G8'] = 'Pass'
-            time.sleep(4)
+            
 
             self.wb.save(self.filename)
 
@@ -226,7 +226,7 @@ class PAuth(unittest.TestCase):
         try:
             self.driver.find_element(
                 By.XPATH, '//textarea[@formcontrolname="description"]').send_keys("internal project")
-            time.sleep(4)
+            
             print("\n 14 - Entering Description Done")
             self.ws['C8'] = 'Description'
             self.ws['G8'] = 'Pass'
@@ -248,14 +248,14 @@ class PAuth(unittest.TestCase):
             # Goal Type-
             self.driver.find_element(
                 By.XPATH, '//span[text()="Engineering Council (EC)"]').click()
-            time.sleep(5)
+            
 
             print("\n 15 - Selecting Goal Type- Engineering Council (EC)")
             self.ws['C9'] = 'Engineering Council (EC)'
             self.ws['G9'] = 'Pass'
 
             self.wb.save(self.filename)
-            time.sleep(3)
+            
 
         except Exception as e:
             print("\n\nERROR IN Goal Type >>>>>>>>>>>>>>>\n\n")
@@ -273,7 +273,7 @@ class PAuth(unittest.TestCase):
         try:
             self.driver.find_element(
                 By.XPATH, '//button[@type="submit"]').click()
-            time.sleep(4)
+            
             print("\n 16 - All Details get submit successfully.")
             self.ws['C10'] = 'Submit'
             self.ws['G10'] = 'Pass'
@@ -287,7 +287,7 @@ class PAuth(unittest.TestCase):
             self.ws['G10'] = 'Fail'
 
             self.wb.save(self.filename)
-            time.sleep(3)
+            
 
     def OK_Button(self):
         """
@@ -300,7 +300,7 @@ class PAuth(unittest.TestCase):
             self.ws['G11'] = 'Pass'
 
             self.wb.save(self.filename)
-            time.sleep(4)
+            
 
         except Exception as e:
             print("\n\nERROR IN OK Button >>>>>>>>>>>>>>>\n\n")

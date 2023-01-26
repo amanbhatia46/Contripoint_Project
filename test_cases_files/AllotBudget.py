@@ -166,10 +166,9 @@ class AllotBudget(unittest.TestCase):
 
             #Import Data Screen
             self.driver.find_element(By.XPATH,'//label[@id="attachment_btn"]').click()
-            time.sleep(6)
+            time.sleep(5)
             
             pyautogui.write(Pdf_file)
-            time.sleep(6)
             pyautogui.press('enter')
             print("\n 7 - Budget Excel sheet Upload successfully")
             self.ws['C5'] = 'Allot Budget Excel sheet'

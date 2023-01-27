@@ -6,34 +6,35 @@ class ITAuth(unittest.TestCase):
 
     def __init__(self):
         """ interact with the underlying operating system."""
-        import os
-        print(os.path.join(os.getcwd() + "\\result.xlsx"), ">>>>>>")
-        self.filename = os.path.join(os.getcwd() + "\\result.xlsx")
-        self.wb = load_workbook(filename=self.filename)
-        self.index_sheet = 0
-        if 'Interview Taken' not in self.wb.sheetnames:
-            self.wb.create_sheet('Interview Taken')
-            self.wb.save(os.path.join(os.getcwd() + "\\result.xlsx"))
-        self.wb = load_workbook(filename=self.filename)
-        self.ws = self.wb.active
-        for i, n in enumerate(self.wb.sheetnames):
-            if n == 'Interview Taken':
-                self.index_sheet = i
-                break
-        self.wb.active = self.index_sheet
-        self.ws = self.wb.active
-        self.wb.active = 1
-        self.ws['A1'] = 'Email'
-        self.ws['B1'] = 'Password'
-        self.ws['C1'] = 'Test Case Module'
-        self.ws['G1'] = 'Result'
-        self.ws['H1'] = 'Date and Time'
-        self.wb.save(os.path.join(os.getcwd() + "\\result.xlsx"))
+        # import os
+        # print(os.path.join(os.getcwd() + "\\result.xlsx"), ">>>>>>")
+        # self.filename = os.path.join(os.getcwd() + "\\result.xlsx")
+        # #self.wb = load_workbook(filename=self.filename)
+        # self.index_sheet = 0
+        # if 'Interview Taken' not in #self.wb.sheetnames:
+        #     #self.wb.create_sheet('Interview Taken')
+        #     #self.wb.save(os.path.join(os.getcwd() + "\\result.xlsx"))
+        # #self.wb = load_workbook(filename=self.filename)
+        # #self.ws = #self.wb.active
+        # for i, n in enumerate(#self.wb.sheetnames):
+        #     if n == 'Interview Taken':
+        #         self.index_sheet = i
+        #         break
+        # #self.wb.active = self.index_sheet
+        # #self.ws = #self.wb.active
+        # #self.wb.active = 1
+        # #self.ws['A1'] = 'Email'
+        # #self.ws['B1'] = 'Password'
+        # #self.ws['C1'] = 'Test Case Module'
+        # #self.ws['G1'] = 'Result'
+        # #self.ws['H1'] = 'Date and Time'
+        # #self.wb.save(os.path.join(os.getcwd() + "\\result.xlsx"))
 
-        # datetime object containing current date and time
-        futuredate = str(datetime.now())
-        print(futuredate)
-        self.ws['H2'] = futuredate
+        # # datetime object containing current date and time
+        # futuredate = str(datetime.now())
+        # print(futuredate)
+        # #self.ws['H2'] = futuredate
+        pass
 
     def setUp(self):
         try:
@@ -55,17 +56,17 @@ class ITAuth(unittest.TestCase):
             
             
             print("\n 1 - Gemini Id and Password successfully login")
-            self.ws['C2'] = 'Login'
-            self.ws['G2'] = 'login Success'
+            #self.ws['C2'] = 'Login'
+            #self.ws['G2'] = 'login Success'
 
-            self.wb.save(self.filename)
+            #self.wb.save(self.filename)
 
         except Exception as e:
             print(e)
             print("\n 1 - Gemini Id and Password  login failed")
-            self.ws['C2'] = 'Login'
-            self.ws['G2'] = 'login failed'
-            self.wb.save(self.filename)
+            #self.ws['C2'] = 'Login'
+            #self.ws['G2'] = 'login failed'
+            #self.wb.save(self.filename)
 
     def Interview_taken(self):
         """
@@ -76,18 +77,18 @@ class ITAuth(unittest.TestCase):
             self.driver.find_element(
                 By.XPATH, '//div[text()="Interviews Taken"]').click()
             print("\n 2 - Selecting 'Interview Taken' successfully")
-            self.ws['C3'] = 'Interview Taken'
-            self.ws['G3'] = 'Pass'
+            #self.ws['C3'] = 'Interview Taken'
+            #self.ws['G3'] = 'Pass'
             
 
         except Exception as e:
             print("\n\nERROR IN Interview Taken >>>>>>>>>>>>>>>\n\n")
             print(e)
             print("\n 2 - Selecting Interview Taken gets fail")
-            self.ws['C3'] = 'Interview Taken'
-            self.ws['G3'] = 'Fail'
+            #self.ws['C3'] = 'Interview Taken'
+            #self.ws['G3'] = 'Fail'
 
-            self.wb.save(self.filename)
+            #self.wb.save(self.filename)
 
             print("\n 3 - sample test case of entering 'Interview Taken' successfully open")
 
@@ -104,20 +105,20 @@ class ITAuth(unittest.TestCase):
                 By.XPATH, "//button[@id='add_btn']").click()
             
             print("\n 4 - 'Add New' button gets selected")
-            self.ws['C4'] = 'Add New Button'
-            self.ws['G4'] = 'Pass'
+            #self.ws['C4'] = 'Add New Button'
+            #self.ws['G4'] = 'Pass'
 
-            self.wb.save(self.filename)
+            #self.wb.save(self.filename)
             
 
         except Exception as e:
             print("\n\nERROR IN Adding New Button >>>>>>>>>>>>>>>\n\n")
             print(e)
             print("\n 4 - Add New button gets fail")
-            self.ws['C4'] = 'Add New Button'
-            self.ws['G4'] = 'Fail'
+            #self.ws['C4'] = 'Add New Button'
+            #self.ws['G4'] = 'Fail'
 
-            self.wb.save(self.filename)
+            #self.wb.save(self.filename)
 
     def Interview_position(self):
         """
@@ -158,20 +159,20 @@ class ITAuth(unittest.TestCase):
             print("\n 10 - Data Warehouse Developer")
             
 
-            self.ws['C5'] = 'Interview Position'
-            self.ws['G5'] = 'Pass'
+            #self.ws['C5'] = 'Interview Position'
+            #self.ws['G5'] = 'Pass'
 
-            self.wb.save(self.filename)
+            #self.wb.save(self.filename)
             
 
         except Exception as e:
             print("\n\nERROR IN Interview Position >>>>>>>>>>>>>>>\n\n")
             print(e)
             print("\n 5 - Interview Position gets fail")
-            self.ws['C5'] = 'Interview Position'
-            self.ws['G5'] = 'Fail'
+            #self.ws['C5'] = 'Interview Position'
+            #self.ws['G5'] = 'Fail'
 
-            self.wb.save(self.filename)
+            #self.wb.save(self.filename)
 
     def ExperienceLevel(self):
         """
@@ -191,20 +192,20 @@ class ITAuth(unittest.TestCase):
                 By.XPATH, '//mat-option[@ng-reflect-value="Junior (Less than 5 years)"]').click()
             print("\n 12 - Junior (Less than 5 years)")
 
-            self.ws['C6'] = 'Experience Level'
-            self.ws['G6'] = 'Pass'
+            #self.ws['C6'] = 'Experience Level'
+            #self.ws['G6'] = 'Pass'
 
-            self.wb.save(self.filename)
+            #self.wb.save(self.filename)
             
 
         except Exception as e:
             print("\n\nERROR IN Experience Level >>>>>>>>>>>>>>>\n\n")
             print(e)
             print("\n 11 - Selecting Experience Level gets fail")
-            self.ws['C6'] = 'Experience Level'
-            self.ws['G6'] = 'Fail'
+            #self.ws['C6'] = 'Experience Level'
+            #self.ws['G6'] = 'Fail'
 
-            self.wb.save(self.filename)
+            #self.wb.save(self.filename)
 
     def No_of_InterviewTaken(self):
         """
@@ -216,20 +217,20 @@ class ITAuth(unittest.TestCase):
             print("\n 13 - Adding No. of Interview Taken")
             
 
-            self.ws['C7'] = 'No. of Interview Taken'
-            self.ws['G7'] = 'Pass'
+            #self.ws['C7'] = 'No. of Interview Taken'
+            #self.ws['G7'] = 'Pass'
 
-            self.wb.save(self.filename)
+            #self.wb.save(self.filename)
             
 
         except Exception as e:
             print("\n\nERROR IN No. of Interview Taken >>>>>>>>>>>>>>>\n\n")
             print(e)
             print("\n 13 - No. of Interview Taken gets fail")
-            self.ws['C7'] = 'No. of Interview Taken'
-            self.ws['G7'] = 'Fail'
+            #self.ws['C7'] = 'No. of Interview Taken'
+            #self.ws['G7'] = 'Fail'
 
-            self.wb.save(self.filename)
+            #self.wb.save(self.filename)
 
     def Interview_Month(self):
         """
@@ -246,20 +247,20 @@ class ITAuth(unittest.TestCase):
             print("\n 15 - Selecting 'JANUARY' Month from the list")
             
 
-            self.ws['C8'] = 'Interview Month'
-            self.ws['G8'] = 'Pass'
+            #self.ws['C8'] = 'Interview Month'
+            #self.ws['G8'] = 'Pass'
 
-            self.wb.save(self.filename)
+            #self.wb.save(self.filename)
             
 
         except Exception as e:
             print("\n\nERROR IN Interview Month >>>>>>>>>>>>>>>\n\n")
             print(e)
             print("\n 13 - Selecting Interview Month gets fail")
-            self.ws['C8'] = 'Interview Month'
-            self.ws['G8'] = 'Fail'
+            #self.ws['C8'] = 'Interview Month'
+            #self.ws['G8'] = 'Fail'
 
-            self.wb.save(self.filename)
+            #self.wb.save(self.filename)
 
     def Goal_Type(self):
         """
@@ -270,20 +271,20 @@ class ITAuth(unittest.TestCase):
             self.driver.find_element(
                 By.XPATH, '//span[text()="Delivery Council (DC)"]').click()
             print("\n 14 - Selecting Goal Type- Engineering Council (EC)")
-            self.ws['C9'] = 'Engineering Council (EC)'
-            self.ws['G9'] = 'Pass'
+            #self.ws['C9'] = 'Engineering Council (EC)'
+            #self.ws['G9'] = 'Pass'
 
-            self.wb.save(self.filename)
+            #self.wb.save(self.filename)
             
 
         except Exception as e:
             print("\n\nERROR IN Goal Type >>>>>>>>>>>>>>>\n\n")
             print(e)
             print("\n 14 - Unable to select Goal_Type")
-            self.ws['C9'] = 'Engineering Council (EC)'
-            self.ws['G9'] = 'Fail'
+            #self.ws['C9'] = 'Engineering Council (EC)'
+            #self.ws['G9'] = 'Fail'
 
-            self.wb.save(self.filename)
+            #self.wb.save(self.filename)
 
 
     def Description(self):
@@ -295,17 +296,17 @@ class ITAuth(unittest.TestCase):
                 By.XPATH,'//textarea[@formcontrolname="description"]').send_keys("Automation testing")
             
             print("\n 15 - Entering Description Done")
-            self.ws['C10'] = 'Description'
-            self.ws['G10'] = 'Pass'
-            self.wb.save(self.filename)
+            #self.ws['C10'] = 'Description'
+            #self.ws['G10'] = 'Pass'
+            #self.wb.save(self.filename)
 
         except Exception as e:
             print("\n\nERROR IN Project Status >>>>>>>>>>>>>>>\n\n")
             print(e)
             print("\n 15 - Entering Description gets fail")
-            self.ws['C10'] = 'Description'
-            self.ws['G10'] = 'Fail'
-            self.wb.save(self.filename)
+            #self.ws['C10'] = 'Description'
+            #self.ws['G10'] = 'Fail'
+            #self.wb.save(self.filename)
 
     def Submit(self):
         """
@@ -318,18 +319,18 @@ class ITAuth(unittest.TestCase):
             print("\n 16 - All Details get submit successfully.")
             
 
-            self.ws['C11'] = 'Submit'
-            self.ws['G11'] = 'Pass'
-            self.wb.save(self.filename)
+            #self.ws['C11'] = 'Submit'
+            #self.ws['G11'] = 'Pass'
+            #self.wb.save(self.filename)
 
         except Exception as e:
             print("\n\nERROR IN SUBMIT  >>>>>>>>>>>>>>>\n\n")
             print(e)
             print("\n 16 - Unable to Click Submit Button")
-            self.ws['C11'] = 'Submit'
-            self.ws['G11'] = 'Fail'
+            #self.ws['C11'] = 'Submit'
+            #self.ws['G11'] = 'Fail'
 
-            self.wb.save(self.filename)
+            #self.wb.save(self.filename)
             
 
     def OK_Button(self):
@@ -340,19 +341,19 @@ class ITAuth(unittest.TestCase):
             OK = self.driver.find_element(
                 By.XPATH, '//span[text()="OK"]').click()
             print("\n 17 - Clicking OK Button")
-            self.ws['C12'] = 'OK Button'
-            self.ws['G12'] = 'Pass'
+            #self.ws['C12'] = 'OK Button'
+            #self.ws['G12'] = 'Pass'
             
-            self.wb.save(self.filename)
+            #self.wb.save(self.filename)
 
         except Exception as e:
             print("\n\nERROR IN OK Button >>>>>>>>>>>>>>>\n\n")
             print(e)
             print("\n 17 - Unable to Click OK Button")
-            self.ws['C12'] = 'OK Button'
-            self.ws['G12'] = 'Fail'
+            #self.ws['C12'] = 'OK Button'
+            #self.ws['G12'] = 'Fail'
 
-            self.wb.save(self.filename)
+            #self.wb.save(self.filename)
 
     def tearDown(self):
         self.driver.quit()

@@ -287,17 +287,18 @@ class CFAuth(unittest.TestCase):
 
         '''
         try:
+            time.sleep(2)
             #OK Button
             assert self.driver.find_element(
                 By.CSS_SELECTOR, "#ok_btn > .mat-button-wrapper").text == "OK"
             #
 
-            element = self.driver.find_element(By.XPATH,'//button[@type="submit" and @id="ok_btn"]')
+            element = self.driver.find_element(By.XPATH,'//span[text()="OK"]')
             actions = ActionChains(self.driver)
             actions.move_to_element(element).perform()
             #
 
-            self.driver.find_element(By.XPATH, '//button[@type="submit" and @id="ok_btn"]').click()
+            self.driver.find_element(By.XPATH, '//span[text()="OK"]').click()
             print("\n 11 - Clicking OK Button")
             #self.ws['C11'] = 'OK Button'
             #self.ws['G11'] = 'Fail'

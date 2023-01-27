@@ -2,38 +2,39 @@ from Functionals import *
 from datainputs import *
 
 
-class  AllotOccasionalReward (unittest.TestCase):
+class CEvent(unittest.TestCase):
 
     def __init__(self):
         """ interact with the underlying operating system."""
-        import os
-        print(os.path.join(os.getcwd() + "\\xyz.xlsx"), ">>>>>>")
-        self.filename = os.path.join(os.getcwd() + "\\xyz.xlsx")
-        self.wb = load_workbook(filename=self.filename)
-        self.index_sheet = 0
-        if ' Allot Occasional Reward ' not in self.wb.sheetnames:
-            self.wb.create_sheet(' Allot Occasional Reward ')
-            self.wb.save(os.path.join(os.getcwd() + "\\xyz.xlsx"))
-        self.wb = load_workbook(filename=self.filename)
-        self.ws = self.wb.active
-        for i, n in enumerate(self.wb.sheetnames):
-            if n == ' Allot Occasional Reward ':
-                self.index_sheet = i
-                break
-        self.wb.active = self.index_sheet
-        self.ws = self.wb.active
-        self.wb.active = 1
-        self.ws['A1'] = 'Email'
-        self.ws['B1'] = 'Password'
-        self.ws['C1'] = 'Test Case Module'
-        self.ws['G1'] = 'Result'
-        self.ws['H1'] = 'Date and Time'
-        self.wb.save(os.path.join(os.getcwd() + "\\xyz.xlsx"))
+        # import os
+        # print(os.path.join(os.getcwd() + "\\result.xlsx"), ">>>>>>")
+        # self.filename = os.path.join(os.getcwd() + "\\result.xlsx")
+        # #self.wbb = load_workbook(filename=self.filename)
+        # self.index_sheet = 0
+        # if 'Contest Event' not in #self.wbb.sheetnames:
+        #     #self.wbb.create_sheet('Contest Event')
+        #     #self.wbb.save(os.path.join(os.getcwd() + "\\result.xlsx"))
+        # #self.wbb = load_workbook(filename=self.filename)
+        # ##self.wbs = #self.wbb.active
+        # for i, n in enumerate(#self.wbb.sheetnames):
+        #     if n == 'Contest Event':
+        #         self.index_sheet = i
+        #         break
+        # #self.wbb.active = self.index_sheet
+        # ##self.wbs = #self.wbb.active
+        # #self.wbb.active = 1
+        # ##self.wbs['A1'] = 'Email'
+        # ##self.wbs['B1'] = 'Password'
+        # ##self.wbs['C1'] = 'Test Case Module'
+        # ##self.wbs['G1'] = 'Result'
+        # ##self.wbs['H1'] = 'Date and Time'
+        # #self.wbb.save(os.path.join(os.getcwd() + "\\result.xlsx"))
 
-        # datetime object containing current date and time
-        futuredate = str(datetime.now())
-        print(futuredate)
-        self.ws['H2'] = futuredate
+        # # datetime object containing current date and time
+        # futuredate = str(datetime.now())
+        # print(futuredate)
+        # ##self.wbs['H2'] = futuredate
+        pass
 
     def setUp(self):
         try:
@@ -45,275 +46,541 @@ class  AllotOccasionalReward (unittest.TestCase):
                 options=chrome_options, executable_path="C:\\Users\\Aman Bhatia\\OneDrive - Gemini Solutions\\Desktop\\Contripoint_Project\\ChromeDriver\\chromedriver.exe")
             print("Browser Connected")
 
-            self.driver.implicitly_wait(5)
-
-            self.driver
+            # driver = self.driver
 
             self.driver.get(
                 "https://dev-contripoint.geminisolutions.com/#/dashboard")
 
-            
+            time.sleep(5)
 
             print("\n Login Successfull \n")
 
             print("\n 1 - Gemini Id and Password successfully login")
-            self.ws['C2'] = 'Login'
-            self.ws['G2'] = 'login Success'
+            ##self.wbs['C2'] = 'Login'
+            ##self.wbs['G2'] = 'login Success'
 
-            self.wb.save(self.filename)
+            #self.wbb.save(self.filename)
 
         except Exception as e:
             print(e)
             print("\n 1 - Gemini Id and Password  login failed")
-            self.ws['C2'] = 'Login'
-            self.ws['G2'] = 'login failed'
-            self.wb.save(self.filename)
+            ##self.wbs['C2'] = 'Login'
+            ##self.wbs['G2'] = 'login failed'
+            #self.wbb.save(self.filename)
 
-    def Admin_Portal(self):
+    def Events(self):
         """
 
         """
         try:
 
-            # Clicking on Admin Portal
+            # Clicking on Events
             self.driver.find_element(
-                By.XPATH, '//span[text()="Admin Portal"]').click()
-            
-            print("\n 2 - Clicking on Admin Portal ")
+                By.XPATH, '//span[text()="Events"]').click()
+            time.sleep(6)
+            print("\n 2 - Clicking on Events ")
 
-            # Clicking Add New button
+            # Create New Event
             self.driver.find_element(
-                By.XPATH, '//button[text()=" ADD NEW "]').click()
-            
-            print("\n 3 - Add New button")
-
-            print("\n 4 - Selecting Admin portal--Add New button button")
-            self.ws['C3'] = 'Admin Portal--Add New button'
-            self.ws['G3'] = 'Pass'
-
-            self.wb.save(self.filename)
+                By.XPATH, '//button[@id="add_btn"]').click()
+            time.sleep(5)
+            print("\n 3 - Creating New Event")
 
         except Exception as e:
-            print("\n 2 - Clicking on Admin Portal gets fail.")
-            print("\n 3 - Selecting Add New button gets fail.")
+            print("\n 2 - Clicking on Events gets fail ")
+            print("\n 3 - Error in Creating New Event")
             print(e)
-            print("\n 4 - Error in selecting Admin portal--Add New button button")
-            self.ws['C3'] = 'Admin Portal--Add New button'
-            self.ws['G3'] = 'Fail'
 
-            self.wb.save(self.filename)
-
-    def Allotment_Type(self):
+    def Add_Banner_Image(self):
         """
+
         """
         try:
-            #selecting Dropdown
-            self.driver.find_element(By.XPATH,'//mat-select[@formcontrolname="allotmentData"]').click()
-            
+            # Adding Banner Image
+            self.driver.find_element(
+                By.XPATH, '//img[@src="../../../../assets/images/banner-image.png"]').click()
+            time.sleep(5)
+            pyautogui.write(banner_image)
+            pyautogui.press('enter')
+            print("\n 4 - Banner Image Upload successfully")
+            ##self.wbs['C3'] = 'Uploading Banner Image'
+            ##self.wbs['G3'] = 'Pass'
 
-            # Allot Occasional Reward 
-            self.driver.find_element(By.XPATH,'//span[text()=" Allot Occasional Reward "]').click()
-            
-            
-            print("\n 5 - Selecting ' Allot Occasional Reward '")
-            self.ws['C4'] = 'Dropdown-- Allot Occasional Reward '
-            self.ws['G4'] = 'Pass'
-
-            self.wb.save(self.filename)
+            #self.wbb.save(self.filename)
+            time.sleep(3)
 
         except Exception as e:
-            print("\n 5 - Selecting ' Allot Occasional Reward ' gets fail")
+            print("\n ERROR IN Adding Banner Image >>>>>>>>>>>>>>>\n\n")
             print(e)
-            self.ws['C4'] = 'Dropdown-- Allot Occasional Reward '
-            self.ws['G4'] = 'Pass'
+            print("\n 4 - Unable to Add Banner Image")
+            ##self.wbs['C3'] = 'Uploading Banner Image'
+            ##self.wbs['G3'] = 'Fail'
 
-            self.wb.save(self.filename)
+            #self.wbb.save(self.filename)
 
-    def Title(self):
+    def Add_Listing_Image(self):
         """
+
         """
         try:
-            #Occasional Reward Title
-            self.driver.find_element(By.XPATH,'//input[@formcontrolname="title"]').send_keys("Employee budgets")            
+            # Adding Listing Image
+            self.driver.find_element(
+                By.XPATH, '//img[@src="../../../../assets/images/listing-image.png"]').click()
+            time.sleep(5)
+            pyautogui.write(listing_image)
+            pyautogui.press('enter')
+            time.sleep(3)
 
-            print("\n 6 - Enter Reward Title")
-            self.ws['C5'] = 'Reward Title'
-            self.ws['G5'] = 'Pass'
+            print("\n 4 - Listing Image Upload successfully")
 
-            self.wb.save(self.filename)
+            ##self.wbs['C4'] = 'Upload Listing Image'
+            ##self.wbs['G4'] = 'Pass'
+            #self.wbb.save(self.filename)
 
         except Exception as e:
-            print("\n 6 - Enter Reward Title gets fail")
+            print("\n ERROR IN Adding Listing Image >>>>>>>>>>>>>>>\n\n")
             print(e)
+            print("\n 4 - Unable to Add Listing Image")
 
-            self.ws['C5'] = 'Reward Title'
-            self.ws['G5'] = 'Fail'
+            ##self.wbs['C4'] = 'Upload Listing Image'
+            ##self.wbs['G4'] = 'Fail'
+            #self.wbb.save(self.filename)
 
-            self.wb.save(self.filename)
-
-    def Import_excel(self):
+    def Event_Name(self):
         """
+
         """
         try:
-            #Import Data from Excel Button
-            self.driver.find_element(By.XPATH,'//button[text()=" IMPORT DATA FROM EXCEL "]').click()
-            
+            # Entering  Event Name
+            self.driver.find_element(
+                By.XPATH, '//input[@formcontrolname="event_name"]').send_keys("Contest Event")
+            time.sleep(5)
+            print("\n 5 - Entering Event Name ")
 
-            #Import Data Screen
-            self.driver.find_element(By.XPATH,'//label[@id="attachment_btn"]').click()
+            ##self.wbs['C5'] = 'Event Name'
+            ##self.wbs['G5'] = 'Pass'
+            #self.wbb.save(self.filename)
+
+        except Exception as e:
+            print("\n ERROR IN Event Name >>>>>>>>>>>>>>>\n\n")
+            print(e)
+            print("\n 5 - Unable to Add Event Name")
+
+            ##self.wbs['C5'] = 'Event Name'
+            ##self.wbs['G5'] = 'Fail'
+            #self.wbb.save(self.filename)
+
+    def Description(self):
+        """
+
+        """
+        try:
+            # Entering Description
+            self.driver.find_element(
+                By.XPATH, '//textarea[@formcontrolname="event_desc"]').send_keys("Please take participate in Contest Event and win Rewards")
+            time.sleep(5)
+            print("\n 6 - Entering Description  ")
+
+            ##self.wbs['C6'] = 'Description '
+            ##self.wbs['G6'] = 'Pass'
+            #self.wbb.save(self.filename)
+
+        except Exception as e:
+            print("\n ERROR IN Description  >>>>>>>>>>>>>>>\n\n")
+            print(e)
+            print("\n 6 - Unable to Add Description ")
+
+            ##self.wbs['C6'] = 'Description '
+            ##self.wbs['G6'] = 'Fail'
+            #self.wbb.save(self.filename)
+
+    def Next_Button(self):
+        """
+
+        """
+        try:
+            # Clicking on Next Button
+            self.driver.find_element(
+                By.XPATH, '//div//div//button[@class="mat-stepper-next" and @id="add_btn"]').click()
+            time.sleep(5)
+            print("\n 7 - Clicking on Next Button  ")
+
+            ##self.wbs['C7'] = 'Next Button '
+            ##self.wbs['G7'] = 'Pass'
+            #self.wbb.save(self.filename)
+
+        except Exception as e:
+            print("\n ERROR IN Next Button  >>>>>>>>>>>>>>>\n\n")
+            print(e)
+            print("\n 7 - Unable to Add Next Button ")
+
+            ##self.wbs['C7'] = 'Next Button '
+            ##self.wbs['G7'] = 'Fail'
+            #self.wbb.save(self.filename)
+
+    def Event_Type(self):
+        """
+
+        """
+        try:
+            # Clicking on Event Type
+            self.driver.find_element(
+                By.XPATH, '//span[text()="Select"]').click()
+            time.sleep(5)
+            print("\n 8 - Clicking on Event Type Dropdown ")
+
+            self.driver.find_element(
+                By.XPATH, ' //span[text()=" Contest "]').click()
+            time.sleep(5)
+
+            print("\n 9 - Event Type - Contest Event")
+
+            ##self.wbs['C8'] = 'Event Type - Contest Event'
+            ##self.wbs['G8'] = 'Pass'
+            #self.wbb.save(self.filename)
+
+        except Exception as e:
+            print("\n ERROR IN Event Type  >>>>>>>>>>>>>>>\n\n")
+            print(e)
+            print("\n 9 - Unable to Select Event Type ")
+
+            ##self.wbs['C8'] = 'Event Type - Contest Event'
+            ##self.wbs['G8'] = 'Fail'
+            #self.wbb.save(self.filename)
+
+    def Contribution_category(self):
+        """
+
+        """
+        try:
+            # Click on Category Dropdown
+            self.driver.find_element(
+                By.XPATH, '//span[text()="Select"]').click()
+            time.sleep(6)
+            print("\n 9 - Opening Dropdown list")
+
+            # Selecting Certificate and Projects
+            self.driver.find_element(
+                By.XPATH, '//span[text()=" Certificate "]').click()
+            time.sleep(5)
+            print("\n 10 - Contribution Category - Certificate")
+
+            self.driver.find_element(
+                By.XPATH, '//span[text()=" Projects "]').click()
+            time.sleep(5)
+            print("\n 11 - Contribution Category - Projects ")
+
+            print("\n 12 - Contribution Category - Certificate and Projects")
+
+            element = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((By.XPATH, '//p[text()="Add Events"]')))
+
+            source = self.driver.find_element(
+                By.XPATH, '//p[text()="Add Events"]')
+            time.sleep(6)
+
+            # action chain object creation
+            action = ActionChains(self.driver)
+            time.sleep(6)
+
+            # double click operation and perform
+            action.click(source).perform()
             time.sleep(6)
             
-            pyautogui.write(occasionalreward)
-            
-            pyautogui.press('enter')
-            print("\n 7 - Budget Excel sheet Upload successfully")
-            self.ws['C5'] = ' Allot Occasional Reward  Excel sheet'
-            self.ws['G5'] = 'Pass'
 
-            self.wb.save(self.filename)
+            ##self.wbs['C9'] = 'Contribution Category - Certificate and Projects'
+            ##self.wbs['G9'] = 'Pass'
+            #self.wbb.save(self.filename)
 
         except Exception as e:
-            print("\n 7 - Budget Excel sheet Uploading gets fail")
-            self.ws['C5'] = ' Allot Occasional Reward  Excel sheet'
-            self.ws['G5'] = 'Fail'
+            print("\n ERROR IN Contribution Category  >>>>>>>>>>>>>>>\n\n")
+            print(e)
+            print("\n 12 - Unable to Select Contributions From Dropdown list ")
 
-            self.wb.save(self.filename)
+            ##self.wbs['C9'] = 'Event Type - Contest Event'
+            ##self.wbs['G9'] = 'Fail'
+            #self.wbb.save(self.filename)
+
+    def Start_Date(self):
+        """
+
+        """
+        try:
+            date = self.driver.find_element(
+                By.XPATH, '//input[@formcontrolname="start_date"]').click()
+            time.sleep(5)
+
+            print("\n 13 - Clicking on Start Date Calander ")
+
+            self.driver.find_element(
+                By.CSS_SELECTOR, ".mat-calendar-body-today").click()
+            time.sleep(5)
+
+            ##self.wbs['C10'] = 'Start Date'
+            ##self.wbs['G10'] = 'Pass'
+            #self.wbb.save(self.filename)
+
+        except Exception as e:
+            print("\n ERROR IN Start Date  >>>>>>>>>>>>>>>\n\n")
+            print(e)
+            print("\n 13 - Unable to Add Start Date ")
+
+            ##self.wbs['C10'] = 'Start Date'
+            ##self.wbs['G10'] = 'Fail'
+            #self.wbb.save(self.filename)
+
+    def End_Date(self):
+        """
+
+        """
+        try:
+            # Clicking on End Date
+            self.driver.find_element(
+                By.XPATH, '//input[@formcontrolname="end_date"]').click()
+            time.sleep(5)
+            print("\n 14 - Clicking on End Date Calander ")
+
+            self.driver.find_element(
+                By.CSS_SELECTOR, ".mat-calendar-body-today").click()
+            time.sleep(5)
+
+            ##self.wbs['C11'] = 'End Date'
+            ##self.wbs['G11'] = 'Pass'
+            #self.wbb.save(self.filename)
+
+        except Exception as e:
+            print("\n ERROR IN End Date  >>>>>>>>>>>>>>>\n\n")
+            print(e)
+            print("\n 14 - Unable to Add End Date ")
+
+            ##self.wbs['C11'] = 'End Date'
+            ##self.wbs['G11'] = 'Fail'
+            #self.wbb.save(self.filename)
+
+    def Reward(self):
+        """
+
+        """
+        try:
+            # Entering Reward
+            self.driver.find_element(
+                By.XPATH, '//textarea[@formcontrolname="reward_desc"]').send_keys("Cash Rs1000/-")
+            time.sleep(5)
+            print("\n 15 - Entering Reward  ")
+
+            ##self.wbs['C12'] = 'Reward '
+            ##self.wbs['G12'] = 'Pass'
+            #self.wbb.save(self.filename)
+
+        except Exception as e:
+            print("\n ERROR IN Reward  >>>>>>>>>>>>>>>\n\n")
+            print(e)
+            print("\n 15 - Unable to Add Reward ")
+
+            ##self.wbs['C12'] = 'Reward '
+            ##self.wbs['G12'] = 'Fail'
+            #self.wbb.save(self.filename)
+
+    def Next_Button1(self):
+        """
+
+        """
+        try:
+            # Clicking on Next Button
+            self.driver.find_element(
+                By.XPATH, '//div[4]//button[text()=" NEXT "]').click()
+            time.sleep(5)
+            print("\n 16 - Clicking on Next Button  ")
+
+            ##self.wbs['C13'] = 'Next Button '
+            ##self.wbs['G13'] = 'Pass'
+            #self.wbb.save(self.filename)
+
+        except Exception as e:
+            print("\n ERROR IN Next Button  >>>>>>>>>>>>>>>\n\n")
+            print(e)
+            print("\n 16 - Unable to Add Next Button ")
+
+            ##self.wbs['C13'] = 'Next Button '
+            ##self.wbs['G13'] = 'Fail'
+            #self.wbb.save(self.filename)
+
+    def Participant_Category(self):
+        """
+        """
+        try:
+            # Clicking on Participant Category
+            self.driver.find_element(
+                By.XPATH, '//span[text()="Select"]').click()
+            time.sleep(5)
+            print("\n 17 - Clicking on Participant Category  ")
+
+            # Selecting Individual Participants From Dropdown
+            self.driver.find_element(
+                By.XPATH,'//span[text()=" Select individual participants "]').click()
+            time.sleep(5)
+            print("\n 18 - Selecting Individual Participants")
+
+            ##self.wbs['C14'] = 'Participant Category - Individual Participants '
+            ##self.wbs['G14'] = 'Pass'
+            #self.wbb.save(self.filename)
+
+        except Exception as e:
+            print("\n ERROR IN Participant Category  >>>>>>>>>>>>>>>\n\n")
+            print(e)
+            print("\n 18 - Unable To Select Individual Participants")
+
+            ##self.wbs['C14'] = 'Participant Category - Individual Participants '
+            ##self.wbs['G14'] = 'Fail'
+            #self.wbb.save(self.filename)
+
+    def Eligible_Participant(self):
+        """
+
+        """
+        try:
+            # Inserting Voter's Name (Aman Bhatia) in Field
+            self.driver.find_element(
+                By.XPATH,'//input[@name="searchText"]').send_keys('Aman Bhatia')
+            time.sleep(5)
+
+            # Clicking on pseudo-checkbox
+            self.driver.find_element(
+                By.XPATH, '//div[text()=" GSI C 1278 Aman Bhatia "]').click()
+            time.sleep(5)
+            print("\n 19 - Eligible Participant- Aman Bhatia")
+
+            # clear the text entered in Field
+            self.driver.find_element(By.XPATH,'//input[@name="searchText"]').clear()
+
+            # Inserting Voter's Name (Alpana Upadhyay) in Field
+            self.driver.find_element(
+                By.XPATH,'//input[@name="searchText"]').send_keys('Alpana Upadhyay')
+            time.sleep(5)
+
+            # Clicking on pseudo-checkbox
+            self.driver.find_element(
+                By.XPATH, '//div[text()=" GSI G 1181 Alpana Upadhyay "]').click()
+            time.sleep(5)
+            print("\n 20 - Eligible Participant- Alpana Upadhyay")
+
+            print("\n 21 - Eligible Participant - Aman Bhatia, Alpana Upadhyay")
+
+            ##self.wbs['C15'] = 'Eligible Participant - Aman Bhatia, Alpana Upadhyay'
+            ##self.wbs['G15'] = 'Pass'
+            #self.wbb.save(self.filename)
+
+        except Exception as e:
+            print("\n ERROR IN Eligible Participant  >>>>>>>>>>>>>>>\n\n")
+            print(e)
+            print(
+                "\n 21 - Unable To Select Eligible Participant - Aman Bhatia, Alpana Upadhyay")
+
+            ##self.wbs['C15'] = 'Eligible Participant - Aman Bhatia, Alpana Upadhyay'
+            ##self.wbs['G15'] = 'Fail'
+            #self.wbb.save(self.filename)
+
+    def Cutoff_Points(self):
+        """
+
+        """
+        try:
+            # Clicking on Cutoff Points
+            self.driver.find_element(
+                By.XPATH,'//input[@ng-reflect-type="number"]').send_keys('100')
+            time.sleep(5)
+            print("\n 22 - Cutoff Points - 100")
+
+            ##self.wbs['C16'] = 'Cutoff Points '
+            ##self.wbs['G16'] = 'Pass'
+            #self.wbb.save(self.filename)
+
+        except Exception as e:
+            print("\n ERROR IN Cutoff Points  >>>>>>>>>>>>>>>\n\n")
+            print(e)
+            print("\n 22 - Unable to Add Cutoff Points ")
+
+            ##self.wbs['C16'] = 'Cutoff Points '
+            ##self.wbs['G16'] = 'Fail'
+            #self.wbb.save(self.filename)
 
     def Submit(self):
         """
+
         """
         try:
-            self.driver.find_element(By.XPATH,'//button[@id="add_btn" and text()=" SUBMIT "]').click()
-            
+            # Clicking on Submit
+            self.driver.find_element(
+                By.XPATH, '//button[text()="Submit"]').click()
+            time.sleep(5)
+            print("\n 23 - Clicking on Submit ")
 
-            print("\n 8 - All Details get SUBMIT successfully.")
-
-            self.ws['C6'] = 'SUBMIT'
-            self.ws['G6'] = 'Pass'
-            self.wb.save(self.filename)
-            
-        
-        except Exception as e:
-            print("\n\nERROR IN SubmitButton >>>>>>>>>>>>>>>\n\n")
-            print(e)
-            print("\n 8 - All Details get fail while SUBMIT.")
-            self.ws['C6'] = 'SUBMIT'
-            self.ws['G6'] = 'Fail'
-            self.wb.save(self.filename)
-
-    def OKButton(self):
-        '''
-
-        '''
-        try:
-            #OK Button
-            self.driver.find_element(By.XPATH,'//span[text()="OK"]').click()
-            print("\n 9 - Clicking OK Button")
-
-            self.ws['C7'] = 'OK BUTTON'
-            self.ws['G7'] = 'Pass'
-            self.wb.save(self.filename)
-            
-
-            self.wb.save(self.filename)
+            ##self.wbs['C17'] = 'Submit '
+            ##self.wbs['G17'] = 'Pass'
+            #self.wbb.save(self.filename)
 
         except Exception as e:
-            print("\n\nERROR IN OKButton >>>>>>>>>>>>>>>\n\n")
+            print("\n ERROR IN Submit  >>>>>>>>>>>>>>>\n\n")
             print(e)
-            print("\n 9 - Unable to click OK Button")
-            self.ws['C7'] = 'OK BUTTON'
-            self.ws['G7'] = 'Fail'
-            self.wb.save(self.filename)
+            print("\n 23 - Unable to Add Submit ")
 
-    def Allot(self):
+            ##self.wbs['C17'] = 'Submit '
+            ##self.wbs['G17'] = 'Fail'
+            #self.wbb.save(self.filename)
+
+    def OK_Button(self):
         """
+
         """
         try:
-            #AllotButton
-            self.driver.find_element(By.XPATH,'//button[text()=" ALLOT "]').click()
-            
+            # Warning popup
+            self.driver.find_element(
+                By.XPATH, '//span[text()="CONTINUE"]').click()
+            print("\n 24 - Clicking on Continue Button")
+            time.sleep(6)
 
-            print("\n 10 - Alloting Budget(₹) to selected employees")
+            # OK Button
+            ok= self.driver.find_element(
+                By.XPATH, '//span[text()="OK"]')
+            time.sleep(6)
+            ok.click()
+            print("\n 25 - Clicking OK Button")
+            ##self.wbs['C18'] = 'OK Button'
+            ##self.wbs['G18'] = 'Pass'
 
-            self.ws['C8'] = 'Allot Occasional Reward (₹)'
-            self.ws['G8'] = 'Pass'
-            self.wb.save(self.filename)
-            
-
-            self.wb.save(self.filename)
-
-        except Exception as e:
-            print("\n\nERROR IN OKButton >>>>>>>>>>>>>>>\n\n")
-            print(e)
-            print("\n 10 - Unable to Allot the Budget(₹)")
-            self.ws['C8'] = 'Alloting Budget(₹)'
-            self.ws['G8'] = 'Fail'
-            self.wb.save(self.filename)
-
-    def OK(self):
-        '''
-
-        '''
-        try:
-            #OK Button
-            self.driver.find_element(By.XPATH,'//button[@id="ok_btn"]').click()
-            print("\n 11 - Clicking OK Button")
-
-            self.ws['C9'] = 'OK BUTTON'
-            self.ws['G9'] = 'Pass'
-            self.wb.save(self.filename)
-            
-
-            self.wb.save(self.filename)
+            #self.wbb.save(self.filename)
+           
 
         except Exception as e:
-            print("\n\nERROR IN OKButton >>>>>>>>>>>>>>>\n\n")
+            print("\n\nERROR IN OK Button >>>>>>>>>>>>>>>\n\n")
             print(e)
-            print("\n 11 - Unable to click OK Button")
-            self.ws['C9'] = 'OK BUTTON'
-            self.ws['G9'] = 'Fail'
-            self.wb.save(self.filename) 
+            print("\n 25 - Unable to Click OK Button")
+            ##self.wbs['C18'] = 'OK Button'
+            ##self.wbs['G18'] = 'Fail'
 
-
-    def Table(self):
-        '''
-
-        '''
-        try:
-
-            #Occasional Reward Table
-            self.driver.find_element(By.XPATH,'//div[text()="Occasional Rewards"]').click()
-            print("\n 11 - Clicking Occasional Reward Button")
-
-            self.ws['C9'] = 'Occasional Reward BUTTON'
-            self.ws['G9'] = 'Pass'
-            self.wb.save(self.filename)
-
-            ''' Scroll to the page down '''
-            self.driver.execute_script("window.scroll(0, 300);")
-
-        except Exception as e:
-            print("\n\nERROR IN View Button >>>>>>>>>>>>>>>\n\n")
-            print(e)
-            print("\n 11 - Unable to click Occasional Reward Button")
-            self.ws['C9'] = 'Occasional Reward  BUTTON'
-            self.ws['G9'] = 'Fail'
-            self.wb.save(self.filename)
-
+            #self.wbb.save(self.filename)
 
     def tearDown(self):
         self.driver.quit()
 
 
 if __name__ == '__main__':
-    tb =  AllotOccasionalReward ()
+    tb = CEvent()
     tb.setUp()
-    tb.Admin_Portal()
-    tb.Allotment_Type()
-    tb.Title()
-    tb.Import_excel()
+    tb.Events()
+    tb.Add_Banner_Image()
+    tb.Add_Listing_Image()
+    tb.Event_Name()
+    tb.Description()
+    tb.Next_Button()
+    tb.Event_Type()
+    tb.Contribution_category()
+    tb.Start_Date()
+    tb.End_Date()
+    tb.Reward()
+    tb.Next_Button1()
+    tb.Participant_Category()
+    tb.Eligible_Participant()
+    tb.Cutoff_Points()
     tb.Submit()
-    tb.OKButton()
-    tb.Allot()
-    tb.OK()
-    tb.Table()
+    tb.OK_Button()

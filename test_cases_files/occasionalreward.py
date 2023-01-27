@@ -5,35 +5,36 @@ from datainputs import *
 class  AllotOccasionalReward (unittest.TestCase):
 
     def __init__(self):
-        """ interact with the underlying operating system."""
-        import os
-        print(os.path.join(os.getcwd() + "\\xyz.xlsx"), ">>>>>>")
-        self.filename = os.path.join(os.getcwd() + "\\xyz.xlsx")
-        self.wb = load_workbook(filename=self.filename)
-        self.index_sheet = 0
-        if ' Allot Occasional Reward ' not in self.wb.sheetnames:
-            self.wb.create_sheet(' Allot Occasional Reward ')
-            self.wb.save(os.path.join(os.getcwd() + "\\xyz.xlsx"))
-        self.wb = load_workbook(filename=self.filename)
-        self.ws = self.wb.active
-        for i, n in enumerate(self.wb.sheetnames):
-            if n == ' Allot Occasional Reward ':
-                self.index_sheet = i
-                break
-        self.wb.active = self.index_sheet
-        self.ws = self.wb.active
-        self.wb.active = 1
-        self.ws['A1'] = 'Email'
-        self.ws['B1'] = 'Password'
-        self.ws['C1'] = 'Test Case Module'
-        self.ws['G1'] = 'Result'
-        self.ws['H1'] = 'Date and Time'
-        self.wb.save(os.path.join(os.getcwd() + "\\xyz.xlsx"))
+        # """ interact with the underlying operating system."""
+        # import os
+        # print(os.path.join(os.getcwd() + "\\result.xlsx"), ">>>>>>")
+        # self.filename = os.path.join(os.getcwd() + "\\result.xlsx")
+        # #self.wb = load_workbook(filename=self.filename)
+        # self.index_sheet = 0
+        # if ' Allot Occasional Reward ' not in #self.wb.sheetnames:
+        #     #self.wb.create_sheet(' Allot Occasional Reward ')
+        #     #self.wb.save(os.path.join(os.getcwd() + "\\result.xlsx"))
+        # #self.wb = load_workbook(filename=self.filename)
+        # #self.ws = #self.wb.active
+        # for i, n in enumerate(#self.wb.sheetnames):
+        #     if n == ' Allot Occasional Reward ':
+        #         self.index_sheet = i
+        #         break
+        # #self.wb.active = self.index_sheet
+        # #self.ws = #self.wb.active
+        # #self.wb.active = 1
+        # #self.ws['A1'] = 'Email'
+        # #self.ws['B1'] = 'Password'
+        # #self.ws['C1'] = 'Test Case Module'
+        # #self.ws['G1'] = 'Result'
+        # #self.ws['H1'] = 'Date and Time'
+        # #self.wb.save(os.path.join(os.getcwd() + "\\result.xlsx"))
 
-        # datetime object containing current date and time
-        futuredate = str(datetime.now())
-        print(futuredate)
-        self.ws['H2'] = futuredate
+        # # datetime object containing current date and time
+        # futuredate = str(datetime.now())
+        # print(futuredate)
+        # #self.ws['H2'] = futuredate
+        pass
 
     def setUp(self):
         try:
@@ -45,7 +46,7 @@ class  AllotOccasionalReward (unittest.TestCase):
                 options=chrome_options, executable_path="C:\\Users\\Aman Bhatia\\OneDrive - Gemini Solutions\\Desktop\\Contripoint_Project\\ChromeDriver\\chromedriver.exe")
             print("Browser Connected")
 
-            self.driver.implicitly_wait(5)
+            self.driver.implicitly_wait(15)
 
             self.driver
 
@@ -57,17 +58,17 @@ class  AllotOccasionalReward (unittest.TestCase):
             print("\n Login Successfull \n")
 
             print("\n 1 - Gemini Id and Password successfully login")
-            self.ws['C2'] = 'Login'
-            self.ws['G2'] = 'login Success'
+            #self.ws['C2'] = 'Login'
+            #self.ws['G2'] = 'login Success'
 
-            self.wb.save(self.filename)
+            #self.wb.save(self.filename)
 
         except Exception as e:
             print(e)
             print("\n 1 - Gemini Id and Password  login failed")
-            self.ws['C2'] = 'Login'
-            self.ws['G2'] = 'login failed'
-            self.wb.save(self.filename)
+            #self.ws['C2'] = 'Login'
+            #self.ws['G2'] = 'login failed'
+            #self.wb.save(self.filename)
 
     def Admin_Portal(self):
         """
@@ -77,7 +78,7 @@ class  AllotOccasionalReward (unittest.TestCase):
 
             # Clicking on Admin Portal
             self.driver.find_element(
-                By.XPATH, '//span[text()="Admin Portal"]').click()
+                By.XPATH, '//a//img[@src="../../assets/images/Admin Portal icon.svg"]').click()
             
             print("\n 2 - Clicking on Admin Portal ")
 
@@ -88,20 +89,20 @@ class  AllotOccasionalReward (unittest.TestCase):
             print("\n 3 - Add New button")
 
             print("\n 4 - Selecting Admin portal--Add New button button")
-            self.ws['C3'] = 'Admin Portal--Add New button'
-            self.ws['G3'] = 'Pass'
+            #self.ws['C3'] = 'Admin Portal--Add New button'
+            #self.ws['G3'] = 'Pass'
 
-            self.wb.save(self.filename)
+            #self.wb.save(self.filename)
 
         except Exception as e:
             print("\n 2 - Clicking on Admin Portal gets fail.")
             print("\n 3 - Selecting Add New button gets fail.")
             print(e)
             print("\n 4 - Error in selecting Admin portal--Add New button button")
-            self.ws['C3'] = 'Admin Portal--Add New button'
-            self.ws['G3'] = 'Fail'
+            #self.ws['C3'] = 'Admin Portal--Add New button'
+            #self.ws['G3'] = 'Fail'
 
-            self.wb.save(self.filename)
+            #self.wb.save(self.filename)
 
     def Allotment_Type(self):
         """
@@ -116,18 +117,18 @@ class  AllotOccasionalReward (unittest.TestCase):
             
             
             print("\n 5 - Selecting ' Allot Occasional Reward '")
-            self.ws['C4'] = 'Dropdown-- Allot Occasional Reward '
-            self.ws['G4'] = 'Pass'
+            #self.ws['C4'] = 'Dropdown-- Allot Occasional Reward '
+            #self.ws['G4'] = 'Pass'
 
-            self.wb.save(self.filename)
+            #self.wb.save(self.filename)
 
         except Exception as e:
             print("\n 5 - Selecting ' Allot Occasional Reward ' gets fail")
             print(e)
-            self.ws['C4'] = 'Dropdown-- Allot Occasional Reward '
-            self.ws['G4'] = 'Pass'
+            #self.ws['C4'] = 'Dropdown-- Allot Occasional Reward '
+            #self.ws['G4'] = 'Pass'
 
-            self.wb.save(self.filename)
+            #self.wb.save(self.filename)
 
     def Title(self):
         """
@@ -137,19 +138,19 @@ class  AllotOccasionalReward (unittest.TestCase):
             self.driver.find_element(By.XPATH,'//input[@formcontrolname="title"]').send_keys("Employee budgets")            
 
             print("\n 6 - Enter Reward Title")
-            self.ws['C5'] = 'Reward Title'
-            self.ws['G5'] = 'Pass'
+            #self.ws['C5'] = 'Reward Title'
+            #self.ws['G5'] = 'Pass'
 
-            self.wb.save(self.filename)
+            #self.wb.save(self.filename)
 
         except Exception as e:
             print("\n 6 - Enter Reward Title gets fail")
             print(e)
 
-            self.ws['C5'] = 'Reward Title'
-            self.ws['G5'] = 'Fail'
+            #self.ws['C5'] = 'Reward Title'
+            #self.ws['G5'] = 'Fail'
 
-            self.wb.save(self.filename)
+            #self.wb.save(self.filename)
 
     def Import_excel(self):
         """
@@ -161,23 +162,23 @@ class  AllotOccasionalReward (unittest.TestCase):
 
             #Import Data Screen
             self.driver.find_element(By.XPATH,'//label[@id="attachment_btn"]').click()
-            time.sleep(6)
+            time.sleep(5)
             
             pyautogui.write(occasionalreward)
-            time.sleep(6)
+            
             pyautogui.press('enter')
             print("\n 7 - Budget Excel sheet Upload successfully")
-            self.ws['C5'] = ' Allot Occasional Reward  Excel sheet'
-            self.ws['G5'] = 'Pass'
+            #self.ws['C5'] = ' Allot Occasional Reward  Excel sheet'
+            #self.ws['G5'] = 'Pass'
 
-            self.wb.save(self.filename)
+            #self.wb.save(self.filename)
 
         except Exception as e:
             print("\n 7 - Budget Excel sheet Uploading gets fail")
-            self.ws['C5'] = ' Allot Occasional Reward  Excel sheet'
-            self.ws['G5'] = 'Fail'
+            #self.ws['C5'] = ' Allot Occasional Reward  Excel sheet'
+            #self.ws['G5'] = 'Fail'
 
-            self.wb.save(self.filename)
+            #self.wb.save(self.filename)
 
     def Submit(self):
         """
@@ -188,18 +189,18 @@ class  AllotOccasionalReward (unittest.TestCase):
 
             print("\n 8 - All Details get SUBMIT successfully.")
 
-            self.ws['C6'] = 'SUBMIT'
-            self.ws['G6'] = 'Pass'
-            self.wb.save(self.filename)
+            #self.ws['C6'] = 'SUBMIT'
+            #self.ws['G6'] = 'Pass'
+            #self.wb.save(self.filename)
             
         
         except Exception as e:
             print("\n\nERROR IN SubmitButton >>>>>>>>>>>>>>>\n\n")
             print(e)
             print("\n 8 - All Details get fail while SUBMIT.")
-            self.ws['C6'] = 'SUBMIT'
-            self.ws['G6'] = 'Fail'
-            self.wb.save(self.filename)
+            #self.ws['C6'] = 'SUBMIT'
+            #self.ws['G6'] = 'Fail'
+            #self.wb.save(self.filename)
 
     def OKButton(self):
         '''
@@ -210,45 +211,47 @@ class  AllotOccasionalReward (unittest.TestCase):
             self.driver.find_element(By.XPATH,'//span[text()="OK"]').click()
             print("\n 9 - Clicking OK Button")
 
-            self.ws['C7'] = 'OK BUTTON'
-            self.ws['G7'] = 'Pass'
-            self.wb.save(self.filename)
+            #self.ws['C7'] = 'OK BUTTON'
+            #self.ws['G7'] = 'Pass'
+            #self.wb.save(self.filename)
             
 
-            self.wb.save(self.filename)
+            #self.wb.save(self.filename)
 
         except Exception as e:
             print("\n\nERROR IN OKButton >>>>>>>>>>>>>>>\n\n")
             print(e)
             print("\n 9 - Unable to click OK Button")
-            self.ws['C7'] = 'OK BUTTON'
-            self.ws['G7'] = 'Fail'
-            self.wb.save(self.filename)
+            #self.ws['C7'] = 'OK BUTTON'
+            #self.ws['G7'] = 'Fail'
+            #self.wb.save(self.filename)
 
     def Allot(self):
         """
         """
         try:
+            time.sleep(4)
             #AllotButton
-            self.driver.find_element(By.XPATH,'//button[text()=" ALLOT "]').click()
-            
+            Allot_btn = ActionChains(self.driver).move_to_element(self.driver.find_element(
+                By.XPATH,'//button[@id="allot" and text()=" ALLOT "]'))
+            Allot_btn.click().perform()           
 
             print("\n 10 - Alloting Budget(₹) to selected employees")
 
-            self.ws['C8'] = 'Allot Occasional Reward (₹)'
-            self.ws['G8'] = 'Pass'
-            self.wb.save(self.filename)
+            #self.ws['C8'] = 'Allot Occasional Reward (₹)'
+            #self.ws['G8'] = 'Pass'
+            #self.wb.save(self.filename)
             
 
-            self.wb.save(self.filename)
+            #self.wb.save(self.filename)
 
         except Exception as e:
             print("\n\nERROR IN OKButton >>>>>>>>>>>>>>>\n\n")
             print(e)
             print("\n 10 - Unable to Allot the Budget(₹)")
-            self.ws['C8'] = 'Alloting Budget(₹)'
-            self.ws['G8'] = 'Fail'
-            self.wb.save(self.filename)
+            #self.ws['C8'] = 'Alloting Budget(₹)'
+            #self.ws['G8'] = 'Fail'
+            #self.wb.save(self.filename)
 
     def OK(self):
         '''
@@ -256,23 +259,23 @@ class  AllotOccasionalReward (unittest.TestCase):
         '''
         try:
             #OK Button
-            self.driver.find_element(By.XPATH,'//button[@id="ok_btn"]').click()
+            self.driver.find_element(By.XPATH,'//button[@type="submit" and @id="ok_btn"]').click()
             print("\n 11 - Clicking OK Button")
 
-            self.ws['C9'] = 'OK BUTTON'
-            self.ws['G9'] = 'Pass'
-            self.wb.save(self.filename)
+            #self.ws['C9'] = 'OK BUTTON'
+            #self.ws['G9'] = 'Pass'
+            #self.wb.save(self.filename)
             
 
-            self.wb.save(self.filename)
+            #self.wb.save(self.filename)
 
         except Exception as e:
             print("\n\nERROR IN OKButton >>>>>>>>>>>>>>>\n\n")
             print(e)
             print("\n 11 - Unable to click OK Button")
-            self.ws['C9'] = 'OK BUTTON'
-            self.ws['G9'] = 'Fail'
-            self.wb.save(self.filename) 
+            #self.ws['C9'] = 'OK BUTTON'
+            #self.ws['G9'] = 'Fail'
+            #self.wb.save(self.filename) 
 
 
     def Table(self):
@@ -285,20 +288,20 @@ class  AllotOccasionalReward (unittest.TestCase):
             self.driver.find_element(By.XPATH,'//div[text()="Occasional Rewards"]').click()
             print("\n 11 - Clicking Occasional Reward Button")
 
-            self.ws['C9'] = 'Occasional Reward BUTTON'
-            self.ws['G9'] = 'Pass'
-            self.wb.save(self.filename)
-            
+            #self.ws['C9'] = 'Occasional Reward BUTTON'
+            #self.ws['G9'] = 'Pass'
+            #self.wb.save(self.filename)
 
-            self.wb.save(self.filename)
+            ''' Scroll to the page down '''
+            self.driver.execute_script("window.scroll(0, 300);")
 
         except Exception as e:
             print("\n\nERROR IN View Button >>>>>>>>>>>>>>>\n\n")
             print(e)
             print("\n 11 - Unable to click Occasional Reward Button")
-            self.ws['C9'] = 'Occasional Reward  BUTTON'
-            self.ws['G9'] = 'Fail'
-            self.wb.save(self.filename)
+            #self.ws['C9'] = 'Occasional Reward  BUTTON'
+            #self.ws['G9'] = 'Fail'
+            #self.wb.save(self.filename)
 
 
     def tearDown(self):
@@ -306,7 +309,7 @@ class  AllotOccasionalReward (unittest.TestCase):
 
 
 if __name__ == '__main__':
-    tb =  AllotOccasionalReward ()
+    tb = AllotOccasionalReward()
     tb.setUp()
     tb.Admin_Portal()
     tb.Allotment_Type()

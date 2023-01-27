@@ -9,13 +9,13 @@ class TBAuth(unittest.TestCase):
         
             """ interact with the underlying operating system."""
             import os
-            print(os.path.join(os.getcwd()+ "\\xyz.xlsx"),">>>>>>")
-            self.filename = os.path.join(os.getcwd()+ "\\xyz.xlsx")
+            print(os.path.join(os.getcwd()+ "\\result.xlsx"),">>>>>>")
+            self.filename = os.path.join(os.getcwd()+ "\\result.xlsx")
             self.wb = load_workbook(filename=self.filename)
             self.index_sheet = 0
             if 'TeamBuildingActivity' not in self.wb.sheetnames:
                 self.wb.create_sheet('TeamBuildingActivity')
-                self.wb.save(os.path.join(os.getcwd()+ "\\xyz.xlsx"))
+                self.wb.save(os.path.join(os.getcwd()+ "\\result.xlsx"))
             self.wb = load_workbook(filename=self.filename)
             self.ws = self.wb.active
             for i, n in enumerate(self.wb.sheetnames):
@@ -30,7 +30,7 @@ class TBAuth(unittest.TestCase):
             self.ws['C1'] = 'Test Case Module'
             self.ws['G1'] = 'Result'
             self.ws['H1'] = 'Date and Time'
-            self.wb.save(os.path.join(os.getcwd()+ "\\xyz.xlsx"))
+            self.wb.save(os.path.join(os.getcwd()+ "\\result.xlsx"))
 
             # datetime object containing current date and time
             futuredate = str(datetime.now())

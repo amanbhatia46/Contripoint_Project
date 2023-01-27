@@ -27,7 +27,7 @@ from datainputs import *
 class Api(unittest.TestCase):
 
     def __init__(self):
-        self.filename = os.path.join(os.getcwd()+ "\\xyz.xlsx")
+        self.filename = os.path.join(os.getcwd()+ "\\result.xlsx")
         self.wb = load_workbook(filename=self.filename)
         self.ws = self.wb.active
         print(self.wb)
@@ -40,7 +40,7 @@ class Api(unittest.TestCase):
         self.ws['C1'] = 'Test Case Module'
         self.ws['G1'] = 'Result'
         self.ws['H1'] = 'Date and Time'
-        self.wb.save(os.path.join(os.getcwd()+ "\\xyz.xlsx"))
+        self.wb.save(os.path.join(os.getcwd()+ "\\result.xlsx"))
 
         # datetime object containing current date and time
         futuredate = datetime.now()

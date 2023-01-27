@@ -231,7 +231,7 @@ class CAuth(unittest.TestCase):
         """
         try:
             #Goal Type-
-            self.driver.find_element(By.XPATH,'//*[text()="Engineering Council (EC)"]').click()
+            self.driver.find_element(//span[text()="Delivery Council (DC)"]').click()
             print("\n 8 - Selecting Goal Type- Engineering Council (EC)")
             self.ws['C9'] = 'Engineering Council (EC)'
             self.ws['G9'] = 'Pass'

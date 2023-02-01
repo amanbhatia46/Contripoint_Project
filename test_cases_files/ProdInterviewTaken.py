@@ -44,10 +44,10 @@ class ITAuth(unittest.TestCase):
             self.driver = webdriver.Chrome(options=chrome_options,executable_path="C:\\Users\\Aman Bhatia\\OneDrive - Gemini Solutions\\Desktop\\Contripoint_Project\\ChromeDriver\\chromedriver.exe")
             print("Browser Connected")
 
-            self.driver.implicitly_wait(25)
+            self.driver.implicitly_wait(35)
 
             self.driver.get(
-                "https://dev-contripoint.geminisolutions.com/#/dashboard")
+                "https://contripoint.geminisolutions.com/#/dashboard")
 
             
 
@@ -75,7 +75,7 @@ class ITAuth(unittest.TestCase):
         try:
             """Selecting Interview Taken"""
             self.driver.find_element(
-                By.XPATH, '//div[text()="Interviews Taken"]').click()
+                By.XPATH, '//div//mat-card-title[text()="Interview Taken"]').click()
             print("\n 2 - Selecting 'Interview Taken' successfully")
             #self.ws['C3'] = 'Interview Taken'
             #self.ws['G3'] = 'Pass'

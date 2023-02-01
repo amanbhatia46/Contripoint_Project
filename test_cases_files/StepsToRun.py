@@ -1,9 +1,9 @@
 
 """
 1. Open cmd and run command only 1 time --
-    cd C:\Program Files\Google\Chrome\Application
+cd C:\Program Files\Google\Chrome\Application
 
-    chrome.exe --remote-debugging-port=9222 --user-data-dir=C:\Selenium\Chromedata
+chrome.exe --remote-debugging-port=9222 --user-data-dir=C:\Selenium\Chromedata
 
 2. when new tab gets open then minimize it and run our code.
 

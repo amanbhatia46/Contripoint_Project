@@ -47,7 +47,7 @@ class CAuth(unittest.TestCase):
 
             self.driver.implicitly_wait(15)
             self.driver.get(
-                "https://dev-contripoint.geminisolutions.com/#/dashboard")
+                "https://contripoint.geminisolutions.com/#/dashboard")
 
             
 
@@ -59,8 +59,6 @@ class CAuth(unittest.TestCase):
             #self.ws['G2'] = 'login Success'
 
         except Exception as e:
-            import traceback
-            print(traceback.print_exc())
             print(e)
             print("\n 1 - Gemini Id and Password  login failed")
             #self.ws['C2'] = 'Login'
@@ -76,7 +74,8 @@ class CAuth(unittest.TestCase):
         """
         try:            
             #Certifications
-            a = self.driver.find_element(By.XPATH,'//div[text()="Certificate"]')
+            time.sleep(4)
+            a = self.driver.find_element(By.XPATH,'//div//mat-card-title[text()=" Certifications "]')
             a.click()
             print("\n 2 - Selecting 'Certifications' successfully")
             #self.ws['C3'] = 'Certifications'
@@ -124,7 +123,6 @@ class CAuth(unittest.TestCase):
 
         """
         try:
-            
             #NAME OF CERTIFICATION-
             self.driver.find_element(By.XPATH,'//input[@formcontrolname="summary"]') .send_keys('Python')           
             print("\n 4 - Name Of Certification - 'Python'")

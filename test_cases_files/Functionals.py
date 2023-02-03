@@ -1,7 +1,7 @@
-'''
+"""
 FUncitonal
 
-'''
+"""
 from json import load
 from telnetlib import EC
 

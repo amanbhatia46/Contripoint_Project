@@ -78,7 +78,7 @@ class Api(unittest.TestCase):
             # Entering Mail Id in input
             self.driver.find_element(
                 By.XPATH, '//*[@id="i0116"]').send_keys(login_Id)
-            self.ws['A2'] = 'aman.bhatia@geminisolutions.com'
+            self.ws['A2'] = '***@geminisolutions.com'
             print("\n 2- Entering mail id \n")
 
             self.driver.find_element(

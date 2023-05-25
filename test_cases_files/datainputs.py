@@ -1,8 +1,8 @@
 
 
-login_Id = "aman.bhatia@geminisolutions.com"
+login_Id = "******@geminisolutions.com"
 
-login_Password = "RitaNandini@96"
+login_Password = "*****"
 
 banner_image = 'C:\\Users\\Aman Bhatia\\OneDrive - Gemini Solutions\\Desktop\\wallpaper\\3.jpeg'
 
